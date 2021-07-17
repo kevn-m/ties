@@ -1,20 +1,78 @@
-<h2>Log in</h2>
+<div class='container mx-4'>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2>Log in</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Log in" , class: "btn-primary"%>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+<!--
+<a href="" id='aLogin' data-toggle="modal" data-target="#modalLogin" hidden=1></a>
+ -->
+<!-- Modal for login -->
+<div class="modal fade" id="modalLogin"
+  tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 ">Login</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="p-2">
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div>
+              <%= f.input :email,
+                          required: false,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" } %>
+              <%= f.input :password,
+                          required: false,
+                          input_html: { autocomplete: "current-password" } %>
+              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            </div>
+            <div class="d-flex justify-content-center">
+              <%= f.submit "Enter", class: "btn btn-primary mt-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer="defer">
+  // const aLogin = document.getElementById('aLogin');
+  console.log("ggg");
+  // aLogin.click();
+
+  // $(window).load(function(){
+  //  $('#modalLogin').modal('show');
+  // });
+
+  $('#modalLogin').modal('show')
+</script>
