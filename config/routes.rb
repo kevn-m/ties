@@ -8,14 +8,13 @@ Rails.application.routes.draw do
 
   resources :ties, only: [:show, :index] do
     resources :messages, only: [:create]
-  end
-  resources :referrals, only: [:create, :index]
-
-  resources :ties do
     collection do
       get :chat_list
     end
   end
-
-
+  resources :referrals, only: [:create, :index]
+  resources :users, only: [:show] do
+    resources :user_interests, only: [:create]
+  end
+  resources :user_interests, only: [:destroy]
 end
