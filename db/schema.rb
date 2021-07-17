@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_003038) do
+ActiveRecord::Schema.define(version: 2021_07_17_004611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,32 @@ ActiveRecord::Schema.define(version: 2021_07_17_003038) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.text "reason"
+    t.boolean "requested"
+    t.boolean "reject"
+    t.text "message_from_to_user"
+    t.boolean "seen_by_to_user"
+    t.boolean "seen_by_recommended"
+    t.bigint "referrer_user_id"
+    t.bigint "recommended_user_id"
+    t.bigint "to_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recommended_user_id"], name: "index_referrals_on_recommended_user_id"
+    t.index ["referrer_user_id"], name: "index_referrals_on_referrer_user_id"
+    t.index ["to_user_id"], name: "index_referrals_on_to_user_id"
+  end
+
+  create_table "ties", force: :cascade do |t|
+    t.bigint "user1_id"
+    t.bigint "user2_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user1_id"], name: "index_ties_on_user1_id"
+    t.index ["user2_id"], name: "index_ties_on_user2_id"
   end
 
   create_table "user_interests", force: :cascade do |t|
@@ -49,6 +75,11 @@ ActiveRecord::Schema.define(version: 2021_07_17_003038) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "referrals", "users", column: "recommended_user_id"
+  add_foreign_key "referrals", "users", column: "referrer_user_id"
+  add_foreign_key "referrals", "users", column: "to_user_id"
+  add_foreign_key "ties", "users", column: "user1_id"
+  add_foreign_key "ties", "users", column: "user2_id"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
 end

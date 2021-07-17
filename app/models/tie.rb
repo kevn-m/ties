@@ -1,0 +1,2 @@
+class Tie < ApplicationRecord
+end
