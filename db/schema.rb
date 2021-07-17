@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_010208) do
+ActiveRecord::Schema.define(version: 2021_07_17_012736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_010208) do
     t.bigint "user_id", null: false
     t.bigint "tie_id", null: false
     t.text "content"
-    t.boolean "seen"
+    t.boolean "seen", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tie_id"], name: "index_messages_on_tie_id"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2021_07_17_010208) do
     t.boolean "requested"
     t.boolean "reject"
     t.text "message_from_to_user"
-    t.boolean "seen_by_to_user"
-    t.boolean "seen_by_recommended"
+    t.boolean "seen_by_to_user", default: false
+    t.boolean "seen_by_recommended", default: false
     t.bigint "referrer_user_id"
     t.bigint "recommended_user_id"
     t.bigint "to_user_id"
