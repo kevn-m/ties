@@ -19,4 +19,6 @@ class User < ApplicationRecord
   validates :bio, length: { minimum: 50 }
   validates :summary, length: { maximum: 500 }
   validates :status, length: { maximum: 100 }
+
+  has_many_attached :photos
 end
