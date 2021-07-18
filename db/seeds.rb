@@ -11,6 +11,10 @@ user1 = User.new(username: "mary", email: "mary@user.com", first_name: "Mary", l
   summary: "I love crossfit, fashion and crypto", status: "Wanna join me for a crossfit sesh?")
 file = URI.open('https://images.unsplash.com/photo-1520024146169-3240400354ae?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29vbCUyMGdpcmxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user1.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+file2 = URI.open('https://images.unsplash.com/photo-1534196511436-921a4e99f297?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNyb3NzZml0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user1.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
+file3 = URI.open('https://images.unsplash.com/photo-1603077492137-fdb1a98f0d14?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjc3fHxjcm9zc2ZpdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user1.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 user1.save!
 
 user2 = User.new(username: "adam", email: "adam@user.com", first_name: "Adam", last_name: "Sandler", password: "123456",
@@ -18,6 +22,10 @@ user2 = User.new(username: "adam", email: "adam@user.com", first_name: "Adam", l
   summary: "Currently I'm into fitness, crypto and cooking.", status: "Let's talk about crypto.")
 file = URI.open('https://images.unsplash.com/photo-1562093772-c36f2d77edc3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user2.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+file2 = URI.open('https://images.unsplash.com/photo-1621504450177-2170a39db3cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fGNyeXB0b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user2.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
+file3 = URI.open('https://images.unsplash.com/photo-1556711905-4bd1b6603275?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdGl2YXRpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user2.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 user2.save!
 
 user3 = User.new(username: "joe", email: "joe@user.com", first_name: "Joe", last_name: "Collins", password: "123456",
