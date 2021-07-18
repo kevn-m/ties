@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :user_interests
   has_many :interests, through: :user_interests
   has_many :messages
+  has_many_attached :photos
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
