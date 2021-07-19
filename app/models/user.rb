@@ -21,5 +21,4 @@ class User < ApplicationRecord
   validates :summary, length: { maximum: 500 }
   validates :status, length: { maximum: 100 }
 
-  has_many_attached :photos
 end
