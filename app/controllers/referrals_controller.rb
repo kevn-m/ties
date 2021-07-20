@@ -1,5 +1,5 @@
 class ReferralsController < ApplicationController
-  def request
+  def referral_request
   end
 
   def accept
