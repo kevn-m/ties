@@ -8,7 +8,8 @@ def get_face_url(options)
     @url_face + options,
     "Cache-Control" => "no-cache",
     "Accept"        => "application/json",
-    "X-API-KEY"     => "7904BC2D-C2FD4DBF-93FA236D-7FA151A4"
+    # "X-API-KEY"     => "7904BC2D-C2FD4DBF-93FA236D-7FA151A4"
+    "X-API-KEY"     => "064D45C7-BFAB4733-81108875-5BAC345E"
   ).read
 sleep 20 # this is to get around issuing too many request within 1 minute
   return JSON.parse(stream).first["photo"]
