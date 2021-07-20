@@ -1,4 +1,18 @@
 require 'open-uri'
+require 'json'
+
+@url_face = 'https://uifaces.co/api?limit=1&emotion[]=happiness'
+
+def get_face_url(options)
+  stream = open(
+    @url_face + options,
+    "Cache-Control" => "no-cache",
+    "Accept"        => "application/json",
+    "X-API-KEY"     => "7904BC2D-C2FD4DBF-93FA236D-7FA151A4"
+  ).read
+sleep 20 # this is to get around issuing too many request within 1 minute
+  return JSON.parse(stream).first["photo"]
+end
 
 Referral.destroy_all
 Tie.destroy_all
@@ -6,11 +20,14 @@ UserInterest.destroy_all
 Interest.destroy_all
 User.destroy_all
 
+puts "Destroyed all records...now creating users"
+
 user1 = User.new(username: "mary", email: "mary@user.com", first_name: "Mary", last_name: "Smith", password: "123456",
   bio: "Hi peeps, I am Mary! I'm loving the big city life and always keen to meet new like minded people.",
   summary: "I love crossfit, fashion and crypto", status: "Wanna join me for a crossfit sesh?")
-file = URI.open('https://images.unsplash.com/photo-1520024146169-3240400354ae?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29vbCUyMGdpcmxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user1.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user1.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1520024146169-3240400354ae?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29vbCUyMGdpcmxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user1.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 file2 = URI.open('https://images.unsplash.com/photo-1534196511436-921a4e99f297?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNyb3NzZml0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user1.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
 file3 = URI.open('https://images.unsplash.com/photo-1603077492137-fdb1a98f0d14?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjc3fHxjcm9zc2ZpdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
@@ -20,8 +37,9 @@ user1.save!
 user2 = User.new(username: "adam", email: "adam@user.com", first_name: "Adam", last_name: "Sandler", password: "123456",
   bio: "Adam's the name. Fund management is my game. Never get tired of talking about it.",
   summary: "Currently I'm into fitness, crypto and cooking.", status: "Let's talk about crypto.")
-file = URI.open('https://images.unsplash.com/photo-1562093772-c36f2d77edc3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user2.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user2.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1562093772-c36f2d77edc3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user2.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 file2 = URI.open('https://images.unsplash.com/photo-1621504450177-2170a39db3cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fGNyeXB0b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user2.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
 file3 = URI.open('https://images.unsplash.com/photo-1556711905-4bd1b6603275?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdGl2YXRpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
@@ -31,127 +49,143 @@ user2.save!
 user3 = User.new(username: "joe", email: "joe@user.com", first_name: "Joe", last_name: "Collins", password: "123456",
   bio: "Yo yo yo it's Joe. I just moved to Melbourne and looking forward to meeting people for networking and hanging out with.",
   summary: "Photography is my passion. Also ultra running.", status: "Any other ultra runners online?")
-file = URI.open('https://images.unsplash.com/photo-1517796931930-443b6f13cf65?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjJ8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user3.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1517796931930-443b6f13cf65?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjJ8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user3.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+file = URI.open('https://source.unsplash.com/RcVgpK_Gvkg/1080x1920')
 user3.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user3.save!
 
 user4 = User.new(username: "phil", email: "phil@user.com", first_name: "Phil", last_name: "Collins", password: "123456",
   bio: "Hi, I'm Phil! I'm new in town and hoping to increase my circle of friends and professional contacts.",
   summary: "Fashion, reading and crypto.", status: "Just bought some doge coin, mistake? LOL")
-file = URI.open('https://images.unsplash.com/photo-1603004615643-f866342e5729?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user4.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user4.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user4.save!
 
 user5 = User.new(username: "amy", email: "amy@user.com", first_name: "Amy", last_name: "Adams", password: "123456",
   bio: "Hey, I'm Amy! I'm a passionate graphic designer, always on the lookout for new friends and connections.",
   summary: "I love arts, graffiti and fashion.", status: "I have an idea for a graffiti, wanna join in making it a reality?")
-file = URI.open('https://images.unsplash.com/photo-1585143497712-4c3a80b7b1ec?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29vbCUyMGdpcmxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user5.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user5.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user5.save!
 
 user6 = User.new(username: "mia", email: "mia@user.com", first_name: "Mia", last_name: "Sheen", password: "123456",
   bio: "Mia here! I'm a lawyer by profession, a dreamer by nature. Pleased to meet you.",
   summary: "I love law, poetry and live music.", status: "Any other law enthusiasts online?")
-file = URI.open('https://images.unsplash.com/photo-1550517556-b39897318dd5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user6.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+#file = URI.open('https://images.unsplash.com/photo-1550517556-b39897318dd5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+#user6.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user6.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user6.save!
 
 user7 = User.new(username: "Valerie", email: "valerie@user.com", first_name: "Valerie", last_name: "Jackson", password: "123456",
   bio: "Hey y'all, it's Val here, looking forward to connecting with interesting people.",
   summary: "Crossfit, photography, fashion.", status: "I need to buy a new camera, recommendations?")
-file = URI.open('https://images.unsplash.com/photo-1529739121416-921f4dae728e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29vbCUyMGdpcmxzJTIwYWZyaWNhbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user7.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+#file = URI.open('https://images.unsplash.com/photo-1529739121416-921f4dae728e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y29vbCUyMGdpcmxzJTIwYWZyaWNhbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+#user7.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user7.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user7.save!
 
 user8 = User.new(username: "Tanya", email: "tanya@user.com", first_name: "Tanya", last_name: "Andrews", password: "123456",
   bio: "Whaddup, it's Tanya. I'm a UX designer by profession and I am very excited to chat more about it!",
   summary: "In addition to UX, I love yoga and painting.", status: "I'm trying to find an oil painting class.")
-file = URI.open('https://images.unsplash.com/photo-1603771628324-c90909126ccd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user8.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1603771628324-c90909126ccd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user8.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user8.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user8.save!
 
 user9 = User.new(username: "Isla", email: "isla@user.com", first_name: "Isla", last_name: "Rudetzki", password: "123456",
   bio: "Hey you, I am Isla. I work in commercial retail and love all things fashion.",
   summary: "Fashion, pilates, arts", status: "Any other fashionistas out there?")
-file = URI.open('https://images.unsplash.com/photo-1577899877811-35c27d5d7f12?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user9.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1577899877811-35c27d5d7f12?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user9.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user9.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user9.save!
 
 user10 = User.new(username: "Yaya", email: "yaya@user.com", first_name: "Yaya", last_name: "Mpaluko", password: "123456",
   bio: "Yaya here. I'm new in town. I'm looking to connects with other artists.",
   summary: "I'm into music, love doing pilates and the occasional gym session", status: "Can you recommend a pilates teacher?")
-file = URI.open('https://images.unsplash.com/photo-1548609036-95d86bd67b86?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user10.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1548609036-95d86bd67b86?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fGNvb2wlMjBnaXJsc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user10.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user10.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user10.save!
 
 user11 = User.new(username: "Fred", email: "fred@user.com", first_name: "Frederick", last_name: "Johnson", password: "123456",
   bio: "Hi there, I'm Fred. I'm a professional athlete. I have just moved here and would love to meet new friends.",
   summary: "Sports is my main passion of course, but I also enjoy music and crypto.", status: "I'd like to find a good live music venue")
-file = URI.open('https://images.unsplash.com/photo-1563452965085-2e77e5bf2607?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user11.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1563452965085-2e77e5bf2607?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user11.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user11.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user11.save!
 
 user12 = User.new(username: "Devon", email: "devon@user.com", first_name: "Devon", last_name: "Alzarian", password: "123456",
   bio: "Hi all, I'm Devon, accountant by day, DJ by night. Let's connect.",
   summary: "Very into music, also like gym and math.", status: "Keen to talk about algorithms")
-file = URI.open('https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user12.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user12.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user12.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user12.save!
 
 user13 = User.new(username: "Trent", email: "trent@user.com", first_name: "Trent", last_name: "Jones", password: "123456",
   bio: "I'm Trent. I work in mining industry (FIFO anyone?) and it gets a bit lonely sometimes out on the site. Keen to make professional contacts.",
   summary: "I love spending time in nature, running and coding.", status: "Any other wannabe coders online?")
-file = URI.open('https://images.unsplash.com/photo-1598362471594-d1f1c97a155d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTEzfHxjb29sJTIwZ3V5c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user13.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1598362471594-d1f1c97a155d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTEzfHxjb29sJTIwZ3V5c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user13.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user13.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user13.save!
 
 user14 = User.new(username: "Mark", email: "mark@user.com", first_name: "Mark", last_name: "Li", password: "123456",
   bio: "Mark here! I'm trying to get ahead professionally, also keen to make new friends to hang out with.",
   summary: "I'm passionate about finance, gym and cooking.", status: "I'm looking for new training shoes, thoughts?")
-file = URI.open('https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user14.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user14.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user14.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user14.save!
 
 user15 = User.new(username: "Jim", email: "jim@user.com", first_name: "Jim", last_name: "Boylan", password: "123456",
   bio: "Hey I'm Jim! Engineer by profession, musician at heart. Let's connect.",
   summary: "I love music, gym and coding.", status: "Any other hikers online?")
-file = URI.open('https://images.unsplash.com/photo-1485528562718-2ae1c8419ae2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user15.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1485528562718-2ae1c8419ae2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user15.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user15.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user15.save!
 
 user16 = User.new(username: "paul", email: "paul@user.com", first_name: "Paul", last_name: "G.", password: "123456",
   bio: "Hey everyone! I’m Paul and I’m a yoga instructor but have a mix of different interests. I’m looking for someone to invest in Dogecoin with. ",
   summary: "Crypto and yoga are my passions", status: "Anyone know a crypto investor?")
-file = URI.open('https://images.unsplash.com/photo-1523398002811-999ca8dec234?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvb2wlMjBndXl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user16.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1523398002811-999ca8dec234?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvb2wlMjBndXl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user16.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user16.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user16.save!
 
 user17 = User.new(username: "Mick", email: "mick@user.com", first_name: "Mick", last_name: "Smythe", password: "123456",
   bio: "Hey! I’m Mick. I work as a chef and I'm looking for people to start a restaurant with.",
   summary: "I'm a foodie but also like AFL and gardening.", status: "I have an idea for a food van, interested?")
-file = URI.open('https://images.unsplash.com/photo-1493752603190-08d8b5d1781d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29vbCUyMGd1eXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user17.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1493752603190-08d8b5d1781d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29vbCUyMGd1eXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user17.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user17.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user17.save!
 
 user18 = User.new(username: "Barry", email: "barry@user.com", first_name: "Barry", last_name: "Varnsen", password: "123456",
   bio: "Barry here. I am an entrepreneur, keen to connect with other business owners.",
   summary: "I work a lot, but enjoy the occasional sailing and rock climbing.", status: "Any other entrepreneurs online?")
-file = URI.open('https://images.unsplash.com/photo-1526946096696-3278a850d5ef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGNvb2wlMjBndXl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user18.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1526946096696-3278a850d5ef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGNvb2wlMjBndXl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user18.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user18.photos.attach(io: URI.open(get_face_url('&gender[]=male')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user18.save!
 
 user19 = User.new(username: "Natalie", email: "natalie@user.com", first_name: "Natalie", last_name: "Varnsen", password: "123456",
   bio: "Hi I'm Natalie! I am currently studying an arts degree. I'd like to meet others in the same field.",
   summary: "Arts, pilates and poetry are close to my heart.", status: "I'm thinking of putting my own exhibition together!")
-file = URI.open('https://images.unsplash.com/photo-1578979879663-4ba6a968a50a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29vbCUyMGdpcmx8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user19.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1578979879663-4ba6a968a50a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29vbCUyMGdpcmx8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user19.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user19.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user19.save!
 
 user20 = User.new(username: "maryam", email: "maryam@user.com", first_name: "Maryam", last_name: "Bafande", password: "123456",
   bio: "Hey all, I'm Marayam (call me Maz)! I am new in town and work as a doctor. I'm keen to make new friends.",
   summary: "Dancing, cooking and movies.", status: "Keen to grab a coffee and chat about medicine, or anything.")
-file = URI.open('https://images.unsplash.com/photo-1619286188088-de820bdc1230?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fGNvb2wlMjBnaXJsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user20.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+# file = URI.open('https://images.unsplash.com/photo-1619286188088-de820bdc1230?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fGNvb2wlMjBnaXJsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+# user20.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user20.photos.attach(io: URI.open(get_face_url('&gender[]=female')), filename: 'avatar.jpg', content_type: 'image/jpg')
 user20.save!
 
 puts "Creating ties"
