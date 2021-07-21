@@ -114,7 +114,7 @@ user14.save!
 
 user15 = User.new(username: "Jim", email: "jim@user.com", first_name: "Jim", last_name: "Boylan", password: "123456",
   bio: "Hey I'm Jim! Engineer by profession, musician at heart. Let's connect.",
-  summary: "I love music, gym and coding.", status: "Any other hikers online?")
+  summary: "I love music, gym and coding.", status: "Any other musicians online?")
 file = URI.open('https://images.unsplash.com/photo-1485528562718-2ae1c8419ae2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user15.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user15.save!
