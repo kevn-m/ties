@@ -1,0 +1,72 @@
+.tie-group {
+  // This margin has been added to avoid content getting hidden by footer, don't remove!
+  margin-bottom: 40px;
+}
+
+.tie-card {
+  overflow: hidden;
+  height: 120px;
+  width: 100%;
+  background: rgba(255,255,255,0.5);;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: grey;
+  &:hover{
+    color: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: white;
+    text-decoration: none;
+  }
+  h5 {
+    margin-bottom: 4px;
+  }
+  p {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+}
+
+.tie-image-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.tie-info-box {
+  width: 75%;
+  color: black;
+  padding: 0;
+  line-height: 1;
+  padding-left: 8px;
+  //padding-right: 6px;
+}
+
+.tie-interests {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 8px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.tie-texts {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fa-info-circle {
+  color: #FFBE4E;
+}
+
+.tie-status {
+  font-size: 16px;
+  width: 90%;
+  margin-left: 8px;
+}
+

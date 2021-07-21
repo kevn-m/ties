@@ -17,7 +17,7 @@ file3 = URI.open('https://images.unsplash.com/photo-1603077492137-fdb1a98f0d14?i
 user1.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 user1.save!
 
-user2 = User.new(username: "adam", email: "adam@user.com", first_name: "Adam", last_name: "Sandler", password: "123456",
+user2 = User.new(username: "adam", email: "adam@user.com", first_name: "Adam", last_name: "Harrison", password: "123456",
   bio: "Adam's the name. Fund management is my game. Never get tired of talking about it.",
   summary: "Currently I'm into fitness, crypto and cooking.", status: "Let's talk about crypto.")
 file = URI.open('https://images.unsplash.com/photo-1562093772-c36f2d77edc3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
@@ -35,14 +35,14 @@ file = URI.open('https://images.unsplash.com/photo-1517796931930-443b6f13cf65?ix
 user3.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user3.save!
 
-user4 = User.new(username: "phil", email: "phil@user.com", first_name: "Phil", last_name: "Collins", password: "123456",
+user4 = User.new(username: "phil", email: "phil@user.com", first_name: "Phil", last_name: "Rath", password: "123456",
   bio: "Hi, I'm Phil! I'm new in town and hoping to increase my circle of friends and professional contacts.",
   summary: "Fashion, reading and crypto.", status: "Just bought some doge coin, mistake? LOL")
 file = URI.open('https://images.unsplash.com/photo-1603004615643-f866342e5729?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user4.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user4.save!
 
-user5 = User.new(username: "amy", email: "amy@user.com", first_name: "Amy", last_name: "Adams", password: "123456",
+user5 = User.new(username: "amy", email: "amy@user.com", first_name: "Amy", last_name: "Chan", password: "123456",
   bio: "Hey, I'm Amy! I'm a passionate graphic designer, always on the lookout for new friends and connections.",
   summary: "I love arts, graffiti and fashion.", status: "I have an idea for a graffiti, wanna join in making it a reality?")
 file = URI.open('https://images.unsplash.com/photo-1585143497712-4c3a80b7b1ec?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29vbCUyMGdpcmxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
@@ -140,7 +140,7 @@ file = URI.open('https://images.unsplash.com/photo-1526946096696-3278a850d5ef?ix
 user18.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user18.save!
 
-user19 = User.new(username: "Natalie", email: "natalie@user.com", first_name: "Natalie", last_name: "Varnsen", password: "123456",
+user19 = User.new(username: "Natalie", email: "natalie@user.com", first_name: "Natalie", last_name: "Olson", password: "123456",
   bio: "Hi I'm Natalie! I am currently studying an arts degree. I'd like to meet others in the same field.",
   summary: "Arts, pilates and poetry are close to my heart.", status: "I'm thinking of putting my own exhibition together!")
 file = URI.open('https://images.unsplash.com/photo-1578979879663-4ba6a968a50a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29vbCUyMGdpcmx8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')

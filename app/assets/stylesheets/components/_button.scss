@@ -1,5 +1,14 @@
 .primary-button {
-
+  background: #0082BF;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  &:hover {
+    background: #046390;
+    color: white;
+  }
 }
 
 .active-button {
