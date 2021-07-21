@@ -13,12 +13,11 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-
     <!-- Banner component is only loaded for root page, it is outside of container on purpose -->
-    <% if current_page?(root_path) %>
-      <%#= render 'shared/banner' %>
+    <%# if !current_page?(root_path) %>
+    <% if !current_page?(new_user_session_path) %>
+      <%= render 'shared/flashes' %>
+      <%= render 'shared/navbar' %>
     <% end %>
 
     <%= yield %>
