@@ -1,2 +1,36 @@
-<h1>Ties#index</h1>
-<p>Find me in app/views/ties/index.html.erb</p>
+<h3>My Ties</h3>
+<div class="tie-group">
+  <% if @users.empty? %>
+    <div class="tie-card d-flex justify-content-around">
+      <h5>You don't have any ties yet.</h5>
+      <!-- Link path below is not right and needs to be updated later on -->
+      <%= link_to "Add ties", root_path, class: "primary-button" %>
+    </div>
+  <% else %>
+    <% @users.each do |user| %>
+        <div class="tie-card">
+          <% if user.photos.attached? %>
+            <div class="tie-image-box"> <%= cl_image_tag user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
+          <% else %>
+            <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
+          <% end %>
+          <div class="tie-info-box">
+            <div class="tie-texts">
+              <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
+              <!-- Note that below path is there just for demo purposes -->
+              <%= link_to "Refer", referrals_path, class: "primary-button mb-0" %>
+            </div>
+            <div class="tie-interests">
+              <% if user.interests.present? %>
+                <% user.interests.each_with_index do |interest, index| %>
+                  <% break if index > 2 %>
+                  <span class="badge badge-secondary"> <%= interest.name %> </span>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+</div>
