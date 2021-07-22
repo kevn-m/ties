@@ -1,2 +1,25 @@
-<h1>Referrals#index</h1>
-<p>Find me in app/views/referrals/index.html.erb</p>
+<h1>Your recommended ties</h1>
+
+<div class="card d-flex">
+  <ul id="slides">
+    <% @referrals.each_with_index do |referral, index| %>
+      <%= link_to user_path(referral.id) do %>
+        <div class="profile-card slide <%= 'showing' if index > 0 %> " data-id="<%= referral.id %>" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path referral.photos.first.key %>')">
+        </div>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="slide-controls">
+    <button class="controls" id="previous">No</button>
+    <button class="controls" id="next">Yes</button>
+  </div>
+</div>
+
+
+
+<!--   <li class="slide showing"> Slide 1 </li>
+  <li class="slide"> Slide 2 </li>
+  <li class="slide"> Slide 3 </li>
+  <li class="slide"> Slide 4 </li>
+  <li class="slide"> Slide 5 </li> -->
+
