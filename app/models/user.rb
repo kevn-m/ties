@@ -12,13 +12,13 @@ class User < ApplicationRecord
   has_many :interests, through: :user_interests
   has_many :messages
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: false, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :bio, length: { minimum: 50 }
-  validates :summary, length: { maximum: 500 }
-  validates :status, length: { maximum: 100 }
+  validates :first_name, presence: false
+  validates :last_name, presence: false
+  validates :bio, presence: false, length: { minimum: 30 }
+  validates :summary, presence: false, length: { maximum: 500 }
+  validates :status,  presence: false, length: { maximum: 100 }
 
   has_many_attached :photos
 end

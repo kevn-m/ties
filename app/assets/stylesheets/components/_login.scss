@@ -1,0 +1,36 @@
+
+.login-heading {
+  background-color: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  h1{
+    padding-right: 10px;
+
+  }
+}
+
+.form-group { // to pack the input fileds tight together
+  margin-bottom: 2px;
+}
+
+
+::placeholder {
+  color: lightgrey !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: lightgrey !important;
+  opacity: 1;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: lightgrey !important;
+  opacity: 1;
+}
