@@ -6,13 +6,14 @@
 .tie-card {
   overflow: hidden;
   height: 120px;
-  width: 100%;
+  width: auto;
   background: rgba(255,255,255,0.5);;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  color: grey;
+  margin-left: 4px;
+  margin-right: 4px;
   &:hover{
     color: black;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -46,22 +47,28 @@
 }
 
 .tie-interests {
-  width: 80%;
+  width: 87%;
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   margin-left: 8px;
   margin-top: 6px;
   margin-bottom: 10px;
 }
 
 .tie-texts {
-  width: 90%;
+  margin-left: 8px;
+  width: 87%;
   display: flex;
   justify-content: space-between;
 }
 
 .fa-info-circle {
-  color: #FFBE4E;
+  color: #563d7c;
+}
+
+.badge-secondary {
+  margin-left: 4px;
+  background: #563d7c;
 }
 
 .tie-status {

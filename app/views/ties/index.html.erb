@@ -1,4 +1,4 @@
-<h1>My Ties</h1>
+<h3>My Ties</h3>
 <div class="tie-group">
   <% @users.each do |user| %>
       <div class="tie-card">
@@ -17,7 +17,7 @@
             <% if user.interests.present? %>
               <i class="fas fa-info-circle"></i>
               <% user.interests.each do |interest| %>
-                <p> <%= interest.name %> </p>
+                <span class="badge badge-secondary"> <%= interest.name %> </span>
               <% end %>
             <% end %>
           </div>
