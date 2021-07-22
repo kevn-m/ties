@@ -16,9 +16,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: false
   validates :last_name, presence: false
-  validates :bio, presence: false, length: { minimum: 50 }
+  validates :bio, presence: false, length: { minimum: 30 }
   validates :summary, presence: false, length: { maximum: 500 }
-  validates :status, presence: false, length: { maximum: 100 }
+  validates :status,  presence: false, length: { maximum: 100 }
 
   has_many_attached :photos
 end
