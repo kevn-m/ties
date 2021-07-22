@@ -12,16 +12,13 @@
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  margin-left: 4px;
-  margin-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
   &:hover{
     color: black;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     background: white;
     text-decoration: none;
-  }
-  h5 {
-    margin-bottom: 4px;
   }
   p {
     margin-bottom: 4px;
@@ -39,27 +36,26 @@
 
 .tie-info-box {
   width: 75%;
-  color: black;
+  color: #292F36;
   padding: 0;
   line-height: 1;
-  padding-left: 8px;
-  //padding-right: 6px;
 }
 
 .tie-interests {
-  width: 87%;
+  width: 100%;
   display: flex;
-  //justify-content: space-between;
   margin-left: 8px;
   margin-top: 6px;
   margin-bottom: 10px;
 }
 
 .tie-texts {
-  margin-left: 8px;
-  width: 87%;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .fa-info-circle {
@@ -73,7 +69,8 @@
 
 .tie-status {
   font-size: 16px;
-  width: 90%;
+  width: 100%;
   margin-left: 8px;
+  color: #292F36;
 }
 
