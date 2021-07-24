@@ -50,5 +50,26 @@ class ReferralsController < ApplicationController
   end
 
   def create
+    recom_user = params[:referral][:recommended_user_id]
+    @recommended_user = User.find(recom_user)
+    to_user = params[:referral][:to_user_id]
+    @to_user = User.find(to_user)
+
+    @referral = Referral.new(referral_params)
+    @referral.recommended_user_id = @recommended_user.id
+    @referral.to_user_id = @to_user.id
+    @referral.referrer_user_id = current_user.id
+
+    if @referral.save
+      redirect_to ties_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def referral_params
+    params.require(:referral).permit(:referrer_user_id, :recommended_user_id, :to_user_id, :reason)
   end
 end

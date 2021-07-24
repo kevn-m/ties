@@ -24,7 +24,7 @@
 </div>
 <h5 class="ml-2 mr-2">Who do you want to recommend <%= @recommended_user.first_name %> to?</h5>
 <div class="tie-group">
-  <% if @users.empty? %>
+  <% if @users.blank? %>
     <div class="tie-card d-flex justify-content-around">
       <h5>You don't have any other ties to choose.</h5>
       <!-- Link path below is not right and needs to be updated later on -->
@@ -41,8 +41,11 @@
           <div class="tie-info-box">
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
-              <%= link_to "Select", new_referral_path, class: "primary-button mb-0", data: {toggle: "modal", target: "exampleModal"} %>
-
+              <% if params[:selected_recommended_user] && params[:selected_recommended_user].to_i == user.id %>
+                <%= link_to "Deselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
+              <% else %>
+                <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_recommended_user: user.id), class: "ghost-button mb-0"%>
+              <% end %>
             </div>
             <div class="tie-interests">
               <% if user.interests.present? %>
@@ -55,6 +58,16 @@
             <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
           </div>
         </div>
+        <!-- If param.selected then show form -->
+        <!-- 2 params, selected and id of the selected -->
+        <% if params[:selected_recommended_user].to_i == user.id %>
+          <%= simple_form_for [ @referral] do |f| %>
+            <%= f.input :reason %>
+            <%= f.hidden_field :recommended_user_id, value: @recommended_user.id %>
+            <%= f.hidden_field :to_user_id, value: user.id %>
+            <%= f.button :submit, class: "primary-button" %>
+          <% end %>
+        <% end %>
     <% end %>
   <% end %>
 </div>
