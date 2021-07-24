@@ -1,3 +1,12 @@
+.all-profiles {
+  text-align: center;
+}
+
+.card-controls {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 #slides {
     position: relative;
@@ -27,10 +36,11 @@
     z-index: 2;
 }
 
-.profile-card {
+.profile-photo {
   height: 400px;
   width: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: white;
 }
