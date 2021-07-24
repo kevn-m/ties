@@ -17,8 +17,7 @@
           <div class="tie-info-box">
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
-              <!-- Note that below path is there just for demo purposes -->
-              <%= link_to "Refer", referrals_path, class: "primary-button mb-0" %>
+              <%= link_to "Refer", new_referral_path(selected_user: user), class: "primary-button mb-0" %>
             </div>
             <div class="tie-interests">
               <% if user.interests.present? %>

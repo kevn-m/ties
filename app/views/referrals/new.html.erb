@@ -1,0 +1,63 @@
+<h1 class="ml-2">New Referral</h1>
+
+<div class="recommended-tie-card">
+  <% if @recommended_user.photos.attached? %>
+    <div class="tie-image-box"> <%= cl_image_tag @recommended_user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
+  <% else %>
+    <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
+  <% end %>
+  <div class="tie-info-box">
+    <div class="tie-texts">
+      <h5 class="mb-0"> <%= truncate(@recommended_user.first_name, length:10) %> <%= truncate(@recommended_user.last_name, length:15) %> </h5>
+      <!-- Note that below path is there just for demo purposes -->
+    </div>
+    <div class="tie-interests">
+      <% if @recommended_user.interests.present? %>
+        <% @recommended_user.interests.each_with_index do |interest, index| %>
+          <% break if index > 2 %>
+          <span class="badge badge-secondary"> <%= interest.name %> </span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= @recommended_user.status %> </p></div>
+  </div>
+</div>
+<h5 class="ml-2 mr-2">Who do you want to recommend <%= @recommended_user.first_name %> to?</h5>
+<div class="tie-group">
+  <% if @users.empty? %>
+    <div class="tie-card d-flex justify-content-around">
+      <h5>You don't have any other ties to choose.</h5>
+      <!-- Link path below is not right and needs to be updated later on -->
+      <%= link_to "Add ties", root_path, class: "primary-button" %>
+    </div>
+  <% else %>
+    <% @users.each do |user| %>
+        <div class="select-tie-card">
+          <% if user.photos.attached? %>
+            <div class="tie-image-box"> <%= cl_image_tag user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
+          <% else %>
+            <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
+          <% end %>
+          <div class="tie-info-box">
+            <div class="tie-texts">
+              <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
+              <%= link_to "Select", new_referral_path, class: "primary-button mb-0", data: {toggle: "modal", target: "exampleModal"} %>
+
+            </div>
+            <div class="tie-interests">
+              <% if user.interests.present? %>
+                <% user.interests.each_with_index do |interest, index| %>
+                  <% break if index > 2 %>
+                  <span class="badge badge-secondary"> <%= interest.name %> </span>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+</div>
+<!-- 1. Create a simple form, (class hidden) -->
+<!-- 2. Create method for controller and route, make sure referral is created -->
+<!-- 3. Add Javascript. eg. referform.js. Add a class for Select button. If you click on button, class no longer hidden -->

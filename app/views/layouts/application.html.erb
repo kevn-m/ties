@@ -22,12 +22,7 @@
     %>
     <%= render 'shared/flashes' %>
     <% if current_user %>
-
       <%= render 'shared/navbar' %>
-      <p><br>
-      <%= request.path %>
-    </p>
-
     <% end %>
 
     <%= yield %>
