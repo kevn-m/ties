@@ -17,5 +17,7 @@ class TiesController < ApplicationController
   end
 
   def show
+    @tie = Tie.find(params[:id])
+    @message = Message.new
   end
 end
