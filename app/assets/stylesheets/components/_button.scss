@@ -8,6 +8,7 @@
   &:hover {
     background: #046390;
     color: white;
+    text-decoration: none;
   }
 }
 
@@ -20,7 +21,18 @@
 }
 
 .ghost-button {
-
+  background: white;
+  color: #0082BF;
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1px solid #0082BF;
+  //opacity: 0.8;
+  transition: opacity 0.3s ease;
+  &:hover {
+    color: #046390;
+    border: 1px solid #046390;
+    text-decoration: none;
+  }
 }
 
 .accept-button {

@@ -16,8 +16,6 @@
     <%# if !current_page?(root_path) %>
 
     <%= render 'shared/flashes' %>
-
-    <!-- Only show nav bar if user is login -->
     <% if current_user %>
       <%= render 'shared/navbar' %>
     <% end %>
