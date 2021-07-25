@@ -1,0 +1,28 @@
+.carousel-container {
+    // vertical-align: middle;
+    // display: flex;
+    font-family: 'Calibri', sans-serif !important;
+    height: 64vh;
+    min-height: 350px;
+    width: 100vw;
+    // background-color: #eee
+}
+.carousel .carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    //text-indent: -99px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    background: #fff;
+    margin-bottom: 20px;
+    //border-radius: 2px
+}
+
+.carousel-img {
+  height: 64vh;
+  min-height: 350px;
+  width: 100vw;
+  object-fit: cover;
+  background-color:lightgrey;
+}
