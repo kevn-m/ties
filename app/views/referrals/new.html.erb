@@ -1,25 +1,26 @@
-<h1 class="ml-2">New Referral</h1>
-
-<div class="recommended-tie-card">
-  <% if @recommended_user.photos.attached? %>
-    <div class="tie-image-box"> <%= cl_image_tag @recommended_user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
-  <% else %>
-    <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
-  <% end %>
-  <div class="tie-info-box">
-    <div class="tie-texts">
-      <h5 class="mb-0"> <%= truncate(@recommended_user.first_name, length:10) %> <%= truncate(@recommended_user.last_name, length:15) %> </h5>
-      <!-- Note that below path is there just for demo purposes -->
-    </div>
-    <div class="tie-interests">
-      <% if @recommended_user.interests.present? %>
-        <% @recommended_user.interests.each_with_index do |interest, index| %>
-          <% break if index > 2 %>
-          <span class="badge badge-secondary"> <%= interest.name %> </span>
+<div class="recommended-group">
+  <h1 class="ml-2">New Referral</h1>
+  <div class="recommended-tie-card">
+    <% if @recommended_user.photos.attached? %>
+      <div class="tie-image-box"> <%= cl_image_tag @recommended_user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
+    <% else %>
+      <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
+    <% end %>
+    <div class="tie-info-box">
+      <div class="tie-texts">
+        <h5 class="mb-0"> <%= truncate(@recommended_user.first_name, length:10) %> <%= truncate(@recommended_user.last_name, length:15) %> </h5>
+        <!-- Note that below path is there just for demo purposes -->
+      </div>
+      <div class="tie-interests">
+        <% if @recommended_user.interests.present? %>
+          <% @recommended_user.interests.each_with_index do |interest, index| %>
+            <% break if index > 2 %>
+            <span class="badge badge-secondary"> <%= interest.name %> </span>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= @recommended_user.status %> </p></div>
     </div>
-    <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= @recommended_user.status %> </p></div>
   </div>
 </div>
 <h5 class="ml-2 mr-2">Who would you like to to recommend <strong><%= @recommended_user.first_name %></strong> to?</h5>
@@ -28,7 +29,7 @@
     <div class="tie-card">
         <div class="no-tie-texts">
           <h6 class="mb-4">You don't have any other ties to choose.</h6>
-          <!-- Link path below is not right and needs to be updated later on -->
+          <!-- Link path below is incorrect and needs to be updated later on -->
           <%= link_to "Add ties", root_path, class: "primary-button" %>
         </div>
     </div>
@@ -44,7 +45,7 @@
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
               <% if params[:selected_to_user] && params[:selected_to_user].to_i == user.id %>
-                <%= link_to "Deselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
+                <%= link_to "Unselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
               <% else %>
                 <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
               <% end %>
@@ -65,7 +66,7 @@
         <% if params[:selected_to_user].to_i == user.id %>
         <div class="referral-form">
           <%= simple_form_for [ @referral] do |f| %>
-            <%= f.input :reason, label: 'Why would they make a good tie?' %>
+            <%= f.input :reason, label: 'Enter some details about your referral' %>
             <%= f.hidden_field :recommended_user_id, value: @recommended_user.id %>
             <%= f.hidden_field :to_user_id, value: user.id %>
             <%= f.button :submit, 'Submit referral', class: "primary-button" %>

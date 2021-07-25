@@ -28,6 +28,7 @@
 
 .tie-image-box {
   width: 100px;
+  // Please don't remove min-width! It has been added to prevent image from becoming an ellipse when resizing screen.
   min-width: 100px;
   height: 100px;
   border-radius: 50%;
