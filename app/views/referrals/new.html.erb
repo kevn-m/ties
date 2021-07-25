@@ -22,13 +22,15 @@
     <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= @recommended_user.status %> </p></div>
   </div>
 </div>
-<h5 class="ml-2 mr-2">Who do you want to recommend <%= @recommended_user.first_name %> to?</h5>
+<h5 class="ml-2 mr-2">Who would you like to to recommend <strong><%= @recommended_user.first_name %></strong> to?</h5>
 <div class="tie-group">
   <% if @users.blank? %>
-    <div class="tie-card d-flex justify-content-around">
-      <h5>You don't have any other ties to choose.</h5>
-      <!-- Link path below is not right and needs to be updated later on -->
-      <%= link_to "Add ties", root_path, class: "primary-button" %>
+    <div class="tie-card">
+        <div class="no-tie-texts">
+          <h6 class="mb-4">You don't have any other ties to choose.</h6>
+          <!-- Link path below is not right and needs to be updated later on -->
+          <%= link_to "Add ties", root_path, class: "primary-button" %>
+        </div>
     </div>
   <% else %>
     <% @users.each do |user| %>
@@ -41,10 +43,10 @@
           <div class="tie-info-box">
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
-              <% if params[:selected_recommended_user] && params[:selected_recommended_user].to_i == user.id %>
+              <% if params[:selected_to_user] && params[:selected_to_user].to_i == user.id %>
                 <%= link_to "Deselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
               <% else %>
-                <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_recommended_user: user.id), class: "ghost-button mb-0"%>
+                <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
               <% end %>
             </div>
             <div class="tie-interests">
@@ -60,17 +62,16 @@
         </div>
         <!-- If param.selected then show form -->
         <!-- 2 params, selected and id of the selected -->
-        <% if params[:selected_recommended_user].to_i == user.id %>
+        <% if params[:selected_to_user].to_i == user.id %>
+        <div class="referral-form">
           <%= simple_form_for [ @referral] do |f| %>
-            <%= f.input :reason %>
+            <%= f.input :reason, label: 'Why would they make a good tie?' %>
             <%= f.hidden_field :recommended_user_id, value: @recommended_user.id %>
             <%= f.hidden_field :to_user_id, value: user.id %>
-            <%= f.button :submit, class: "primary-button" %>
+            <%= f.button :submit, 'Submit referral', class: "primary-button" %>
           <% end %>
+        </div>
         <% end %>
     <% end %>
   <% end %>
 </div>
-<!-- 1. Create a simple form, (class hidden) -->
-<!-- 2. Create method for controller and route, make sure referral is created -->
-<!-- 3. Add Javascript. eg. referform.js. Add a class for Select button. If you click on button, class no longer hidden -->
