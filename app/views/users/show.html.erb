@@ -3,13 +3,26 @@
   <%= @user.username %>
 </h2>
 
+<% photo_count = @user.photos.count %>
 <div id="carouselindicators" class="carousel slide" data-ride="carousel" data-interval="3000">
 
-  <ol class="carousel-indicators">
-    <% @user.photos.count.times.each do |i| %>
-      <li data-target="#carouselindicators" data-slide-to="<%= i %>" class="<%= 'active' if i.zero? %>"></li>
-    <% end %>
-  </ol>
+  <% if photo_count > 1 %>
+    <ol class="carousel-indicators">
+      <% photo_count.times.each do |i| %>
+        <li data-target="#carouselindicators" data-slide-to="<%= i %>" class="<%= 'active' if i.zero? %>"></li>
+      <% end %>
+    </ol>
+
+    <a class="carousel-control-prev my-4" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
+      <i class="fa fa-chevron-left"></i>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next my-4" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
+      <i class="fa fa-chevron-right"></i>
+      <span class="sr-only">Next</span>
+    </a>
+
+  <% end %>
 
   <div class="carousel-inner">
     <% @user.photos.each_with_index do |pic, i| %>
@@ -19,27 +32,37 @@
     <% end %>
   </div>
 
-  <a class="carousel-control-prev" href="#carouselindicators" role="button" data-slide="prev" data-abc="true">
-    <i class="fa fa-chevron-left"></i>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselindicators" role="button" data-slide="next" data-abc="true">
-    <i class="fa fa-chevron-right"></i>
-    <span class="sr-only">Next</span>
-  </a>
-
 </div>
 
-<div class="profile-view">
+<div class="profile-view" id="user-profile">
+  <div class="updown-text" id="updown">▲</div>
   <h2 class="name">
     <%= "#{@user.first_name} #{@user.last_name}" %>
   </h2>
-  <h6 class="bio">
-    <%= "#{@user.bio}" %>
-  </h6>
+  <div class="profile-content">
+    <div>
+      <h6 class="bio">
+        <%= "#{@user.bio}" %>
+      </h6>
 
-  <h6 class="summary">
-    <%= "#{@user.summary}" %>
-  </h6>
-  <div class="status"><i class="fas fa-lightbulb"></i> <%= @user.status %></div>
+      <div class="status">
+        <i class="fas fa-lightbulb"></i>
+        <%= @user.status %>
+      </div>
+
+      <h6 class="mt-2 summary">
+        <%= "#{@user.summary}" %>
+      </h6>
+
+      <div class="interests">
+        <% @user.user_interests.each do |user_interest| interest = user_interest.interest %>
+          <div class="interest-card"
+               style="background-image: url(<%= cl_image_path(interest.photo.key,
+                width: 240, height: 160, crop: :fill) %>)">
+            <p><%= interest.name %> </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
