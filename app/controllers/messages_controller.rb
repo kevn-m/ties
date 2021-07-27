@@ -8,7 +8,10 @@ class MessagesController < ApplicationController
       # send to the channel (TieChannel)
       TieChannel.broadcast_to(
         @tie,
-        render_to_string(partial: "message", locals: { message: @message })
+        {
+          partial: render_to_string(partial: "message", locals: { message: @message, author: false }),
+          current_user_id: current_user.id
+        }
       )
 
       redirect_to tie_path(@tie, anchor: "message-#{@message.id}")
