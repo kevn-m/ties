@@ -44,8 +44,13 @@
           <div class="tie-info-box">
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
+              <!-- 1. If to_user has already been referred to the same person by current_user earlier, do not display -->
               <% if params[:selected_to_user] && params[:selected_to_user].to_i == user.id %>
                 <%= link_to "Unselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
+              <% elsif (Referral.where('recommended_user_id= :rec_user AND referrer_user_id= :ref_user AND to_user_id= :user', { rec_user: @recommended_user, ref_user: current_user, user: user }).size > 0) %>
+                <%= link_to "Already referred", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
+              <% elsif (Tie.where('user1_id= :rec_user AND user2_id= :user OR user1_id= :user AND user2_id= :rec_user ', { rec_user: @recommended_user, user: user }).size > 0) %>
+                <%= link_to "Already a tie", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
               <% else %>
                 <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
               <% end %>

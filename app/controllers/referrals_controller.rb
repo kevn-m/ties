@@ -62,7 +62,7 @@ class ReferralsController < ApplicationController
     @referral.referrer_user_id = current_user.id
 
     if @referral.save
-      redirect_to ties_path, notice: "Referral submitted sucessfully !"
+      redirect_to ties_path, notice: "Referral submitted sucessfully!"
     else
       render :new
     end
