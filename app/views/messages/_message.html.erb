@@ -3,7 +3,7 @@
   <% if author %>
     <div class="d-flex">
       <div class="col-4"></div>
-      <div class="col-8 my-1 bg-dark text-white text-right">
+      <div class="col-8 my-1 pt-3 bg-dark text-white text-right">
         <p><%= message.content %></p>
         <i class="author text-muted">
           <small><%= message.created_at.strftime("%l:%M%p") %></small>
@@ -12,11 +12,11 @@
     </div>
   <% else %>
     <div class="d-flex">
-      <div class="col-8 my-1 bg-light text-dark">
-        <i class="author">
+      <div class="col-8 my-1 pt-3 bg-light text-dark">
+        <p><%= message.content %></p>
+        <i class="author text-muted">
           <small><%= message.created_at.strftime("%l:%M%p") %></small>
         </i>
-        <p><%= message.content %></p>
       </div>
       <div class="col-4"></div>
     </div>

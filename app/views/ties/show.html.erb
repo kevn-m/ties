@@ -1,5 +1,5 @@
 <!-- app/views/chatrooms/show.html.erb -->
-<h1>The chat between <%= @tie.user1.first_name %> and <%= @tie.user2.first_name %> </h1>
+<!-- <h1>The chat between <%= @tie.user1.first_name %> and <%= @tie.user2.first_name %> </h1> -->
 <div id="messages" data-tie-id="<%= @tie.id %>" data-current-user-id = "<%= current_user.id %>">
   <% @tie.messages.each do |message| %>
     <%= render partial: "messages/message", locals: {message: message, author: message.user == current_user} %>
@@ -12,3 +12,4 @@
     <%= f.submit  %>
   <% end %>
 </div>
+<!--  -->
