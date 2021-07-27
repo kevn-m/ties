@@ -46,6 +46,7 @@ class ReferralsController < ApplicationController
         @user_id = tie.user1_id
       end
       @users.push(User.find(@user_id))
+      @users = @users.uniq
     end
   end
 
