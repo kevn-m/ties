@@ -9,7 +9,7 @@ class ReferralsController < ApplicationController
   def accept
     user_id = params[:id]
     @referral = Referral.find_by recommended_user_id: current_user, to_user_id: user_id
-    # Update Referral Tie to TRUE
+    @referral.update(tied: true)
     if Tie.create(user1_id: current_user.id, user2_id: params[:id])
       redirect_to referrals_path
     else
@@ -26,10 +26,10 @@ class ReferralsController < ApplicationController
 
   def index
     # getting all referrals that the current_user has been recommended (to_user)
-    @to_referrals = current_user.to_referrals.where(reject: nil).where(requested: nil)
+    @to_referrals = current_user.to_referrals.where(tied: nil).where(reject: nil).where(requested: nil)
 
     # Get all referrals where the current user has been requested (recommended_user)
-    @requested_referrals = current_user.recommended.where(reject: false).where(requested: true)
+    @requested_referrals = current_user.recommended.where(tied: nil).where(reject: false).where(requested: true)
 
     @ties = Tie.where('user1_id= :user OR user2_id= :user', {user: current_user})
     # Looping through the ties for current_user and returning the other user for each tie.
