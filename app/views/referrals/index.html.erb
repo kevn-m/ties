@@ -1,5 +1,3 @@
-<h1>Your recommended ties</h1>
-
 <div class="all-profiles">
   <!-- Show profiles that someone else has recommended to the current user -->
   <% @to_referrals.each_with_index do |referral, index| %>
@@ -53,7 +51,7 @@
   <% @users.each do|user| %>
     <div class="profile-card">
       <%= link_to user_path(user) do %>
-      <div class="profile-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path user.photos.first.key %>')"></div>
+      <div class="profile-photo" style="background-image: url('<%= cl_image_path user.photos.first.key, gravity: :center, crop: :fill, width:900, height:900 %>')"></div>
       <% end %>
       <div class="profile-info">
         <p> <p><%= user.first_name %> <%= user.last_name %> is looking for a referral </p></p>
