@@ -69,7 +69,7 @@
       </div>
       <div class="card-controls">
         <!-- This may be redirect to the wrong page right now -->
-        <%= link_to "Refer", referrals_path, :method=> :post, remote: true, class: "primary-button" %>
+        <%= link_to "Refer", new_referral_path(selected_user: user), :method=> :post, remote: true, class: "primary-button" %>
       </div>
     </div>
   <% end %>
