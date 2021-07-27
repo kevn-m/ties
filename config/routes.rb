@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get :chat_list
     end
   end
-  resources :referrals, only: [:create, :index]
+  resources :referrals, only: [:new, :create, :index]
   resources :users, only: [:show] do
     resources :user_interests, only: [:create]
   end
