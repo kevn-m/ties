@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   patch '/referrals/:id/accept', to: 'referrals#accept', as: :accept
   patch '/referrals/:id/reject', to: 'referrals#reject', as: :reject
 
+  get '/edit_interests', to: 'users#edit_interests', as: :edit_interests
+  patch '/update_interests/:id', to: 'users#update_interests', as: :update_interests
+
   resources :ties, only: [:show, :index] do
     resources :messages, only: [:create]
     collection do

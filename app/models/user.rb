@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :to_referrals, foreign_key: 'to_user_id', class_name: 'Referral'
   has_many :ties
   has_many :user_interests
+  # has_and_belongs_to_many :interests
   has_many :interests, through: :user_interests
   has_many :messages
 
