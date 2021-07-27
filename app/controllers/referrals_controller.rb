@@ -9,6 +9,7 @@ class ReferralsController < ApplicationController
   def accept
     user_id = params[:id]
     @referral = Referral.find_by recommended_user_id: current_user, to_user_id: user_id
+    # Update Referral Tie to TRUE
     if Tie.create(user1_id: current_user.id, user2_id: params[:id])
       redirect_to referrals_path
     else
