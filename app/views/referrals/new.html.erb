@@ -23,13 +23,12 @@
         <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= @recommended_user.status %> </p></div>
       </div>
     </div>
-  </div>
-  <h5 class="ml-2 mr-2">Who would you like to to recommend <strong><%= @recommended_user.first_name %></strong> to?</h5>
+  <h5 class="ml-2 mr-2">Who would you like to to refer <strong><%= @recommended_user.first_name %></strong> to?</h5>
   <div class="tie-group">
     <% if @users.blank? %>
       <div class="tie-card">
           <div class="no-tie-texts">
-            <h6 class="mb-4">You don't have any other ties to choose.</h6>
+            <h6 class="mb-4">You don't have any ties to select.</h6>
             <!-- Link path below is incorrect and needs to be updated later on -->
             <%= link_to "Add ties", root_path, class: "primary-button" %>
           </div>
@@ -85,9 +84,9 @@
               <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
             <% end %>
             <div class="tie-info-box">
-              <div class="tie-texts">
+              <div class="other-tie-texts">
                 <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
-                <p>You already referred <%= @recommended_user.first_name %> to <%= user.first_name %></p>
+                <p class="advice-text"><i class="fas fa-info-circle"></i> You already referred <%= @recommended_user.first_name %> to <%= user.first_name %></p>
               </div>
               <div class="tie-interests">
                 <% if user.interests.present? %>
@@ -109,9 +108,9 @@
           <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
         <% end %>
         <div class="tie-info-box">
-          <div class="tie-texts">
+          <div class="other-tie-texts">
             <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
-            <p><%= @recommended_user.first_name %> and <%= user.first_name %> are already ties</p>
+            <p class="advice-text"><i class="fas fa-info-circle"></i> <%= @recommended_user.first_name %> and <%= user.first_name %> are already ties</p>
           </div>
           <div class="tie-interests">
             <% if user.interests.present? %>
