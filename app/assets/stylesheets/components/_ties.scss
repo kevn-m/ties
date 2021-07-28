@@ -133,3 +133,49 @@
   // align-items: center;
 }
 
+.already-referred-tie-card {
+  overflow: hidden;
+  height: 120px;
+  width: auto;
+  background: lightgreen;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+  opacity: 0.9;
+  &:hover{
+    color: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+}
+
+.already-tie-card {
+  overflow: hidden;
+  height: 120px;
+  width: auto;
+  background: lightyellow;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+  opacity: 0.9;
+  &:hover{
+    color: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+}
+
