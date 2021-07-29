@@ -52,11 +52,14 @@ class ReferralsController < ApplicationController
     end
     @all_tie_users = @all_tie_users.uniq
 
-    # Returned tie users are divided in 3 groups, 1. users that were already referred to the selected recommended_user_id.
+    # Returned tie users are divided in 3 groups.
+    # 1. users that were already referred to the selected recommended_user_id; also checking the same users the other way around (selected user was to_user_id)
     # 2. Users that are already ties with the selected recommended_user_id.
     # 3. Remaining users that can be selected to complete referral.
     @all_tie_users.each do |user|
       if (Referral.where('recommended_user_id= :rec_user AND referrer_user_id= :ref_user AND to_user_id= :user', { rec_user: @recommended_user, ref_user: current_user, user: user }).size > 0 )
+        @existing_referral_users.push(user)
+      elsif (Referral.where('recommended_user_id= :user AND referrer_user_id= :ref_user AND to_user_id= :rec_user', { rec_user: @recommended_user, ref_user: current_user, user: user }).size > 0 )
         @existing_referral_users.push(user)
       elsif (Tie.where('user1_id= :rec_user AND user2_id= :user OR user1_id= :user AND user2_id= :rec_user ', { rec_user: @recommended_user, user: user }).size > 0)
         @existing_ties_users.push(user)

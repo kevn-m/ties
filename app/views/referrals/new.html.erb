@@ -86,7 +86,7 @@
             <div class="tie-info-box">
               <div class="other-tie-texts">
                 <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
-                <p class="advice-text"><i class="fas fa-info-circle"></i> You already referred <%= @recommended_user.first_name %> to <%= user.first_name %></p>
+                <p class="advice-text"><i class="fas fa-info-circle"></i> You already referred <%= @recommended_user.first_name %> and <%= user.first_name %> to connect</p>
               </div>
               <div class="tie-interests">
                 <% if user.interests.present? %>
