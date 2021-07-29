@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :referrer, foreign_key: 'referrer_user_id', class_name: 'Referral'
   has_many :recommended, foreign_key: 'recommended_user_id', class_name: 'Referral'
   has_many :to_referrals, foreign_key: 'to_user_id', class_name: 'Referral'
-  has_many :ties
+  has_many :ties1, foreign_key: 'user1_id', class_name: 'Tie'
+  has_many :ties2, foreign_key: 'user2_id', class_name: 'Tie'
   has_many :user_interests
   has_many :interests, through: :user_interests
   has_many :messages
@@ -21,4 +22,8 @@ class User < ApplicationRecord
   validates :status,  presence: false, length: { maximum: 100 }
 
   has_many_attached :photos
+
+  def ties
+    (ties1 + ties2).uniq
+  end
 end

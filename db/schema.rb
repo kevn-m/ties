@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_045535) do
+ActiveRecord::Schema.define(version: 2021_07_27_103156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_045535) do
     t.bigint "to_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "tied"
     t.index ["recommended_user_id"], name: "index_referrals_on_recommended_user_id"
     t.index ["referrer_user_id"], name: "index_referrals_on_referrer_user_id"
     t.index ["to_user_id"], name: "index_referrals_on_to_user_id"
