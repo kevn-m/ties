@@ -1,17 +1,17 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top d-flex justify-content-end pr-2">
-
-<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
-
+<div class="footer">
+  <div class="footer-links">
+    <%= link_to root_path  do %>
+      🪢
+    <% end %>
+    <%= link_to ties_path  do %>
+      <i class="fas fa-user-friends"></i>
+    <% end %>
+    <%= link_to chat_list_ties_path  do %>
+      <i class="fas fa-comments"></i>
+    <% end %>
+  </div>
   <div id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-
-        <!-- <li class="nav-item"> -->
-          <%#= link_to ""Chats, costumes_path, class: "nav-link" %>
-        <!-- </li> -->
-
         <!-- Here is the dropdown next to profile pic -->
         <li class="nav-item dropdown d-flex flex-row-reverse ">
 
@@ -29,15 +29,6 @@
           </div>
 
         </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Sign up", new_user_registration_path, class: "nav-link text-primary" %>
-        </li>
-        <!-- <div class="dropdown-divider"></div> -->
-        <!-- <li class="nav-item"> -->
-          <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-        <!-- </li> -->
-      <% end %>
     </ul>
   </div>
 </div>
