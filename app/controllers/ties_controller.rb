@@ -13,6 +13,8 @@ class TiesController < ApplicationController
         @user_id = tie.user1_id
       end
       @users.push(User.find(@user_id))
+      # Making sure that we display each user only once
+      @users = @users.uniq
     end
   end
 
