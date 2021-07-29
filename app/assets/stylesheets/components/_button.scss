@@ -1,14 +1,32 @@
 .primary-button {
+  line-height: 1 !important;
   background: #0082BF;
   color: white;
-  padding: 8px 16px;
+  padding: 8px 16px  !important;
   border-radius: 50px;
+  border: 1px solid #0082BF  !important;
   opacity: 0.8;
   transition: opacity 0.3s ease;
   &:hover {
     background: #046390;
     color: white;
-    text-decoration: none;
+    text-decoration: none  !important;;
+  }
+}
+
+.update-button {
+  line-height: 1.2 !important;
+  background: rgba(250, 190, 0, 1);
+  color: white;
+  padding: 8px 16px  !important;
+  border-radius: 50px;
+  border: 1px solid rgba(250, 190, 0, 1)  !important;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  &:hover {
+    background: rgba(240, 180, 0, 0.9);
+    color: white;
+    text-decoration: none  !important;;
   }
 }
 
@@ -21,12 +39,12 @@
 }
 
 .ghost-button {
+  line-height: 1 !important;
   background: white;
-  color: #0082BF;
-  padding: 8px 16px;
+  color: #0082BF  !important;
+  padding: 8px 16px  !important;
   border-radius: 50px;
-  border: 1px solid #0082BF;
-  //opacity: 0.8;
+  border: 1px solid #0082BF  !important;
   transition: opacity 0.3s ease;
   &:hover {
     color: #046390;
