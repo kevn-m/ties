@@ -1,12 +1,12 @@
 .footer {
   position: fixed;
-  background: #F4F4F4;
+  background: rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 50px;
   padding: 0px 20px;
-  color: rgba(0,0,0,0.3);
+  color: #F4F4F4;
   bottom: 0;
   width: 100%;
   z-index: 1000;
@@ -15,14 +15,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 75%;
 }
 .footer-links a {
-  color: grey;
+  color: white;
   opacity: 0.9;
   text-decoration: none;
   font-size: 48px;
-  padding: 0px 10px;
+  //padding: 0px 10px;
 }
 .footer-links a:hover {
   opacity: 1;

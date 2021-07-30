@@ -1,6 +1,6 @@
 .tie-group {
   // This margin has been added to avoid content getting hidden by footer, don't remove!
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .tie-card {
@@ -58,6 +58,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
+}
+
+.tie-name {
+  color: #292F36;
 }
 
 .fa-info-circle {
@@ -79,7 +86,7 @@
   overflow: hidden;
   height: 120px;
   width: auto;
-  background: pink; //#FFE66D;
+  background: lightyellow;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
@@ -136,7 +143,7 @@
   overflow: hidden;
   height: 120px;
   width: auto;
-  background: lightyellow;;
+  background: lightyellow;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
