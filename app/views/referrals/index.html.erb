@@ -8,13 +8,15 @@
           <% else %>
             <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
           <% end %>
+          <div class="profile-name">
+            <%= referral.recommended_user.first_name %> <%= referral.recommended_user.last_name %>
+          </div>
       <% end %>
         <div class="profile-info">
           <p><%= referral.recommended_user.first_name %> <%= referral.recommended_user.last_name %> has been recommended to you by <%= referral.referrer_user.first_name %> </p>
           <div class="tie-interests">
             <% if referral.recommended_user.interests.present? %>
               <% referral.recommended_user.interests.each_with_index do |interest, index| %>
-                <% break if index > 2 %>
                 <span class="badge badge-secondary"> <%= interest.name %> </span>
               <% end %>
             <% end %>
@@ -36,13 +38,15 @@
           <% else %>
             <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
           <% end %>
+          <div class="profile-name">
+            <%= referral.to_user.first_name %> <%= referral.to_user.last_name %>
+          </div>
       <% end %>
         <div class="profile-info">
           <p> <p><%= referral.to_user.first_name %> <%= referral.to_user.last_name %> has requested to be your tie through <%= referral.referrer_user.first_name %> </p></p>
           <div class="tie-interests">
             <% if referral.to_user.interests.present? %>
               <% referral.to_user.interests.each_with_index do |interest, index| %>
-                <% break if index > 2 %>
                 <span class="badge badge-secondary"> <%= interest.name %> </span>
               <% end %>
             <% end %>
