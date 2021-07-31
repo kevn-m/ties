@@ -1,0 +1,91 @@
+
+
+<div class="mt-4 mb-4">
+  <a href="" id="open-btn" class="mt-2 btn btn-primary" data-toggle="modal" data-target="#modalForm">My Interests</a>
+  <!-- <a href="" id="open-btn" class="mt-2 btn btn-info" data-toggle="modal" data-backdrop="" data-target="#modalForm">My Interests</a> -->
+</div>
+
+<!-- Modal for interest cards -->
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 text-left">Select profile interests below</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="p-2">
+          <%= simple_form_for(@user, url: update_interests_path(@user)) do |f| %>
+            <div class="d-flex justify-content-start">
+              <%= f.submit "Save", id: "submitForm", class: "btn btn-primary", data: { disable_with: false} %>
+              <%= f.submit "Close", class: "btn btn-info ml-1", data: { disable_with: false, dismiss: "modal"} %>
+            </div>
+            <div>
+              <%= f.association :interests,
+                  as: :check_boxes,
+                  label: false,
+                  # prompt: "Select one or more interests",
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper',
+                  item_wrapper_class: 'category-item',
+                  input_html: {class: 'category-selector'},
+                  collection: Interest.order(:name)
+              %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    // Should create a JS script in Javascript/pack directory, and kick off using Applicaiotn.js
+    // data-dismiss = "modal"
+    const open_btn = document.getElementById('open-btn');
+    const submit_btn = document.getElementById('submitForm');
+
+    //const container = document.getElementById('modalForm');
+    //const modal_form = new bootstrap.Modal(container);
+
+    const modal_form = document.getElementById('modalForm');
+
+    open_btn.addEventListener('click', () => {
+      console.log("open");
+      modal_form.classList.add('show');
+      modal_form.setAttribute('aria-modal', 'true');
+      modal_form.removeAttribute('aria-hidden');
+      modal_form.setAttribute('style', 'display: block');
+    });
+
+    //document.addEventListener('turbolinks:load', () => {
+    submit_btn.addEventListener('click', () => {
+      console.log("close");
+
+      submit_btn.setAttribute("data-dismiss", "modal");
+      //modal_form.classList.remove('show');
+
+      //modal_form.hide();
+      //modal_form.setAttribute("style", "visibility: hidden");
+
+      // change state like in hidden modal
+
+
+
+      // modal_form.classList.remove('show');
+      // modal_form.removeAttribute('aria-modal');
+      // modal_form.setAttribute('aria-hidden', 'true');
+      // modal_form.setAttribute('style', 'display: none');
+
+      // // get modal backdrop
+      // const modalBackdrops = document.getElementsByClassName('modal-backdrop');
+
+      // // remove opened modal backdrop
+      // document.body.removeChild(modalBackdrops[0]);
+      // submit_btn.setAttribute("data-dismiss", "modal");
+    });
+  });
+</script>

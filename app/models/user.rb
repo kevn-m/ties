@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :ties1, foreign_key: 'user1_id', class_name: 'Tie'
   has_many :ties2, foreign_key: 'user2_id', class_name: 'Tie'
   has_many :user_interests
+  # has_and_belongs_to_many :interests
   has_many :interests, through: :user_interests
   has_many :messages
 
