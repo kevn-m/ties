@@ -19,9 +19,15 @@ class ReferralsController < ApplicationController
 
   def reject
     user_id = params[:id]
-    @referral = Referral.find_by to_user_id: current_user, recommended_user_id: user_id
-    @referral.update(reject: true)
-    redirect_to referrals_path
+    if Referral.find_by to_user_id: current_user, recommended_user_id: user_id
+      @referral = Referral.find_by to_user_id: current_user, recommended_user_id: user_id
+      @referral.update(reject: true)
+      redirect_to referrals_path
+    elsif Referral.find_by to_user_id: user_id, recommended_user_id: current_user
+      @referral = Referral.find_by to_user_id: user_id, recommended_user_id: current_user
+      @referral.update(reject: true)
+      redirect_to referrals_path
+    end
   end
 
   def index
