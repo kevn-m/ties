@@ -3,8 +3,44 @@
   margin-bottom: 60px;
 }
 
-.profile-info {
+.profile-card {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  padding-bottom: 20px;
+}
 
+.profile-name {
+  position: absolute;
+  top: 350px;
+  left: 10px;
+  color: white;
+  font-size: 32px;
+  text-shadow: 0 0 3px rgba(0,0,0,.5)
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .status {
+    text-align: left;
+    color: #5b6dcd;
+    // font-family: 'Calibri', sans-serif;
+    font-size: 18px;
+  }
+  .tie-interests {
+    display: flex;
+    justify-content: center;
+    margin-left: 8px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .card-controls {
@@ -44,9 +80,12 @@
 .profile-photo {
   height: 400px;
   width: 100%;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  // background-repeat: no-repeat;
+  border-radius: 30px 30px 0 0;
+  background-color: red;
+  object-fit: cover;
 }
 
 .profile-view { // used under the carousel in user profile

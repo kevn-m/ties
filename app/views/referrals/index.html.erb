@@ -1,10 +1,10 @@
-<div class="all-profiles">
+    <div class="all-profiles">
   <!-- Show profiles that someone else has recommended to the current user -->
   <% @to_referrals.each_with_index do |referral, index| %>
     <div class="profile-card">
       <%= link_to user_path(referral.recommended_user) do %>
           <% if referral.recommended_user.photos.attached? %>
-            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.recommended_user.photos.first.key, gravity: :face, crop: :fill, width:900, height:900 %>')"></div>
+            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.recommended_user.photos.first.key, gravity: :center, crop: :fill, width:900, height:900 %>')"></div>
           <% else %>
             <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
           <% end %>
@@ -32,7 +32,7 @@
     <div class="profile-card">
       <%= link_to user_path(referral.to_user) do %>
           <% if referral.to_user.photos.attached? %>
-            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.to_user.photos.first.key, gravity: :face, crop: :fill, width:900, height:900 %>')"></div>
+            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.to_user.photos.first.key, gravity: :center, crop: :fill, width:900, height:900 %>')"></div>
           <% else %>
             <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
           <% end %>
@@ -58,23 +58,26 @@
   <!-- Show current ties and their status so I can refer them -->
   <% @users.each do|user| %>
     <div class="profile-card">
-      <%= link_to user_path(user) do %>
-        <% if user.photos.attached? %>
-            <div class="profile-photo" style="background-image: url('<%= cl_image_path user.photos.first.key, gravity: :face, crop: :fill, width:900, height:900 %>')"></div>
-        <% else %>
-          <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
+        <%= link_to user_path(user) do %>
+          <% if user.photos.attached? %>
+              <div class="profile-photo" style="background-image: url('<%= cl_image_path user.photos.first.key, gravity: :center, crop: :fill %>')"> </div>
+          <% else %>
+            <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')">
+            </div>
+          <% end %>
+          <div class="profile-name">
+            <%= user.first_name %> <%= user.last_name %>
+          </div>
         <% end %>
-      <% end %>
       <div class="profile-info">
-        <p> <p><%= user.first_name %> <%= user.last_name %> is looking for a referral </p></p>
+        <p> <%= user.first_name %> <%= user.last_name %> is looking for a referral </p>
+        <div class="status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
         <div class="tie-interests">
           <% if user.interests.present? %>
             <% user.interests.each_with_index do |interest, index| %>
-              <% break if index > 2 %>
               <span class="badge badge-secondary"> <%= interest.name %> </span>
             <% end %>
           <% end %>
-          <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
         </div>
       </div>
       <div class="card-controls">
