@@ -3,19 +3,19 @@
   <% if author %>
     <div class="d-flex">
       <div class="col-4"></div>
-      <div class="col-8 my-1 pt-3 bg-dark text-white text-right">
+      <div class="col-8 my-1 pt-3 incoming text-white text-right">
         <p><%= message.content %></p>
         <i class="author text-muted">
-          <small><%= message.created_at.strftime("%l:%M%p") %></small>
+          <small><%= message.created_at.in_time_zone('Melbourne').strftime("%l:%M%p") %></small>
         </i>
       </div>
     </div>
   <% else %>
     <div class="d-flex">
-      <div class="col-8 my-1 pt-3 bg-light text-dark">
+      <div class="col-8 my-1 pt-3 outgoing text-white">
         <p><%= message.content %></p>
         <i class="author text-muted">
-          <small><%= message.created_at.strftime("%l:%M%p") %></small>
+          <small><%= message.created_at.in_time_zone('Melbourne').strftime("%l:%M%p") %></small>
         </i>
       </div>
       <div class="col-4"></div>
