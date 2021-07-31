@@ -32,7 +32,7 @@
                 <% if user[1].seen %>
                   <%= user[1].content %>
                 <% else %>
-                  <strong> <%= user[1].content %> </strong>
+                  <strong> <%= user[1].content.truncate(27) %> </strong>
                 <% end %>
               </div>
             </div>
