@@ -1,6 +1,6 @@
 .tie-group {
   // This margin has been added to avoid content getting hidden by footer, don't remove!
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .tie-card {
@@ -23,6 +23,9 @@
   p {
     margin-bottom: 4px;
     font-size: 14px;
+  }
+  a:hover {
+    text-decoration: none;
   }
 }
 
@@ -58,6 +61,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.tie-name {
+  color: #292F36;
+  a:hover {
+   text-decoration: none;
+  }
 }
 
 .fa-info-circle {
@@ -79,13 +93,14 @@
   overflow: hidden;
   height: 120px;
   width: auto;
-  background: pink; //#FFE66D;
+  background: lightyellow;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   margin-bottom: 8px;
   padding-left: 4px;
   padding-right: 4px;
+  text-decoration: none;
   &:hover{
     color: black;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -95,7 +110,14 @@
     margin-bottom: 4px;
     font-size: 14px;
   }
+  a:hover {
+    text-decoration: none;
+  }
 }
+
+a:hover {
+    text-decoration: none;
+  }
 
 .select-tie-card {
   overflow: hidden;
@@ -117,6 +139,9 @@
     margin-bottom: 4px;
     font-size: 14px;
   }
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .referral-form {
@@ -136,7 +161,7 @@
   overflow: hidden;
   height: 120px;
   width: auto;
-  background: lightyellow;;
+  background: lightyellow;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;

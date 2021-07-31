@@ -42,6 +42,7 @@ class ReferralsController < ApplicationController
       end
       @users.push(User.find(@user_id))
     end
+    @users = @users.uniq
   end
 
   def new

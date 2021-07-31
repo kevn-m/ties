@@ -8,6 +8,7 @@
     </div>
   <% else %>
     <% @users.each do |user| %>
+      <%= link_to user_path(user) do %>
         <div class="tie-card">
           <% if user.photos.attached? %>
             <div class="tie-image-box"> <%= cl_image_tag user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
@@ -16,7 +17,9 @@
           <% end %>
           <div class="tie-info-box">
             <div class="tie-texts">
-              <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
+              <div class="tie-name">
+                <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
+              </div>
               <%= link_to "Refer", new_referral_path(selected_user: user), class: "primary-button mb-0" %>
             </div>
             <div class="tie-interests">
@@ -30,6 +33,7 @@
             <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
           </div>
         </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>
