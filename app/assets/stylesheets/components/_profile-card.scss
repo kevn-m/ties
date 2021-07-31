@@ -1,3 +1,31 @@
+.all-profiles {
+  text-align: center;
+  margin-bottom: 60px;
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+  display: none;
+  }
+}
+
+.profile-info {
+
+}
+
+.profile-card {
+  width:100%;
+  overflow: hidden;
+  margin-left :0;
+  margin-right :0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card-controls {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 #slides {
     position: relative;
@@ -27,7 +55,7 @@
     z-index: 2;
 }
 
-.profile-card {
+.profile-photo {
   height: 400px;
   width: 100%;
   background-size: contain;

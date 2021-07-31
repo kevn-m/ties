@@ -27,17 +27,13 @@ class TiesController < ApplicationController
         @user_id = tie.user1_id
       end
       @users.push(User.find(@user_id))
+      # Making sure that we display each user only once
+      @users = @users.uniq
     end
   end
 
   def show
     @tie = Tie.find(params[:id])
     @message = Message.new
-    # @message.update(message_params)
   end
-
-  # private
-  # def message_params
-  #   params.require().permit(:user_id, :tie_id, :content, :seen)
-  # end
 end

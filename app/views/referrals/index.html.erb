@@ -1,40 +1,94 @@
-<h1>Your recommended ties</h1>
-
-<!-- <div class="card d-flex">
-  <ul id="slides">
-    <% @referrals.each_with_index do |referral, index| %>
-      <%= link_to user_path(referral.id) do %>
-        <div class="profile-card slide <%= 'showing' if index == 0   %> " data-id="<%= referral.id %>" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path referral.photos.first.key %>')">
-        </div>
+<div class="all-profiles">
+  <!-- Show profiles that someone else has recommended to the current user -->
+  <% @to_referrals.each_with_index do |referral, index| %>
+    <div class="profile-card">
+      <%= link_to user_path(referral.recommended_user) do %>
+          <% if referral.recommended_user.photos.attached? %>
+            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.recommended_user.photos.first.key, gravity: :face, crop: :fill, width:900, height:900 %>')"></div>
+          <% else %>
+            <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
+          <% end %>
       <% end %>
-        <div class="slide-controls">
-          <%= link_to "Yes", accept_path(referral.id), :method=> :patch, class: "btn btn-primary" %>
-          <%= link_to "No", reject_path(referral.id), :method=> :patch, class: "btn btn-primary" %>
+        <div class="profile-info">
+          <p><%= referral.recommended_user.first_name %> <%= referral.recommended_user.last_name %> has been recommended to you by <%= referral.referrer_user.first_name %> </p>
+          <div class="tie-interests">
+            <% if referral.recommended_user.interests.present? %>
+              <% referral.recommended_user.interests.each_with_index do |interest, index| %>
+                <% break if index > 2 %>
+                <span class="badge badge-secondary"> <%= interest.name %> </span>
+              <% end %>
+            <% end %>
+          </div>
         </div>
-    <% end %>
-  </ul>
-</div> -->
-
-
-<div class="card d-flex">
-  <% @referrals.each_with_index do |referral, index| %>
-    <%= link_to user_path(referral.id) do %>
-      <div class="profile-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path referral.photos.first.key %>')">
-      </div>
-    <% end %>
-      <div class="slide-controls">
-        <%= link_to "Yes", accept_path(referral.id), :method=> :patch, class: "btn btn-primary" %>
-        <%= link_to "No", reject_path(referral.id), :method=> :patch, class: "btn btn-primary" %>
-      </div>
+        <div class="card-controls">
+          <%= link_to "Request", request_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+          <%= link_to "Reject", reject_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+        </div>
+    </div>
   <% end %>
+
+  <!-- Show profiles that requested to connect with current user -->
+  <% @requested_referrals.each_with_index do |referral, index| %>
+    <div class="profile-card">
+      <%= link_to user_path(referral.to_user) do %>
+          <% if referral.to_user.photos.attached? %>
+            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.to_user.photos.first.key, gravity: :face, crop: :fill, width:900, height:900 %>')"></div>
+          <% else %>
+            <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
+          <% end %>
+      <% end %>
+        <div class="profile-info">
+          <p> <p><%= referral.to_user.first_name %> <%= referral.to_user.last_name %> has requested to be your tie through <%= referral.referrer_user.first_name %> </p></p>
+          <div class="tie-interests">
+            <% if referral.to_user.interests.present? %>
+              <% referral.to_user.interests.each_with_index do |interest, index| %>
+                <% break if index > 2 %>
+                <span class="badge badge-secondary"> <%= interest.name %> </span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-controls">
+          <%= link_to "Accept", accept_path(referral.to_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+          <%= link_to "Reject", reject_path(referral.to_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+        </div>
+    </div>
+  <% end %>
+
+  <!-- Show current ties and their status so I can refer them -->
+  <% @users.each do|user| %>
+    <div class="profile-card">
+      <%= link_to user_path(user) do %>
+        <% if user.photos.attached? %>
+            <div class="profile-photo" style="background-image: url('<%= cl_image_path user.photos.first.key, gravity: :face, crop: :fill, width:900, height:900 %>')"></div>
+        <% else %>
+          <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
+        <% end %>
+      <% end %>
+      <div class="profile-info">
+        <p> <p><%= user.first_name %> <%= user.last_name %> is looking for a referral </p></p>
+        <div class="tie-interests">
+          <% if user.interests.present? %>
+            <% user.interests.each_with_index do |interest, index| %>
+              <% break if index > 2 %>
+              <span class="badge badge-secondary"> <%= interest.name %> </span>
+            <% end %>
+          <% end %>
+          <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
+        </div>
+      </div>
+      <div class="card-controls">
+        <!-- This may be redirect to the wrong page right now -->
+        <%= link_to "Refer", new_referral_path(selected_user: user), class: "primary-button" %>
+      </div>
+    </div>
+  <% end %>
+
 </div>
 
 <!--
-  1. Link accept and reject button to the rails routes referrals#reject referrals#accept
-  2. Code the accept/reject controller to update the referral reject to true or false
-  3. Move buttons to exist within the @referrals loop
-  4. When button is clicked it will post to reject/accept action and change the referral therefore index will always be 0
-
-
-  3. Note: Use remote: true
+  1. Show profiles that are recommended to me so that I can request
+    Conditions: Cannot be a tie already | Cannot be
+  2. Then show profiles that have made a request to me so that I can accept
+  3. Then show ties so that I can refer
 -->

@@ -16,23 +16,20 @@
     <%# if !current_page?(root_path) %>
 
     <%= render 'shared/flashes' %>
+
+      <%= yield %>
+
     <% if current_user %>
-      <%= render 'shared/navbar' %>
+      <%= render 'shared/footer' %>
+    <% else %>
+      <div class="footer">
+        <div class="footer-links">
+            <!-- <a href="#"><i class="fas fa-home"></i></a> -->
+          <div class="footer-copyright">
+            Ties <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      </div>
     <% end %>
-
-    <%= yield %>
-
-    <div class="footer">
-      <div class="footer-links">
-<!--         <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a> -->
-      </div>
-      <div class="footer-copyright">
-        Ties <i class="fas fa-heart"></i>
-      </div>
-    </div>
   </body>
 </html>
