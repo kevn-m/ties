@@ -108,9 +108,9 @@
 
 //  ====================================
 
-.profile-container{
+.profile-container {
     position: fixed;
-    height: 100vh;
+    height: 100%;
     max-height: -webkit-fill-available; // this is to ensure the mobile factor with dynamic top and bottm menu still size properly
     width: 100%;
     top: 0;
