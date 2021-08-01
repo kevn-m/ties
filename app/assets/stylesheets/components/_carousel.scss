@@ -3,6 +3,7 @@
     // display: flex;
     position: absolute;
     height: 64%;
+      max-height: 64% !important;
     min-height: 300px;
     width: 100%;
     top: 0;
@@ -10,7 +11,13 @@
     font-family: 'Calibri', sans-serif !important;
     // background-color: #eee
 }
-.carousel .carousel-indicators li {
+
+.carousel {
+  height: 100% !important;
+  width: 100%;
+
+}
+.carousel-indicators li {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -22,10 +29,14 @@
     //border-radius: 2px
 }
 
+.carousel-inner {
+  height: 100% !important;
+  background-color:lightgrey;
+}
+
 .carousel-img {
-  height: auto;
-  min-height: 300px;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
   background-color:lightgrey;
 }

@@ -27,7 +27,7 @@
 
       <% end %>
 
-      <div class="carousel-inner" >
+      <div class="carousel-inner">
         <% @user.photos.each_with_index do |pic, i| %>
           <div class="carousel-item <%= 'active' if i.zero? %>">
             <img src="<%= cl_image_path pic.key %>" class="carousel-img" alt="Profile image <%= i %>">
@@ -39,10 +39,12 @@
   </div>
 
   <div class="profile-view" id="user-profile">
-    <div class="profile-icons">
-      <%#= link_to tie_path(user[2], anchor: "message-#{user[1].id}") do %>
-        <i class="far fa-comment"></i>
-      <%# end %>
+    <div class="d-flex justify-content-end">
+      <div class="profile-icons">
+        <%#= link_to tie_path(user[2], anchor: "message-#{user[1].id}") do %>
+          <a ref="#"><i class="far fa-comment"></i></a>
+        <%# end %>
+      </div>
     </div>
 
     <div class="updown-text" id="updown">▲</div>

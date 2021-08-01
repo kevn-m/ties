@@ -115,6 +115,7 @@
     width: 100%;
     top: 0;
     left: 0;
+
 }
 
 .profile-view { // used under the carousel in user profile
@@ -136,7 +137,8 @@
     color: white;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
     font-size: 28px;
-    text-align: right;
+    width: fit-content;
+    cursor: pointer;
   }
 
   .profile-content {
@@ -150,6 +152,7 @@
     color: grey;
     margin: 0px;
     text-align: center;
+    cursor: pointer;
   }
 
   .name {
@@ -185,7 +188,7 @@
 
 .profile-shrink{
   height: 70%;
-  -webkit-animation: profile-contraction 1s forwards;
+  -webkit-animation: profile-contraction 0.5s forwards;
 }
 
 @-webkit-keyframes profile-contraction {
@@ -194,7 +197,7 @@
 
 
 .profile-expand { // expand profile pane
-  -webkit-animation: profile-expansion 1s forwards;
+  -webkit-animation: profile-expansion 0.5s forwards;
 }
 
 @-webkit-keyframes profile-expansion {
