@@ -2,8 +2,7 @@
     // vertical-align: middle;
     // display: flex;
     position: absolute;
-    height: 64%;
-      max-height: 64% !important;
+    height: 64% !important;
     min-height: 300px;
     width: 100%;
     top: 0;
@@ -34,11 +33,13 @@
   background-color:lightgrey;
 }
 
-.carousel-img {
-  height: 100%;
+.carousel-img{
+  height: 64vh;
   width: 100%;
   object-fit: cover;
   background-color:lightgrey;
+  background-size: cover;
+  background-position: center;
 }
 
 .carousel-float {

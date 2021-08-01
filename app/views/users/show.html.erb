@@ -30,7 +30,8 @@
       <div class="carousel-inner">
         <% @user.photos.each_with_index do |pic, i| %>
           <div class="carousel-item <%= 'active' if i.zero? %>">
-            <img src="<%= cl_image_path pic.key %>" class="carousel-img" alt="Profile image <%= i %>">
+            <!-- <img src="<%= cl_image_path pic.key %>" class="carousel-img" alt="Profile image <%= i %>"> -->
+            <div class="carousel-img" style="background-image: url('<%= cl_image_path pic.key, gravity: :center, crop: :fill %>')"></div>
           </div>
         <% end %>
       </div>
