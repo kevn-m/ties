@@ -106,22 +106,11 @@
   // object-fit: cover;
 }
 
-//  ====================================
-
-.profile-container{
-    position: fixed;
-    height: 100vh;
-    max-height: -webkit-fill-available; // this is to ensure the mobile factor with dynamic top and bottm menu still size properly
-    width: 100%;
-    top: 0;
-    left: 0;
-}
-
 .profile-view { // used under the carousel in user profile
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left:0;
-  height: 38%;
+  height: 38vh;
   width: 100%;
   padding: 0px 10px;
   padding-bottom: 60px;
@@ -184,12 +173,12 @@
 }
 
 .profile-shrink{
-  height: 70%;
+  height: 70vh;
   -webkit-animation: profile-contraction 1s forwards;
 }
 
 @-webkit-keyframes profile-contraction {
-  100% {height: 38%;}
+  100% {height: 38vh;}
 }
 
 
@@ -198,6 +187,6 @@
 }
 
 @-webkit-keyframes profile-expansion {
-  100% {height: 70%;}
+  100% {height: 70vh;}
 }
 
