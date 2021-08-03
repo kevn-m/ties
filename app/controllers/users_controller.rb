@@ -23,7 +23,14 @@ class UsersController < ApplicationController
 
   def update_profile
     if user_signed_in?
+      binding.pry
       if @user.update!(user_params)
+        # now add the photos
+
+        params[:user][:photos].each do |pic|
+          @user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
+        end
+
         redirect_to after_update_path_for(@user), notice: "Your interest is updated sucessfully !"
         # redirect_back(fallback_location: root_path)
       else
@@ -54,7 +61,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :bio, :summary, photos: [], interest_ids: [])
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :bio, :summary, interest_ids: []) #photos: [],
   end
 
   def find_user
