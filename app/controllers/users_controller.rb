@@ -23,8 +23,9 @@ class UsersController < ApplicationController
 
   def update_profile
     if user_signed_in?
-      binding.pry
+      # binding.pry
       if @user.update!(user_params)
+
         # now add the photos
 
         params[:user][:photos].each do |pic|
