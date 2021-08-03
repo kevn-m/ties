@@ -125,7 +125,7 @@
   height: 38%;
   width: 100%;
   padding: 0px 10px;
-  padding-bottom: 60px;
+  padding-bottom: 70px;
   border-top-left-radius: 20px 15px;
   border-top-right-radius: 20px 15px;
   list-style-type: none;
@@ -139,6 +139,10 @@
     font-size: 28px;
     width: fit-content;
     cursor: pointer;
+
+    a {
+      color: white;
+    }
   }
 
   .profile-content {

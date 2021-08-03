@@ -42,9 +42,11 @@
   <div class="profile-view" id="user-profile">
     <div class="d-flex justify-content-end">
       <div class="profile-icons">
-        <%#= link_to tie_path(user[2], anchor: "message-#{user[1].id}") do %>
-          <a ref="#"><i class="far fa-comment"></i></a>
-        <%# end %>
+        <% if @tie then %>
+          <%= link_to tie_path(@tie, anchor: "message-#{@last_message_id}") do %>
+            <i class="far fa-comment"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
