@@ -24,7 +24,9 @@ class ApplicationController < ActionController::Base
     #   request.path != "/users/sign_out" &&
     #   !request.xhr? && !current_user) # don't store ajax calls
     # then
-    session[:previous_url] = request.referrer
+
+      session[:previous_url] = request.referrer
+
     # end
   end
 
