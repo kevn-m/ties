@@ -16,4 +16,5 @@ class Tie < ApplicationRecord
       end
     end
   end
+
 end

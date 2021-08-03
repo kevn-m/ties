@@ -36,4 +36,5 @@ class TiesController < ApplicationController
     @tie = Tie.find(params[:id])
     @message = Message.new
   end
+
 end

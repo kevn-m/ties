@@ -1,7 +1,6 @@
 <div class="banner d-flex justify-content-center align-items-top">
   <div class="login-heading">
-    <h1>Ties Profile<h1>
-    <p>Let's update your profile</p>
+    <h1>Login Update</h1>
   </div>
 
   <div class="container">
@@ -43,102 +42,18 @@
           </div>
         </div>
         <div class="col-11 px-2 py-2 mt-1" style="background-color: rgba(255,255,255,0.6); border-radius: 5px;">
-          <p style="margin-bottom: 0;font-size:16px; color:black;">Profile</p>
-          <%= f.input :first_name,
-                      label: false,
-                      required: false,
-                      placeholder: 'First name',
-                      input_html: { autocomplete: "first_name" }
-          %>
-          <%= f.input :last_name,
-                      label: false,
-                      required: false,
-                      placeholder: 'Last name',
-                      input_html: { autocomplete: "last_name" }
-          %>
-          <%= f.input :username,
-                      label: false,
-                      required: true,
-                      placeholder: 'Nick name'
-          %>
-          <%= f.input :bio,
-                      label: false,
-                      required: false,
-                      placeholder: 'Tell us about yourself...'
-          %>
-          <%= f.input :summary,
-                      label: false,
-                      required: false,
-                      placeholder: "Life's little summary"
-          %>
-          <%= f.file_field :photos, multiple: true %>
-          <%#= f.input :photos, as: :file, label: "Select some profile photos", input_html: { multiple: true }
-          %>
           <div class="mt-2 d-flex justify-content-around align-items-center">
             <div class="form-actions">
+              <!-- Issue here: when submitted, it goes to the hme page -->
               <%= f.button :submit, "Update" , class: "update-button"%>
             </div>
-            <div class="ml-1">
-              <a href="" id="open-btn" class="primary-button" data-toggle="modal" data-target="#modalForm">Interests</a>
+            <div class="ml-2">
+              <a href="" class="ghost-button" onclick="window.history.back()">Cancel</a>
             </div>
-<!--             <div class="ml-1">
-              <a href="" id="open-btn" class="primary-button" data-toggle="modal" data-target="#modalForm">Photos</a>
-            </div> -->
           </div>
         </div>
       </div>
     <% end %>
-
-
-
-    <!-- Modal for interest cards -->
-    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h6 class="modal-title w-100 text-left">Select profile interests below</h6>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <%= simple_form_for(resource, url: update_interests_path(resource)) do |f| %>
-            <div class="modal-body mx-1 py-0">
-              <div class="p-1">
-                <div>
-                  <%= f.association :interests,
-                      as: :check_boxes,
-                      label: false,
-                      # prompt: "Select one or more interests",
-                      collection_wrapper_tag: 'div',
-                      collection_wrapper_class: 'category-wrapper',
-                      item_wrapper_class: 'category-item',
-                      input_html: {class: 'category-selector'},
-                      collection: Interest.order(:name)
-                  %>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <%= f.submit "Save", id: "submitForm", class: "primary-button", data: { disable_with: false} %>
-              <%= f.submit "Close", id: "closeForm", class: "ghost-button ml-4", data: { disable_with: false, dismiss: "modal"} %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('turbolinks:load', () => {
-    // Should create a JS script in Javascript/pack directory, and kick off using Applicaiotn.js
-
-    const submit_btn = document.getElementById('submitForm');
-    const close_btn = document.getElementById('closeForm');
-
-    submit_btn.addEventListener('click', () => {
-      close_btn.click();  // <-- do this to close the form by "clicking" on teh close button
-    });
-  });
-</script>
 
