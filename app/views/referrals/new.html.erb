@@ -11,12 +11,10 @@
           <div class="tie-info-box">
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(@recommended_user.first_name, length:10) %> <%= truncate(@recommended_user.last_name, length:15) %> </h5>
-              <!-- Note that below path is there just for demo purposes -->
             </div>
             <div class="tie-interests">
               <% if @recommended_user.interests.present? %>
                 <% @recommended_user.interests.each_with_index do |interest, index| %>
-                  <% break if index > 2 %>
                   <span class="badge badge-secondary"> <%= interest.name %> </span>
                 <% end %>
               <% end %>
@@ -60,7 +58,6 @@
               <div class="tie-interests">
                 <% if user.interests.present? %>
                   <% user.interests.each_with_index do |interest, index| %>
-                    <% break if index > 2 %>
                     <span class="badge badge-secondary"> <%= interest.name %> </span>
                   <% end %>
                 <% end %>
@@ -99,7 +96,6 @@
               <div class="tie-interests">
                 <% if user.interests.present? %>
                   <% user.interests.each_with_index do |interest, index| %>
-                    <% break if index > 2 %>
                     <span class="badge badge-secondary"> <%= interest.name %> </span>
                   <% end %>
                 <% end %>
@@ -125,7 +121,6 @@
               <div class="tie-interests">
                 <% if user.interests.present? %>
                   <% user.interests.each_with_index do |interest, index| %>
-                    <% break if index > 2 %>
                     <span class="badge badge-secondary"> <%= interest.name %> </span>
                   <% end %>
                 <% end %>

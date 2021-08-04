@@ -1,6 +1,30 @@
-<h3>My Ties</h3>
+<h2>My Ties</h2>
+  <div class="search-bar">
+    <%= simple_form_for :search_by_interest, url: ties_path, method: :get do |f| %>
+      <div class="search-form-control form-group row g-3">
+        <div class="col-sm-8">
+            <%= text_field_tag :query,
+              params[:query],
+              type: "search",
+              class: "form-control string required",
+              placeholder: "Filter your ties by interest"
+            %>
+        </div>
+      <div class="col">
+        <button name="button" type="submit" class="ghost-button">
+          <i class="fas fa-search"></i> Search
+        </button>
+        <%= link_to "Reset", ties_path, method: :get, class: "primary-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 <div class="tie-group">
-  <% if @users.blank? %>
+  <% if @users.blank? && params[:query].present? %>
+    <div class="tie-card d-flex justify-content-around">
+      <h6>No results.</h6>
+    </div>
+  <% elsif @users.blank? %>
     <div class="tie-card d-flex justify-content-around">
       <h6>You don't have any ties yet.</h6>
       <!-- Link path below is not right and needs to be updated later on -->
