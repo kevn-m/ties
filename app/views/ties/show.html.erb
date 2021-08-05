@@ -1,7 +1,29 @@
 <!-- app/views/chatrooms/show.html.erb -->
 <!-- <h1>The chat between <%= @tie.user1.first_name %> and <%= @tie.user2.first_name %> </h1> -->
 <div>
-  <div id="messages" style="margin-bottom: 155px" data-tie-id="<%= @tie.id %>" data-current-user-id = "<%= current_user.id %>">
+  <div class="message-header fixed-top text-white d-flex align-items-center">
+    <!-- back button to chat_list -->
+    <div class="p-2">
+      <%= link_to chat_list_ties_path do %>
+        <i class="fas fa-chevron-left"></i>
+      <% end %>
+    </div>
+    <!-- tie's avatar -->
+    <div class="p-2">
+      <% if @your_tie.photos.attached? %>
+        <div class="your-tie-image-box"> <%= cl_image_tag @your_tie.photos.first.key, width: 100, height: 100, crop: :thumb %> </div>
+      <% else %>
+        <div class="your-tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, crop: :thumb) %>')"> </div>
+      <% end %>
+    </div>
+    <!-- tie's first and last name -->
+    <div>
+      <h2> <%= @your_tie.first_name %> <%= @your_tie.last_name %>  </h2>
+    </div>
+  </div>
+
+
+  <div id="messages" style="margin-bottom: 120px; margin-top: 70px" data-tie-id="<%= @tie.id %>" data-current-user-id = "<%= current_user.id %>">
     <% @tie.messages.order(:created_at).each do |message| %>
       <%= render partial: "messages/message", locals: {message: message, author: message.user == current_user} %>
     <% end %>
@@ -9,8 +31,10 @@
 
   <div class="fixed-bottom" style="background-color: white; padding-bottom: 53px; z-index: auto">
     <%= simple_form_for [ @tie, @message ], remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Message"%>
-      <%= f.button :submit, class: "primary-button"%>
+    <div class="d-flex align-items-cente">
+      <div class="col-9"><%= f.input :content, label: false, placeholder: "Message"%></div>
+      <div><%= f.button :submit, "Send" , class: "primary-button"%></div>
+    </div>
     <% end %>
   </div>
 </div>

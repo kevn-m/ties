@@ -12,12 +12,6 @@ class TiesController < ApplicationController
       end
       @lastmessage = Message.where(tie_id: tie.id).last
       @users.push([User.find(@user_id), @lastmessage, tie.id])
-
-      if current_user.id == tie.user1_id
-        @my_messages = Message.where(tie_id: tie).where(user_id: tie.user1_id)
-      else
-        @my_messages = Message.where(tie_id: tie).where(user_id: tie.user2_id)
-      end
     end
   end
 
@@ -44,8 +38,10 @@ class TiesController < ApplicationController
 
     # selecting your tie's messages as "seen" when open a chat
     if current_user.id == @tie.user1_id
+      @your_tie = User.find(@tie.user2_id)
       @your_tie_messages = Message.where(tie_id: @tie).where(user_id: @tie.user2_id)
     else
+      @your_tie = User.find(@tie.user1_id)
       @your_tie_messages = Message.where(tie_id: @tie).where(user_id: @tie.user1_id)
     end
     @your_tie_messages.update_all "seen = true"
