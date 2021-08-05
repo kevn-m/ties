@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :update_interests, :update_profile, :update_photos]
+  before_action :find_user, only: [:show, :edit, :update, :update_interests, :update_profile]
   before_action :store_url, only: [:edit_profile]
 
   def show
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def edit_profile
     # binding.pry
     if user_signed_in?
-      @user = User.find(current_user.id)
+      @user = current_user
     else
       redirect_to root_path, notice: "Sorry, you must login first."
     end
@@ -71,11 +71,13 @@ class UsersController < ApplicationController
   def delete_photo
     # binding.pry
     if user_signed_in?
-      user = User.find(current_user.id)
       blob = ActiveStorage::Blob.find_signed(params[:id])
+      blob.attachments.first&.purge #or purge_later
 
-             #binding.pry
-      user.photos.find(blob.id)&.purge  #purge if photo exists using the '&.' as a shot form
+      # binding.pry
+      # alternative:
+      #   user = User.find(current_user.id)
+      #   user.photos.find(blob.id)&.purge  #purge if photo exists using the '&.' as a shot form
 
       redirect_to edit_photos_path
     else
@@ -86,25 +88,19 @@ class UsersController < ApplicationController
   def update_photos
     if user_signed_in?
       # binding.pry
-      if @user.update!(user_params)
 
-        # now add the photos
-
-        params[:user][:photos].each do |pic|
-          @user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
-        end
-
-        redirect_to after_update_path_for(@user), notice: "Your interest is updated sucessfully !"
-        # redirect_back(fallback_location: root_path)
-      else
-        flash.now[:alert] = @user.errors.full_messages.first
-        # render :edit_interests
+      # now add the photos
+      params[:user][:photos].each do |pic|
+        current_user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
       end
 
+      redirect_to edit_photos_path
+      # redirect_back(fallback_location: root_path)
     else
       redirect_to root_path, notice: "Sorry, you must login first."
     end
   end
+
   private
 
   def user_params

@@ -13,9 +13,9 @@
     linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.15))
     no-repeat;
     height: 220px;
-    width: auto ;
+    width: 100% ;
   background-size: contain;
-  margin: 10px;
+  margin: 0px;
   padding: 10px;
   a {
     color: white;
@@ -28,3 +28,19 @@
   display: flex;
 
 }
+
+
+// input {
+//   #file-upload-button{
+//     color: red !important;
+//   }
+// }
+
+
+// input[type=file]::file-selector-button {
+//   border: 2px solid #6c5ce7;
+//   padding: .2em .4em;
+//   border-radius: 16px;
+//   background-color: lightblue;
+//   transition: 1s;
+// }
