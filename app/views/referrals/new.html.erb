@@ -70,7 +70,8 @@
                 <% if params[:selected_to_user] && params[:selected_to_user].to_i == user.id %>
                   <%= link_to "Unselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
                 <% else %>
-                  <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
+                  <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id),
+                  class: "ghost-button mb-0", 'data-turbolinks-scroll': false %>
                 <% end %>
               </div>
               <div class="tie-interests">
