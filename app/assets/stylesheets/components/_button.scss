@@ -1,14 +1,15 @@
 .primary-button {
   line-height: 1 !important;
-  background: #0082BF;
+  background: #59C0B9;
   color: white;
   padding: 8px 16px  !important;
   border-radius: 50px;
-  border: 1px solid #0082BF  !important;
+  border: 1px solid #59C0B9  !important;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
   &:hover {
-    background: #046390;
+    background: #24A9A0;
     color: white;
     text-decoration: none  !important;;
   }
@@ -23,6 +24,7 @@
   border: 1px solid rgba(250, 190, 0, 1)  !important;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
   &:hover {
     background: rgba(240, 180, 0, 0.9);
     color: white;
@@ -41,14 +43,15 @@
 .ghost-button {
   line-height: 1 !important;
   background: white;
-  color: #0082BF  !important;
+  color: #59C0B9  !important;
   padding: 7px 15px  !important;
   border-radius: 50px;
-  border: 1px solid #0082BF  !important;
+  border: 1px solid #59C0B9  !important;
   transition: opacity 0.3s ease;
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
   &:hover {
-    color: #046390;
-    border: 1px solid #046390;
+    color: #24A9A0;
+    border: 1px solid #24A9A0;
     text-decoration: none;
   }
 }

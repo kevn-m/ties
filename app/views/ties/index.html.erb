@@ -1,23 +1,22 @@
-<h2>My Ties</h2>
-  <div class="search-bar">
-    <%= simple_form_for :search_by_interest, url: ties_path, method: :get do |f| %>
-      <div class="search-form-control form-group row g-3">
-        <div class="col-sm-8 mb-2">
-            <%= text_field_tag :query,
-              params[:query],
-              type: "search",
-              class: "form-control string required",
-              placeholder: "Search your ties by name or interest"
-            %>
-        </div>
-      <div class="col">
-        <button name="button" type="submit" class="primary-button">
-          <i class="fas fa-search"></i> Search
-        </button>
-        <%= link_to "Reset", ties_path, method: :get, class: "ghost-button" %>
+<div class="search-bar">
+  <%= simple_form_for :search_by_interest, url: ties_path, method: :get do |f| %>
+    <div class="search-form-control form-group row g-3">
+      <div class="col-sm-8 mb-2">
+          <%= text_field_tag :query,
+            params[:query],
+            type: "search",
+            class: "form-control string required",
+            placeholder: "Search your ties by name or interest"
+          %>
       </div>
+    <div class="col">
+      <button name="button" type="submit" class="primary-button">
+        <i class="fas fa-search"></i> Search
+      </button>
+      <%= link_to "Clear", ties_path, method: :get, class: "ghost-button" %>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
 <div class="tie-group">
   <% if @users.blank? && params[:query].present? %>
