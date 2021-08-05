@@ -1,0 +1,22 @@
+<h3>Photos</h3>
+<div class='container'>
+  <% if @user.photos.attached? %>
+    <% @user.photos.each do |photo| %>
+      <div class="photo-card">
+        <%= link_to delete_photo_path(photo.signed_id),
+          class: "primary-button mr-1",
+          method: :delete,
+          data: { confirm: "Deleting photo'.\nAre you sure?" } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        <%= cl_image_tag photo.key, height: 200, crop: :thumb, class: "photo" %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="tie-card d-flex justify-content-around">
+      <h6>No photos uploaded yet.</h6>
+      <!-- Link path below is not right and needs to be updated later on -->
+      <%#= link_to "Add ties", root_path, class: "primary-button" %>
+    </div>
+  <% end %>
+</div>

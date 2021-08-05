@@ -1,0 +1,30 @@
+.photo {
+  border-radius: 6px;
+  height : 200px;
+  max-width: 220px;
+  overflow: crop;
+}
+
+.photo-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background:
+    linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.15))
+    no-repeat;
+    height: 220px;
+    width: auto ;
+  background-size: contain;
+  margin: 10px;
+  padding: 10px;
+  a {
+    color: white;
+    text-shadow: 0 0 2px rgba(0,0,0,.5);
+    text-decoration: none;
+  }
+}
+
+.photo_container {
+  display: flex;
+
+}
