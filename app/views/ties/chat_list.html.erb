@@ -29,8 +29,8 @@
               <!-- tie's last message -->
               <!-- Make unseen messages bold -->
               <div class="m-2">
-                <% if user[1].seen %>
-                  <%= user[1].content %>
+                <% if user[1].seen || ( user[1].user_id == current_user.id ) %>
+                  <%= user[1].content.truncate(27) %>
                 <% else %>
                   <strong> <%= user[1].content.truncate(27) %> </strong>
                 <% end %>
