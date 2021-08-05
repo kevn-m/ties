@@ -1,29 +1,31 @@
 <div>
-<h3>Photos</h3>
+<h4>Photos</h4>
 </div>
-<div class='container'>
-  <div class="d-flex" style="height: 76px; border-radius: 5px; box-shadow: 0 0 3px rgba(0,0,0,0.5);">
+<div class=''>
+  <div class="d-flex justify-content-center align-items-center" style="height: 76px; border-radius: 0px;">
     <%= simple_form_for(@user, url: update_photos_path, html: { method: :patch }) do |f| %>
       <%= f.file_field :photos,
-                      class: "ml-1",
+                      class: "ml-2",
                       label: false,
                       multiple: true
       %>
       <%= f.submit "Upload", id: "upload-btn", class: "ghost-button mt-2", data: { disable_with: false} %>
     <% end %>
   </div>
-  <div class="mt-2" style="height: 77vh; overflow: scroll; box-shadow: 0 0 3px rgba(0,0,0, 0.5);">
+  <div class="" style="height: 80vh; overflow: scroll; box-shadow: 0 0 3px rgba(0,0,0, 0.5);">
     <% if @user.photos.attached? %>
       <% @user.photos.each do |photo| %>
         <div class="photo-card">
           <%= link_to delete_photo_path(photo.signed_id),
-            class: "primary-button mr-1",
+            class: "primary-button mr-1 ml-1",
             style: "max-width: 250;",
             method: :delete,
             data: { confirm: "Deleting photo'.\nAre you sure?" } do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
-          <%= cl_image_tag photo.key, height: 200, crop: :thumb, class: "photo" %>
+          <div class="d-flex justify-content-center flex-fill">
+            <%= cl_image_tag photo.key, height: 200, crop: :thumb, class: "photo" %>
+          </div>
         </div>
       <% end %>
     <% else %>
