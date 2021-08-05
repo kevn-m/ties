@@ -14,8 +14,8 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  border: lightgrey 2px solid;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+  border: $white 2px solid;
   object-fit: cover;
 }
 .avatar-square {
@@ -25,4 +25,9 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
   object-fit: cover;
+}
+
+.referral-avatar {
+  border-radius: 50%;
+  border: white 1px solid;
 }
