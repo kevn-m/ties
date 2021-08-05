@@ -23,9 +23,9 @@
       </div>
     <% end %>
   </div>
-  <h5 class="ml-2 mr-2">Who would you like to refer <strong><%= @recommended_user.first_name %></strong> to?</h5>
+  <h6 class="ml-2 mr-2">Who would you like to refer <strong><%= @recommended_user.first_name %></strong> to?</h6>
   <div class="search-bar">
-  <%= simple_form_for :search_by_interest, url: new_referral_path, method: :get do |f| %>
+  <%= simple_form_for :search_by_interest, url: new_referral_path(selected_user: @recommended_user.id), method: :get do |f| %>
     <div class="search-form-control form-group row g-3">
       <div class="col-sm-8 mb-2">
           <%= text_field_tag :query,
@@ -34,23 +34,22 @@
             class: "form-control string required",
             placeholder: "Search your ties by name or interest"
           %>
+          <%= f.hidden_field :selected_user, value: @recommended_user.id %>
       </div>
     <div class="col">
       <button name="button" type="submit" class="primary-button">
         <i class="fas fa-search"></i> Search
       </button>
-      <%= link_to "Clear", ties_path, method: :get, class: "ghost-button" %>
+      <%= link_to "Clear", new_referral_path(selected_user: @recommended_user.id), method: :get, class: "ghost-button" %>
     </div>
   </div>
 <% end %>
 </div>
   <div class="tie-group">
-    <% if @users.blank? %>
+    <% if (@users.blank? && @existing_referral_users.blank? && @existing_ties_users.blank?) %>
       <div class="tie-card">
           <div class="no-tie-texts">
-            <h6 class="mb-4">You don't have any ties that you can select.</h6>
-            <!-- Link path below is incorrect and needs to be updated later on -->
-            <%= link_to "Add ties", root_path, class: "primary-button" %>
+            <h6 class="mb-4">Sorry, you don't have ties to select</h6>
           </div>
       </div>
     <% else %>

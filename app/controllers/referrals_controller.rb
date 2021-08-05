@@ -52,7 +52,7 @@ class ReferralsController < ApplicationController
   end
 
   def new
-    recom_user = params[:selected_user]
+    recom_user = params[:selected_user] || params[:search_by_interest][:selected_user]
     @recommended_user = User.find(recom_user)
     @referral = Referral.new
 
@@ -88,6 +88,15 @@ class ReferralsController < ApplicationController
       else
         @users.push(user)
       end
+    end
+
+    if params[:query].present?
+      # First finding all the users that match the search
+      @all_matches = User.search_by_interest(params[:query])
+      # Then getting an intersection (common entries) of @all_matches and the other arrays
+      @users = @users & @all_matches
+      @existing_referral_users = @existing_referral_users & @all_matches
+      @existing_ties_users = @existing_ties_users & @all_matches
     end
   end
 
