@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   resources :referrals, only: [:new, :create, :index]
   resources :users, only: [:show] do
-    resources :user_interests, only: [:create]
+    resources :user_interests, only: [:create, :index]
   end
   resources :user_interests, only: [:destroy]
 end
