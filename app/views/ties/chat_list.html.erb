@@ -7,7 +7,6 @@
   <% else %>
   <!-- If yes, then ... -->
     <% @users.each do |user| %>
-
       <!-- Check that user previously messaged a tie -->
         <% if user[:lastmessage] %>
           <div class="tie-card">
