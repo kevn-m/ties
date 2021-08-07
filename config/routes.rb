@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   patch '/referrals/:id/reject', to: 'referrals#reject', as: :reject
 
   get '/edit_profile', to: 'users#edit_profile', as: :edit_profile
+  get '/edit_photos', to: 'users#edit_photos', as: :edit_photos
+  patch '/update_photos', to: 'users#update_photos', as: :update_photos
+  delete '/delete_photo/:id', to: 'users#delete_photo', as: :delete_photo
   patch '/update_profile/:id', to: 'users#update_profile', as: :update_profile
   patch '/update_interests/:id', to: 'users#update_interests', as: :update_interests
 
@@ -18,7 +21,7 @@ Rails.application.routes.draw do
   end
   resources :referrals, only: [:new, :create, :index]
   resources :users, only: [:show] do
-    resources :user_interests, only: [:create]
+    resources :user_interests, only: [:create, :index]
   end
   resources :user_interests, only: [:destroy]
 end

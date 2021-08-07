@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def edit_profile
     # binding.pry
     if user_signed_in?
-      @user = User.find(current_user.id)
+      @user = current_user
     else
       redirect_to root_path, notice: "Sorry, you must login first."
     end
@@ -54,6 +54,48 @@ class UsersController < ApplicationController
         # render :edit_interests
       end
 
+    else
+      redirect_to root_path, notice: "Sorry, you must login first."
+    end
+  end
+
+  def edit_photos
+    # binding.pry
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    else
+      redirect_to root_path, notice: "Sorry, you must login first."
+    end
+  end
+
+  def delete_photo
+    # binding.pry
+    if user_signed_in?
+      blob = ActiveStorage::Blob.find_signed(params[:id])
+      blob.attachments.first&.purge #or purge_later
+
+      # binding.pry
+      # alternative:
+      #   user = User.find(current_user.id)
+      #   user.photos.find(blob.id)&.purge  #purge if photo exists using the '&.' as a shot form
+
+      redirect_to edit_photos_path
+    else
+      redirect_to root_path, notice: "Sorry, you must login first."
+    end
+  end
+
+  def update_photos
+    if user_signed_in?
+      # binding.pry
+
+      # now add the photos
+      params[:user][:photos].each do |pic|
+        current_user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
+      end
+
+      redirect_to edit_photos_path
+      # redirect_back(fallback_location: root_path)
     else
       redirect_to root_path, notice: "Sorry, you must login first."
     end

@@ -27,4 +27,14 @@ class User < ApplicationRecord
   def ties
     (ties1 + ties2).uniq
   end
+
+  include PgSearch::Model
+  pg_search_scope :search_by_interest,
+  against: [:first_name, :last_name],
+  associated_against: {
+      interests: [ :name ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end

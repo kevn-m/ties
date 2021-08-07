@@ -2,8 +2,11 @@ class ReferralsController < ApplicationController
   def referral_request
     user_id = params[:id]
     @referral = Referral.find_by to_user_id: current_user, recommended_user_id: user_id
-    @referral.update(reject: false, requested: true)
-    redirect_to referrals_path
+    if @referral.update(requested: true)
+      redirect_to referrals_path, notice: "Requested to tie"
+    else
+      render :index
+    end
   end
 
   def accept
@@ -11,8 +14,9 @@ class ReferralsController < ApplicationController
     @referral = Referral.find_by recommended_user_id: current_user, to_user_id: user_id
     @referral.update(tied: true)
     if Tie.create(user1_id: current_user.id, user2_id: params[:id])
-      redirect_to referrals_path
+      redirect_to referrals_path, notice: "Accepted tie"
     else
+      render :index
       flash[:notice] = 'Tie already exists'
     end
   end
@@ -21,12 +25,18 @@ class ReferralsController < ApplicationController
     user_id = params[:id]
     if Referral.find_by to_user_id: current_user, recommended_user_id: user_id
       @referral = Referral.find_by to_user_id: current_user, recommended_user_id: user_id
-      @referral.update(reject: true)
-      redirect_to referrals_path
+      if @referral.update(reject: true)
+        redirect_to referrals_path, notice: "Rejected"
+      else
+        render :index
+      end
     elsif Referral.find_by to_user_id: user_id, recommended_user_id: current_user
       @referral = Referral.find_by to_user_id: user_id, recommended_user_id: current_user
-      @referral.update(reject: true)
-      redirect_to referrals_path
+      if @referral.update(reject: true)
+        redirect_to referrals_path, notice: "Rejected"
+      else
+        render :index
+      end
     end
   end
 
@@ -35,9 +45,11 @@ class ReferralsController < ApplicationController
     @to_referrals = current_user.to_referrals.where(tied: nil).where(reject: nil).where(requested: nil)
 
     # Get all referrals where the current user has been requested (recommended_user)
-    @requested_referrals = current_user.recommended.where(tied: nil).where(reject: false).where(requested: true)
+    @requested_referrals = current_user.recommended.where(tied: nil).where(reject: nil).where(requested: true)
 
+    # Looking for all Ties where the current user is one of the existing Ties
     @ties = Tie.where('user1_id= :user OR user2_id= :user', {user: current_user})
+
     # Looping through the ties for current_user and returning the other user for each tie.
     @users = []
     @ties.each do |tie|
@@ -52,7 +64,7 @@ class ReferralsController < ApplicationController
   end
 
   def new
-    recom_user = params[:selected_user]
+    recom_user = params[:selected_user] || params[:search_by_interest][:selected_user]
     @recommended_user = User.find(recom_user)
     @referral = Referral.new
 
@@ -88,6 +100,15 @@ class ReferralsController < ApplicationController
       else
         @users.push(user)
       end
+    end
+
+    if params[:query].present?
+      # First finding all the users that match the search
+      @all_matches = User.search_by_interest(params[:query])
+      # Then getting an intersection (common entries) of @all_matches and the other arrays
+      @users = @users & @all_matches
+      @existing_referral_users = @existing_referral_users & @all_matches
+      @existing_ties_users = @existing_ties_users & @all_matches
     end
   end
 
