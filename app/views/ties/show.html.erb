@@ -11,9 +11,9 @@
     <!-- tie's avatar -->
     <div class="p-2">
       <% if @your_tie.photos.attached? %>
-        <div class="your-tie-image-box"> <%= cl_image_tag @your_tie.photos.first.key, width: 100, height: 100, crop: :thumb %> </div>
+        <div class="your-tie-image-box"> <%= cl_image_tag @your_tie.photos.first.key, width: 50, height: 50, crop: :thumb %> </div>
       <% else %>
-        <div class="your-tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, crop: :thumb) %>')"> </div>
+        <div class="your-tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 50, height: 50, crop: :thumb) %>')"> </div>
       <% end %>
     </div>
     <!-- tie's first and last name -->
