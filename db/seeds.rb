@@ -1,10 +1,13 @@
 require 'open-uri'
 
+UserInterest.delete_all
+Interest.delete_all
+Message.destroy_all
 Referral.destroy_all
 Tie.destroy_all
-UserInterest.destroy_all
-Interest.destroy_all
 User.destroy_all
+
+puts "Deleted all db...creating users"
 
 user1 = User.new(username: "@mary", email: "mary@user.com", first_name: "Mary", last_name: "Smith", password: "123456",
   bio: "Hi peeps, I am Mary! I'm loving the big city life and always keen to meet new like minded people.",

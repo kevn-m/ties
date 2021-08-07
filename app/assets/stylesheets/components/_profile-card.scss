@@ -16,16 +16,18 @@ h1 {
 }
 
 .interest-badge {
-  font-size: 10px;
+  font-size: 14px;
   background-color: $gunmetal;
   color: $white;
   margin-right: 2px;
-  padding: 1px 3px 1px 3px;
+  margin-bottom: 3px;
+  padding: 1px 3px 3px 3px;
   border-radius: 4px;
 }
 
 .referral-info {
   display: flex;
+  width: 90vw;
   position: relative;
   top: -391px;
   left: 10px;
@@ -33,8 +35,9 @@ h1 {
     margin: 0 0 0 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    text-align: left;
+    line-height: 1;
     color: $white;
     text-shadow: 0 0 3px rgba(0,0,0,.5)
   }
@@ -65,10 +68,9 @@ h1 {
   align-items: center;
   margin: 3px 3px;
   .status {
+    display: flex;
     text-align: center;
     color: $gunmetal;
-    // font-family: 'Calibri', sans-serif;
-    font-size: 18px;
   }
   .tie-interests {
     display: flex;
@@ -141,7 +143,6 @@ h1 {
   background-size: cover;
   background-position: center;
   // background-repeat: no-repeat;
-  border-radius: 30px;
   background-color: lightgrey;
   // object-fit: cover;
 }
