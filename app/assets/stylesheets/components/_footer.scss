@@ -17,11 +17,17 @@
   justify-content: space-between;
   height: 50px;
   width: 220px;
+
   img {
     width: 40px;
     height: 40px;
     margin-bottom: 16px;
     object-fit: cover;
+  }
+  img:hover {
+  opacity: 1;
+  width: 44px;
+  height: 44px;
   }
 }
 .footer-links a {
@@ -34,9 +40,7 @@
   padding: 0;
   //padding: 0px 10px;
 }
-.footer-links a:hover {
-  opacity: 1;
-}
+.footer-links
 .footer .fa-heart {
   color: #D23333;
 }
