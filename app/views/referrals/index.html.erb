@@ -32,7 +32,7 @@
         <div class="card-controls-container">
           <div class="card-controls">
             <%= link_to "Request", request_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "primary-button" %>
-            <%= link_to "Reject", reject_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+            <%= link_to "Reject", reject_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "ghost-button" %>
           </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
         <div class="card-controls-container">
           <div class="card-controls">
             <%= link_to "Accept", accept_path(referral.to_user.id), :method=> :patch, remote: true, class: "primary-button" %>
-            <%= link_to "Reject", reject_path(referral.to_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+            <%= link_to "Reject", reject_path(referral.to_user.id), :method=> :patch, remote: true, class: "ghost-button" %>
           </div>
         </div>
     </div>
