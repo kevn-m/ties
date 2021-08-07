@@ -41,18 +41,16 @@
                       required: false,
                       placeholder: "Life's summary"
           %>
-
+          <%= f.input :status,
+                      label: "Current Status",
+                      required: false,
+                      placeholder: "Enter Status"
+          %>
           <div class="form-actions mt-3 mb-1 text-center">
             <%= f.button :submit, " Update " , class: "update-button"%>
           </div>
         </div>
         <div class="col-11 px-2 py-2 mt-1" style="background-color: rgba(255,255,255,0.6); border-radius: 5px;">
-          <%= f.file_field :photos,
-                    label: false,
-                    multiple: true
-          %>
-          <%#= f.input :photos, as: :file, label: "Select some profile photos", input_html: { multiple: true }
-          %>
           <div class="mt-2 d-flex justify-content-around align-items-center">
             <div class="ml-1 my-2">
               <a href="" id="open-btn" class="primary-button" data-toggle="modal" data-target="#modalForm">Interests</a>
@@ -64,8 +62,6 @@
         </div>
       </div>
     <% end %>
-
-
 
     <!-- Modal for interest cards -->
     <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
