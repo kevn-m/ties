@@ -1,0 +1,22 @@
+.incoming {
+  background-color: #b2b2b2;
+  border-radius: 15px;
+}
+
+.outgoing {
+  background-color: #59C0B9;
+  border-radius: 15px;
+}
+
+.message-header {
+  background-color: #292F36;
+}
+
+.your-tie-image-box {
+  width: 50px;
+  min-width: 50px; // DO NOT REMOVE!. It has been added to prevent image from becoming an ellipse when resizing screen.
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}

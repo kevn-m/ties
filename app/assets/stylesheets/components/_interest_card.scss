@@ -1,0 +1,19 @@
+.interest-card {
+  display: flex;
+  align-items: flex-end;
+  width: 112px;
+  height: 75px;
+  margin: 5px 5px 0px 0px;
+  padding: 0 3px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  border-radius: 8px 8px;
+  background-position: center;
+  background-size: cover;
+  p {
+    color: white;
+    font-weight: normal;
+    font-size: 16px;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    margin: 0;
+  }
+}

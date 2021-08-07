@@ -6,13 +6,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
   <body>
-    <%= yield %>
+    <%# if !current_page?(root_path) %>
+
+    <%= render 'shared/flashes' %>
+
+      <%= yield %>
+
+    <% if current_user %>
+      <%= render 'shared/footer' %>
+    <% else %>
+      <div class="footer">
+        <div class="footer-links">
+            <!-- <a href="#"><i class="fas fa-home"></i></a> -->
+          <div class="footer-copyright">
+            Ties <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </body>
 </html>

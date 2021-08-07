@@ -10,9 +10,120 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_07_27_103156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tie_id", null: false
+    t.text "content"
+    t.boolean "seen", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tie_id"], name: "index_messages_on_tie_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.text "reason"
+    t.boolean "requested"
+    t.boolean "reject"
+    t.text "message_from_to_user"
+    t.boolean "seen_by_to_user", default: false
+    t.boolean "seen_by_recommended", default: false
+    t.bigint "referrer_user_id"
+    t.bigint "recommended_user_id"
+    t.bigint "to_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "tied"
+    t.index ["recommended_user_id"], name: "index_referrals_on_recommended_user_id"
+    t.index ["referrer_user_id"], name: "index_referrals_on_referrer_user_id"
+    t.index ["to_user_id"], name: "index_referrals_on_to_user_id"
+  end
+
+  create_table "ties", force: :cascade do |t|
+    t.bigint "user1_id"
+    t.bigint "user2_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user1_id"], name: "index_ties_on_user1_id"
+    t.index ["user2_id"], name: "index_ties_on_user2_id"
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "interest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "tie_code"
+    t.text "bio"
+    t.text "summary"
+    t.string "status"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "ties"
+  add_foreign_key "messages", "users"
+  add_foreign_key "referrals", "users", column: "recommended_user_id"
+  add_foreign_key "referrals", "users", column: "referrer_user_id"
+  add_foreign_key "referrals", "users", column: "to_user_id"
+  add_foreign_key "ties", "users", column: "user1_id"
+  add_foreign_key "ties", "users", column: "user2_id"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end

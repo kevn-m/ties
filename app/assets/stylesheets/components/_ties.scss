@@ -1,0 +1,178 @@
+.tie-group {
+  // This margin has been added to avoid content getting hidden by footer, don't remove!
+  margin-bottom: 60px;
+}
+
+.recommended-group {
+  margin-top: 20px;
+}
+
+.tie-card {
+  overflow: hidden;
+  min-height: 120px;
+  width: auto;
+  background: rgba(255,255,255,0.5);;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+  &:hover{
+    color: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: white;
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.tie-image-box {
+  width: 100px;
+  // Please don't remove min-width! It has been added to prevent image from becoming an ellipse when resizing screen.
+  min-width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.tie-info-box {
+  width: 75%;
+  color: #292F36;
+  padding: 0;
+  line-height: 1;
+}
+
+.tie-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 8px;
+}
+
+.tie-interests {
+  margin-left: 8px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  flex-wrap: wrap;
+}
+
+.tie-texts {
+  margin-top: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.tie-name {
+  color: #292F36;
+  a:hover {
+   text-decoration: none;
+  }
+}
+
+.tie-chatlink {
+  margin-top: -30px;
+  margin-left: 70px;
+  color: white;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  font-size: 28px;
+  width: fit-content;
+  cursor: pointer;
+  a {
+    color: white;
+  }
+}
+
+.fa-info-circle {
+  color: orange;
+}
+
+.fa-comment {
+}
+
+.badge-secondary {
+  margin-left: 4px;
+  margin-bottom: 4px;
+  background: #575757;
+}
+
+.tie-status {
+  font-size: 16px;
+  margin-left: 8px;
+  color: #292F36;
+}
+
+.recommended-tie-card {
+  overflow: hidden;
+  min-height: 120px;
+  width: auto;
+  background: lightyellow;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-decoration: none;
+  &:hover{
+    color: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.referral-form {
+  margin: 8px;
+}
+
+#referral_reason {
+  margin-bottom: 8px;
+}
+
+.no-tie-texts {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.advice-text {
+  color: #F5A201;
+}
+
+.other-tie-texts {
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 100%;
+}
+
+.search-bar {
+  margin: 8px;
+}
+
+

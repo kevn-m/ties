@@ -1,0 +1,70 @@
+<div class="search-bar">
+  <%= simple_form_for :search_by_interest, url: ties_path, method: :get do |f| %>
+    <div class="search-form-control form-group row g-3">
+      <div class="col-sm-8 mb-2">
+          <%= text_field_tag :query,
+            params[:query],
+            type: "search",
+            class: "form-control string required",
+            placeholder: "Search your ties by name or interest"
+          %>
+      </div>
+    <div class="col">
+      <button name="button" type="submit" class="primary-button">
+        <i class="fas fa-search"></i> Search
+      </button>
+      <%= link_to "Clear", ties_path, method: :get, class: "ghost-button" %>
+    </div>
+  </div>
+<% end %>
+</div>
+<div class="tie-group">
+  <% if @users.blank? && params[:query].present? %>
+    <div class="tie-card d-flex justify-content-around">
+      <h6>No results.</h6>
+    </div>
+  <% elsif @users.blank? %>
+    <div class="tie-card d-flex justify-content-around">
+      <h6>You don't have any ties yet.</h6>
+      <!-- Link path below is not right and needs to be updated later on -->
+      <%= link_to "Add ties", root_path, class: "primary-button" %>
+    </div>
+  <% else %>
+    <% @users.each do |user| %>
+      <%= link_to user_path(user) do %>
+        <div class="tie-card">
+          <% if user.photos.attached? %>
+            <div class="tie-photo-link">
+              <div class="tie-image-box"> <%= cl_image_tag user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %></div>
+              <div class="tie-chatlink">
+                <%= link_to tie_path(user, anchor: "message-#{@last_message_id}") do %>
+                  <i class="fas fa-comment"></i>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
+          <% end %>
+          <div class="tie-info-box">
+            <div class="tie-texts">
+              <div class="tie-name">
+                <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
+              </div>
+              <%= link_to "Refer", new_referral_path(selected_user: user), class: "primary-button mb-0" %>
+            </div>
+            <div class="tie-items">
+              <div class="tie-interests">
+                <% if user.interests.present? %>
+                  <% user.interests.each_with_index do |interest, index| %>
+                    <span class="badge badge-secondary"> <%= interest.name %> </span>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="tie-status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

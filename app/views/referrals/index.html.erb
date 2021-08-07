@@ -1,0 +1,112 @@
+<h1>Discover ties</h1>
+<div class="all-profiles">
+  <!-- Show profiles that someone else has recommended to the current user -->
+  <% @to_referrals.each_with_index do |referral, index| %>
+    <div class="profile-card">
+      <%= link_to user_path(referral.recommended_user) do %>
+        <% if referral.recommended_user.photos.attached? %>
+          <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.recommended_user.photos.first.key, gravity: :center, crop: :fill, width:900, height:900 %>')"></div>
+        <% else %>
+          <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')">
+        <% end %>
+        <div class="profile-name">
+          <%= referral.recommended_user.first_name %> <%= referral.recommended_user.last_name %>
+        </div>
+        <div class="referral-info">
+          <div class="referral-avatar">
+            <%= cl_image_tag referral.referrer_user.photos.first.key, class: "avatar-bordered", width: 50, height: 50, radius: :max, gravity: :face, crop: :thumb %>
+          </div>
+          <p> <%= referral.referrer_user.first_name %> suggests you tie with <%= referral.recommended_user.first_name %> </p>
+        </div>
+  <% end %>
+        <div class="profile-info">
+          <div class="tie-interests">
+            <% if referral.recommended_user.interests.present? %>
+              <% referral.recommended_user.interests.each_with_index do |interest, index| %>
+                <div class="interest-badge"> <%= interest.name %> </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-controls-container">
+          <div class="card-controls">
+            <%= link_to "Request", request_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+            <%= link_to "Reject", reject_path(referral.recommended_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+
+  <!-- Show profiles that requested to connect with current user -->
+  <% @requested_referrals.each_with_index do |referral, index| %>
+    <div class="profile-card">
+      <%= link_to user_path(referral.to_user) do %>
+          <% if referral.to_user.photos.attached? %>
+            <div class="profile-photo" style="background-image: url('<%= cl_image_path referral.to_user.photos.first.key, gravity: :center, crop: :fill, width:900, height:900 %>')"></div>
+          <% else %>
+            <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')"> </div>
+          <% end %>
+          <div class="profile-name">
+            <%= referral.to_user.first_name %> <%= referral.to_user.last_name %>
+          </div>
+          <div class="referral-info">
+            <div class="referral-avatar">
+              <%= cl_image_tag referral.referrer_user.photos.first.key, class: "avatar-bordered", width: 50, height: 50, radius: :max, gravity: :face, crop: :thumb %>
+            </div>
+            <p> <%= referral.to_user.first_name %> has requested to be your tie through <%= referral.referrer_user.first_name %> </p>
+          </div>
+      <% end %>
+        <div class="profile-info">
+          <div class="tie-interests">
+            <% if referral.to_user.interests.present? %>
+              <% referral.to_user.interests.each_with_index do |interest, index| %>
+                <div class="interest-badge"> <%= interest.name %> </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-controls-container">
+          <div class="card-controls">
+            <%= link_to "Accept", accept_path(referral.to_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+            <%= link_to "Reject", reject_path(referral.to_user.id), :method=> :patch, remote: true, class: "primary-button" %>
+          </div>
+        </div>
+    </div>
+  <% end %>
+
+  <!-- Show current ties and their status so I can refer them -->
+  <% @users.each do|user| %>
+    <div class="profile-card">
+        <%= link_to user_path(user) do %>
+          <% if user.photos.attached? %>
+              <div class="profile-photo" style="background-image: url('<%= cl_image_path user.photos.first.key, gravity: :center, crop: :fill %>')"> </div>
+          <% else %>
+            <div class="profile-photo" style="background-image: url('<%= image_path("person_with_hat.jpg") %>')">
+            </div>
+          <% end %>
+          <div class="profile-name">
+            <%= user.first_name %> <%= user.last_name %>
+          </div>
+          <div class="referral-info">
+            <p> <%= user.first_name %> is looking for a referral </p>
+          </div>
+        <% end %>
+      <div class="profile-info">
+        <div class="status"><p> <i class="fas fa-lightbulb"></i> <%= user.status %> </p></div>
+        <div class="tie-interests">
+          <% if user.interests.present? %>
+            <% user.interests.each_with_index do |interest, index| %>
+              <div class="interest-badge"> <%= interest.name %> </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-controls-container">
+        <div class="card-controls">
+          <!-- This may be redirect to the wrong page right now -->
+          <%= link_to "Refer", new_referral_path(selected_user: user), class: "primary-button" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
