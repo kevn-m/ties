@@ -64,13 +64,13 @@ class ReferralsController < ApplicationController
   end
 
   def new
-    recom_user = params[:selected_user] || params[:search_by_interest][:selected_user]
-    @recommended_user = User.find(recom_user)
+    to_user = params[:selected_user] || params[:search_by_interest][:selected_user]
+    @to_user = User.find(to_user)
     @referral = Referral.new
 
-    # Getting all the ties, then removing the recommended_user from the list
+    # Getting all the ties, then removing the to_user from the list
     @ties = Tie.where('user1_id= :user OR user2_id= :user', { user: current_user })
-    @ties = @ties.where.not('user1_id= :user OR user2_id= :user', { user: @recommended_user })
+    @ties = @ties.where.not('user1_id= :user OR user2_id= :user', { user: @to_user })
     # Looping through the ties for current_user and returning the other user for each tie.
     @all_tie_users = []
     @existing_referral_users = []
@@ -91,11 +91,11 @@ class ReferralsController < ApplicationController
     # 2. Users that are already ties with the selected recommended_user_id.
     # 3. Remaining users that can be selected to complete referral.
     @all_tie_users.each do |user|
-      if (Referral.where('recommended_user_id= :rec_user AND referrer_user_id= :ref_user AND to_user_id= :user', { rec_user: @recommended_user, ref_user: current_user, user: user }).size > 0 )
+      if (Referral.where('to_user_id= :to_user AND referrer_user_id= :ref_user AND recommended_user_id= :user', { to_user: @to_user, ref_user: current_user, user: user }).size > 0 )
         @existing_referral_users.push(user)
-      elsif (Referral.where('recommended_user_id= :user AND referrer_user_id= :ref_user AND to_user_id= :rec_user', { rec_user: @recommended_user, ref_user: current_user, user: user }).size > 0 )
+      elsif (Referral.where('recommended_user_id= :to_user AND referrer_user_id= :ref_user AND to_user_id= :user', { to_user: @to_user, ref_user: current_user, user: user }).size > 0 )
         @existing_referral_users.push(user)
-      elsif (Tie.where('user1_id= :rec_user AND user2_id= :user OR user1_id= :user AND user2_id= :rec_user ', { rec_user: @recommended_user, user: user }).size > 0)
+      elsif (Tie.where('user1_id= :to_user AND user2_id= :user OR user1_id= :user AND user2_id= :to_user ', { to_user: @to_user, user: user }).size > 0)
         @existing_ties_users.push(user)
       else
         @users.push(user)
@@ -113,10 +113,10 @@ class ReferralsController < ApplicationController
   end
 
   def create
+    to_user = params[:referral][:to_user]
+    @to_user = User.find(to_user)
     recom_user = params[:referral][:recommended_user_id]
     @recommended_user = User.find(recom_user)
-    to_user = params[:referral][:to_user_id]
-    @to_user = User.find(to_user)
 
     @referral = Referral.new(referral_params)
     @referral.recommended_user_id = @recommended_user.id

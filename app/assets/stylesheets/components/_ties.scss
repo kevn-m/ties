@@ -1,5 +1,6 @@
 .ties-page {
   margin-bottom: 60px;
+  font-rendering: geometricPrecision;
 }
 
 .ref-groups {
@@ -10,7 +11,7 @@
   // This margin has been added to avoid content getting hidden by footer, don't remove!
 }
 
-.recommended-group {
+.to-group {
   margin-top: 20px;
 }
 
@@ -125,7 +126,7 @@
   color: #292F36;
 }
 
-.recommended-tie-card {
+.to-tie-card {
   overflow: hidden;
   min-height: 120px;
   width: auto;
