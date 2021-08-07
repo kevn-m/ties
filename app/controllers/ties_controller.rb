@@ -7,11 +7,22 @@ class TiesController < ApplicationController
     @ties.each do |tie|
       if current_user.id == tie.user1_id
         @user_id = tie.user2_id
+        @your_tie_message = Message.where(tie_id: tie).where(user_id: @user_id).last
       elsif current_user.id == tie.user2_id
         @user_id = tie.user1_id
+        @your_tie_message = Message.where(tie_id: tie).where(user_id: @user_id).last
       end
       @lastmessage = Message.where(tie_id: tie.id).last
-      @users.push([User.find(@user_id), @lastmessage, tie.id])
+
+      tieinfo = { tie: User.find(@user_id), lastmessage: @lastmessage, tie_id: tie.id }
+      # sorting the list of your chats. Unread messages should appear first
+      if @lastmessage && @your_tie_message == false
+        @users.push(tieinfo)
+      elsif @your_tie_message && @your_tie_message.seen == false
+        @users.unshift(tieinfo)
+      else
+        @users.push(tieinfo)
+      end
     end
   end
 
