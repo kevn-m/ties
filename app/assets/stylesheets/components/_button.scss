@@ -1,11 +1,10 @@
 .primary-button {
   line-height: 1 !important;
-  background: #59C0B9;
+  background: $teal;
   color: white;
   padding: 8px 16px  !important;
   border-radius: 50px;
-  border: 1px solid #59C0B9  !important;
-  opacity: 0.8;
+  border: 1px solid $teal  !important;
   transition: opacity 0.3s ease;
   box-shadow: 0 1px 5px rgba(0,0,0,.3);
   &:hover {
@@ -17,16 +16,17 @@
 
 input[type=file]::file-selector-button {
   line-height: 1 !important;
-  background: #0082BF;
+  background: $teal;
   color: white;
-  padding: 8px 8px  !important;
+  padding: 8px 16px  !important;
   border-radius: 50px;
-  border: 1px solid #0082BF  !important;
-  opacity: 0.8;
+  border: 1px solid $teal  !important;
   transition: opacity 0.3s ease;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   &:hover {
-    background: #046390;
-    color: white;
+    background: $white;
+    color: $teal;
+    border: 1px solid $white  !important;
     text-decoration: none  !important;
   }
 }
@@ -44,7 +44,7 @@ input[type=file]::file-selector-button {
   &:hover {
     background: rgba(240, 180, 0, 0.9);
     color: white;
-    text-decoration: none  !important;;
+    text-decoration: none  !important;
   }
 }
 
