@@ -119,8 +119,8 @@ class ReferralsController < ApplicationController
     @to_user = User.find(to_user)
 
     @referral = Referral.new(referral_params)
-    @referral.recommended_user_id = @recommended_user.id
-    @referral.to_user_id = @to_user.id
+    @referral.recommended_user_id = @to_user.id
+    @referral.to_user_id = @recommended_user.id
     @referral.referrer_user_id = current_user.id
 
     if @referral.save
