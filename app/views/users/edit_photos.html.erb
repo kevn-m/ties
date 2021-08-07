@@ -1,0 +1,57 @@
+<div>
+<h4>Photos</h4>
+</div>
+<div class=''>
+  <div class="d-flex justify-content-center align-items-center" style="height: 76px; border-radius: 0px;">
+    <%= simple_form_for(@user, url: update_photos_path, html: { method: :patch }) do |f| %>
+      <%= f.file_field :photos,
+                      class: "ml-2",
+                      label: false,
+                      multiple: true
+      %>
+      <%= f.submit "Upload", id: "upload-btn", class: "ghost-button mt-2", data: { disable_with: false} %>
+    <% end %>
+  </div>
+  <div class="" style="height: 80vh; overflow: scroll; box-shadow: 0 0 3px rgba(0,0,0, 0.5);">
+    <% if @user.photos.attached? %>
+      <% @user.photos.each do |photo| %>
+        <div class="photo-card">
+          <%= link_to delete_photo_path(photo.signed_id),
+            class: "primary-button mr-1 ml-1",
+            style: "max-width: 250;",
+            method: :delete,
+            data: { confirm: "Deleting photo'.\nAre you sure?" } do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          <div class="d-flex justify-content-center flex-fill">
+            <%= cl_image_tag photo.key, height: 200, crop: :thumb, class: "photo" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="tie-card d-flex justify-content-around">
+        <h6>No photos uploaded yet.</h6>
+        <!-- Link path below is not right and needs to be updated later on -->
+        <%#= link_to "Add ties", root_path, class: "primary-button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    // Should create a JS script in Javascript/pack directory, and kick off using Applicaiotn.js
+
+    const choose_btn = document.getElementById('file-upload-button');
+    const choose_wrap_btn = document.getElementById('user_photos');
+    const upload_btn = document.getElementById('upload-btn');
+
+    //choose_btn.innerText = 'Select Photos';
+    //choose_btn.classList.add('primary-button');
+
+    choose_wrap_btn.style.cssText += "max-width: 240px;"
+    // upload_btn.addEventListener('click', () => {
+    //   close_btn.click();  // <-- do this to close the form by "clicking" on the close button
+    // });
+  });
+</script>
