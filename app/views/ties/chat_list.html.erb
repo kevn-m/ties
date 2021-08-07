@@ -1,4 +1,3 @@
-
 <div class="tie-group mt-3">
   <!-- Check that the user has ties to begin with -->
   <% if @users.blank? %>
@@ -6,33 +5,32 @@
       <h6>You don't have any chats yet.</h6>
     </div>
   <% else %>
-
   <!-- If yes, then ... -->
     <% @users.each do |user| %>
       <!-- Check that user previously messaged a tie -->
-        <% if user[1] %>
+        <% if user[:lastmessage] %>
           <div class="tie-card">
             <!-- tie's avatar -->
-            <% if user[0].photos.attached? %>
-              <div class="tie-image-box"> <%= cl_image_tag user[0].photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
+            <% if user[:tie].photos.attached? %>
+              <div class="tie-image-box"> <%= cl_image_tag user[:tie].photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
             <% else %>
               <div class="tie-image-box" style="background-image: url('<%= image_path("person_with_hat.jpg", width: 100, height: 100, gravity: :face, crop: :thumb) %>')"> </div>
             <% end %>
             <div class="tie-info-box">
               <!-- tie's name & DM button -->
               <div class="tie-texts">
-                <h5 class="mb-0"> <%= truncate(user[0].first_name, length:10) %> <%= truncate(user[0].last_name, length:15) %> </h5>
-                <%= link_to tie_path(user[2], anchor: "message-#{user[1].id}") do %>
+                <h5 class="mb-0"> <%= truncate(user[:tie].first_name, length:10) %> <%= truncate(user[:tie].last_name, length:15) %> </h5>
+                <%= link_to tie_path(user[:tie_id], anchor: "message-#{user[:lastmessage].id}") do %>
                   <i class="far fa-paper-plane"></i>
                 <% end %>
               </div>
               <!-- tie's last message -->
-              <!-- Make unseen messages bold -->
+              <!-- Make unseen tie's messages bold -->
               <div class="m-2">
-                <% if user[1].seen || ( user[1].user_id == current_user.id ) %>
-                  <%= user[1].content.truncate(27) %>
+                <% if user[:lastmessage].seen || ( user[:lastmessage].user_id == current_user.id ) %>
+                  <%= user[:lastmessage].content.truncate(27) %>
                 <% else %>
-                  <strong> <%= user[1].content.truncate(27) %> </strong>
+                  <strong> <%= user[:lastmessage].content.truncate(27) %> </strong>
                 <% end %>
               </div>
             </div>
