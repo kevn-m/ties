@@ -26,13 +26,13 @@ class UsersController < ApplicationController
       # binding.pry
       if @user.update!(user_params)
 
-        # now add the photos
+        # # now add the photos
 
-        params[:user][:photos].each do |pic|
-          @user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
-        end
+        # params[:user][:photos].each do |pic|
+        #   @user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
+        # end
 
-        redirect_to after_update_path_for(@user), notice: "Your interest is updated sucessfully !"
+        redirect_to after_update_path_for(@user), notice: "Your profile is updated sucessfully !"
         # redirect_back(fallback_location: root_path)
       else
         flash.now[:alert] = @user.errors.full_messages.first
@@ -90,11 +90,13 @@ class UsersController < ApplicationController
       # binding.pry
 
       # now add the photos
-      params[:user][:photos].each do |pic|
-        current_user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
+      unless params[:user].nil?
+        params[:user][:photos].each do |pic|
+          current_user.photos.attach(io: pic.tempfile, filename: pic.original_filename, content_type: pic.content_type)
+        redirect_to edit_photos_path
+        end
       end
 
-      redirect_to edit_photos_path
       # redirect_back(fallback_location: root_path)
     else
       redirect_to root_path, notice: "Sorry, you must login first."
@@ -104,7 +106,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :bio, :summary, interest_ids: []) #photos: [],
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :bio, :summary, :status, interest_ids: []) #photos: [],
   end
 
   def find_user
