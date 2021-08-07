@@ -1,6 +1,5 @@
 <div class="ref-groups">
   <div class="recommended-group">
-    <h1 class="ml-2">New Referral</h1>
       <%= link_to user_path(@recommended_user) do %>
         <div class="recommended-tie-card">
           <% if @recommended_user.photos.attached? %>
@@ -11,12 +10,10 @@
           <div class="tie-info-box">
             <div class="tie-texts">
               <h5 class="mb-0"> <%= truncate(@recommended_user.first_name, length:10) %> <%= truncate(@recommended_user.last_name, length:15) %> </h5>
-              <!-- Note that below path is there just for demo purposes -->
             </div>
             <div class="tie-interests">
               <% if @recommended_user.interests.present? %>
                 <% @recommended_user.interests.each_with_index do |interest, index| %>
-                  <% break if index > 2 %>
                   <span class="badge badge-secondary"> <%= interest.name %> </span>
                 <% end %>
               <% end %>
@@ -26,14 +23,33 @@
       </div>
     <% end %>
   </div>
-  <h5 class="ml-2 mr-2">Who would you like to to refer <strong><%= @recommended_user.first_name %></strong> to?</h5>
+  <h6 class="ml-2 mr-2">Who would you like to refer <strong><%= @recommended_user.first_name %></strong> to?</h6>
+  <div class="search-bar">
+  <%= simple_form_for :search_by_interest, url: new_referral_path(selected_user: @recommended_user.id), method: :get do |f| %>
+    <div class="search-form-control form-group row g-3">
+      <div class="col-sm-8 mb-2">
+          <%= text_field_tag :query,
+            params[:query],
+            type: "search",
+            class: "form-control string required",
+            placeholder: "Search your ties by name or interest"
+          %>
+          <%= f.hidden_field :selected_user, value: @recommended_user.id %>
+      </div>
+    <div class="col">
+      <button name="button" type="submit" class="primary-button">
+        <i class="fas fa-search"></i> Search
+      </button>
+      <%= link_to "Clear", new_referral_path(selected_user: @recommended_user.id), method: :get, class: "ghost-button" %>
+    </div>
+  </div>
+<% end %>
+</div>
   <div class="tie-group">
-    <% if @users.blank? %>
+    <% if (@users.blank? && @existing_referral_users.blank? && @existing_ties_users.blank?) %>
       <div class="tie-card">
           <div class="no-tie-texts">
-            <h6 class="mb-4">You don't have any ties that you can select.</h6>
-            <!-- Link path below is incorrect and needs to be updated later on -->
-            <%= link_to "Add ties", root_path, class: "primary-button" %>
+            <h6 class="mb-4">Sorry, you don't have ties to select</h6>
           </div>
       </div>
     <% else %>
@@ -54,13 +70,13 @@
                 <% if params[:selected_to_user] && params[:selected_to_user].to_i == user.id %>
                   <%= link_to "Unselect", new_referral_path(selected_user: @recommended_user.id), class: "ghost-button mb-0"%>
                 <% else %>
-                  <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id), class: "ghost-button mb-0"%>
+                  <%= link_to "Select", new_referral_path(selected_user: @recommended_user.id, selected_to_user: user.id),
+                  class: "ghost-button mb-0", 'data-turbolinks-scroll': false %>
                 <% end %>
               </div>
               <div class="tie-interests">
                 <% if user.interests.present? %>
                   <% user.interests.each_with_index do |interest, index| %>
-                    <% break if index > 2 %>
                     <span class="badge badge-secondary"> <%= interest.name %> </span>
                   <% end %>
                 <% end %>
@@ -99,7 +115,6 @@
               <div class="tie-interests">
                 <% if user.interests.present? %>
                   <% user.interests.each_with_index do |interest, index| %>
-                    <% break if index > 2 %>
                     <span class="badge badge-secondary"> <%= interest.name %> </span>
                   <% end %>
                 <% end %>
@@ -125,7 +140,6 @@
               <div class="tie-interests">
                 <% if user.interests.present? %>
                   <% user.interests.each_with_index do |interest, index| %>
-                    <% break if index > 2 %>
                     <span class="badge badge-secondary"> <%= interest.name %> </span>
                   <% end %>
                 <% end %>
