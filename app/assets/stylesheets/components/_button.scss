@@ -1,4 +1,6 @@
 .primary-button {
+  display: inline-block;
+
   line-height: 1 !important;
   // background: $teal;
   background: linear-gradient(180deg, #1ABCB1 7.52%, #2FFFF0 100%);
@@ -18,6 +20,8 @@
 
 
 input[type=file]::file-selector-button {
+  display: inline-block;
+
   line-height: 1 !important;
   background: $teal;
   color: white;
@@ -35,6 +39,8 @@ input[type=file]::file-selector-button {
 }
 
 .update-button {
+  display: inline-block;
+
   line-height: 1.2 !important;
   background: rgba(250, 190, 0, 1);
   color: white;
@@ -64,10 +70,12 @@ input[type=file]::file-selector-button {
 }
 
 .ghost-button {
+  display: inline-block;
+
   line-height: 1 !important;
   background: white;
   color: #59C0B9  !important;
-  padding: 7px 15px  !important;
+  padding: 8px 15px  !important;
   border-radius: 50px;
   border: 1px solid #59C0B9  !important;
   transition: opacity 0.3s ease;
