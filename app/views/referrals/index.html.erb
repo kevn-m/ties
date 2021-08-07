@@ -20,6 +20,7 @@
         </div>
   <% end %>
         <div class="profile-info">
+          <div class="status"><p> <i class="fas fa-lightbulb"></i> <%= referral.recommended_user.status %> </p></div>
           <div class="tie-interests">
             <% if referral.recommended_user.interests.present? %>
               <% referral.recommended_user.interests.each_with_index do |interest, index| %>
@@ -57,6 +58,7 @@
           </div>
       <% end %>
         <div class="profile-info">
+          <div class="status"><p> <i class="fas fa-lightbulb"></i> <%= referral.to_user.status %> </p></div>
           <div class="tie-interests">
             <% if referral.to_user.interests.present? %>
               <% referral.to_user.interests.each_with_index do |interest, index| %>

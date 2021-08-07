@@ -12,7 +12,7 @@
       <%= f.submit "Upload", id: "upload-btn", class: "ghost-button mt-2", data: { disable_with: false} %>
     <% end %>
   </div>
-  <div class="" style="height: 78vh; overflow: scroll; box-shadow: 0 0 3px rgba(0,0,0, 0.5);">
+  <div class="" style="margin-bottom: 46px; max-height: 78vh; overflow: scroll; box-shadow: 0 0 3px rgba(0,0,0, 0.5);">
     <% if @user.photos.attached? %>
       <% @user.photos.each do |photo| %>
         <div class="photo-card">
