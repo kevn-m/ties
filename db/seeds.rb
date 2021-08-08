@@ -1,8 +1,8 @@
 require 'open-uri'
 
+Message.delete_all
 UserInterest.delete_all
 Interest.delete_all
-Message.destroy_all
 Referral.destroy_all
 Tie.destroy_all
 User.destroy_all
@@ -94,11 +94,21 @@ file = URI.open('https://images.unsplash.com/photo-1563452965085-2e77e5bf2607?ix
 user11.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user11.save!
 
-user12 = User.new(username: "@Devon", email: "devon@user.com", first_name: "Devon", last_name: "Alzarian", password: "123456",
-  bio: "Hi all, I'm Devon, accountant by day, DJ by night. Let's connect.",
-  summary: "Very into music, also like gym and math.", status: "Keen to talk about algorithms")
-file = URI.open('https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user12.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+user12 = User.new(username: "@hannak", email: "hk@user.com", first_name: "Hanna", last_name: "Koskela", password: "123456",
+  bio: "I have been investing in crypto for a long time and looking to connect with other crypto enthusiasts. Also, I am just about to graduate from Software Development Bootcamp!",
+  summary: "I have a vast crypto portfolio and I could talk about crypto for hours! For exercise I like swimming, yoga and stand up paddle boarding.", status: "You gotta know when to hold 'em, know when to fold 'em!")
+#file = File.open("../app/assets/images/hanna_profile.jpeg")
+user12.photos.attach(io: File.open("app/assets/images/hanna_profile.jpeg"), filename: 'hanna_profile.jpeg', content_type: 'image/jpg')
+file2 = URI.open('https://images.unsplash.com/photo-1621504450177-2170a39db3cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTN8fGNyeXB0b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user12.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
+file3 = URI.open('https://images.unsplash.com/photo-1528155124528-06c125d81e89?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmlubGFuZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user12.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
+file4 = URI.open('https://images.unsplash.com/photo-1597278341748-f859d5f7d8e3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fHlhY2h0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user12.photos.attach(io: file4, filename: 'photo.jpg', content_type: 'image/jpg')
+file5 = URI.open('https://images.unsplash.com/photo-1616207133639-cd5e4db9859f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fHlhY2h0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user12.photos.attach(io: file5, filename: 'photo.jpg', content_type: 'image/jpg')
+file6 = URI.open('https://images.unsplash.com/photo-1560088939-ddaf4d3e0d0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHN3aW1taW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user12.photos.attach(io: file6, filename: 'photo.jpg', content_type: 'image/jpg')
 user12.save!
 
 user13 = User.new(username: "@Trent", email: "trent@user.com", first_name: "Trent", last_name: "Jones", password: "123456",
@@ -384,9 +394,11 @@ user_interest30 = UserInterest.create!(user_id: user11.id, interest_id: interest
 user_interest31 = UserInterest.create!(user_id: user11.id, interest_id: interest3.id)
 user_interest32 = UserInterest.create!(user_id: user11.id, interest_id: interest30.id)
 
-user_interest33 = UserInterest.create!(user_id: user12.id, interest_id: interest8.id)
-user_interest34 = UserInterest.create!(user_id: user12.id, interest_id: interest3.id)
-user_interest35 = UserInterest.create!(user_id: user12.id, interest_id: interest18.id)
+user_interest33 = UserInterest.create!(user_id: user12.id, interest_id: interest2.id)
+user_interest34 = UserInterest.create!(user_id: user12.id, interest_id: interest1.id)
+user_interest35 = UserInterest.create!(user_id: user12.id, interest_id: interest28.id)
+user_interest35a = UserInterest.create!(user_id: user12.id, interest_id: interest25.id)
+user_interest35b = UserInterest.create!(user_id: user12.id, interest_id: interest19.id)
 
 user_interest36 = UserInterest.create!(user_id: user13.id, interest_id: interest10.id)
 user_interest37 = UserInterest.create!(user_id: user13.id, interest_id: interest19.id)
@@ -418,12 +430,3 @@ user_interest55 = UserInterest.create!(user_id: user19.id, interest_id: interest
 user_interest56 = UserInterest.create!(user_id: user20.id, interest_id: interest5.id)
 user_interest57 = UserInterest.create!(user_id: user20.id, interest_id: interest7.id)
 user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest24.id)
-
-puts "Creating referrals"
-ref1 = Referral.create!(reason: "Adam knows a lot about crypto, suggest you catch up", referrer_user_id: user1.id, recommended_user_id: user2.id, to_user_id: user4.id)
-ref2 = Referral.create!(reason: "Joe knows a lot about cameras, you should chat.", referrer_user_id: user1.id, recommended_user_id: user3.id, to_user_id: user7.id)
-ref3 = Referral.create!(reason: "Amy is an artist, I think you have a lot to talk about", referrer_user_id: user1.id, recommended_user_id: user5.id, to_user_id: user9.id)
-
-ref4 = Referral.create!(reason: "Fred is also into music", referrer_user_id: user2.id, recommended_user_id: user11.id, to_user_id: user12.id)
-ref5 = Referral.create!(reason: "Fred has been investing in crypto, you should talk.", referrer_user_id: user2.id, recommended_user_id: user11.id, to_user_id: user16.id)
-ref6 = Referral.create!(reason: "Mark is an amazing cook!", referrer_user_id: user2.id, recommended_user_id: user14.id, to_user_id: user20.id)
