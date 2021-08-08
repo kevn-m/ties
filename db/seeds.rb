@@ -52,6 +52,8 @@ file = URI.open('https://images.unsplash.com/photo-1585143497712-4c3a80b7b1ec?ix
 user5.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user5.save!
 
+puts "Created 5 users"
+
 user6 = User.new(username: "@mia", email: "mia@user.com", first_name: "Mia", last_name: "Sheen", password: "123456",
   bio: "Mia here! I'm a lawyer by profession, a dreamer by nature. Pleased to meet you.",
   summary: "I love law, poetry and live music.", status: "Any other law enthusiasts online?")
@@ -87,11 +89,23 @@ file = URI.open('https://images.unsplash.com/photo-1548609036-95d86bd67b86?ixid=
 user10.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user10.save!
 
-user11 = User.new(username: "@Fred", email: "fred@user.com", first_name: "Frederick", last_name: "Johnson", password: "123456",
-  bio: "Hi there, I'm Fred. I'm a professional athlete. I have just moved here and would love to meet new friends.",
-  summary: "Sports is my main passion of course, but I also enjoy music and crypto.", status: "I'd like to find a good live music venue")
-file = URI.open('https://images.unsplash.com/photo-1563452965085-2e77e5bf2607?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user11.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
+puts "Created 10 users"
+
+user11 = User.new(username: "@Leeten", email: "leeten@user.com", first_name: "Leeten", last_name: "Chin", password: "123456",
+  bio: "Hi there, I'm Leeten. I'm a wannabe amateur cyclist, pastry chef, coder, and jack of all trades. I have just moved here and would love to meet new friends.",
+  summary: "Cycling and food is my main passion of course, but I also enjoy movies and coding.", status: "I'd like to find a good places to explore")
+#file = URI.open('https://images.unsplash.com/photo-1563452965085-2e77e5bf2607?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+files= []
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-portrait.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-flan.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-france.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-italy.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-como.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-baum.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-sorrento.jpg'))
+files.each do |file, i|
+  user11.photos.attach(io: file, filename: "pohoto#{i}.jpg", content_type: 'image/jpg')
+end
 user11.save!
 
 user12 = User.new(username: "@Devon", email: "devon@user.com", first_name: "Devon", last_name: "Alzarian", password: "123456",
@@ -121,6 +135,8 @@ user15 = User.new(username: "@Jim", email: "jim@user.com", first_name: "Jim", la
 file = URI.open('https://images.unsplash.com/photo-1485528562718-2ae1c8419ae2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user15.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user15.save!
+
+puts "Created 15 users"
 
 user16 = User.new(username: "@paul", email: "paul@user.com", first_name: "Paul", last_name: "G.", password: "123456",
   bio: "Hey everyone! I’m Paul and I’m a yoga instructor but have a mix of different interests. I’m looking for someone to invest in Dogecoin with. ",
@@ -380,9 +396,13 @@ user_interest27 = UserInterest.create!(user_id: user10.id, interest_id: interest
 user_interest28 = UserInterest.create!(user_id: user10.id, interest_id: interest3.id)
 user_interest29 = UserInterest.create!(user_id: user10.id, interest_id: interest8.id)
 
-user_interest30 = UserInterest.create!(user_id: user11.id, interest_id: interest2.id)
-user_interest31 = UserInterest.create!(user_id: user11.id, interest_id: interest3.id)
-user_interest32 = UserInterest.create!(user_id: user11.id, interest_id: interest30.id)
+user_interest1101 = UserInterest.create!(user_id: user11.id, interest_id: interest24.id)
+user_interest1102 = UserInterest.create!(user_id: user11.id, interest_id: interest25.id)
+user_interest1103 = UserInterest.create!(user_id: user11.id, interest_id: interest27.id)
+user_interest1104 = UserInterest.create!(user_id: user11.id, interest_id: interest5.id)
+user_interest1105 = UserInterest.create!(user_id: user11.id, interest_id: interest18.id)
+user_interest1106 = UserInterest.create!(user_id: user11.id, interest_id: interest19.id)
+user_interest1107 = UserInterest.create!(user_id: user11.id, interest_id: interest30.id)
 
 user_interest33 = UserInterest.create!(user_id: user12.id, interest_id: interest8.id)
 user_interest34 = UserInterest.create!(user_id: user12.id, interest_id: interest3.id)
