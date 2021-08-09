@@ -39,10 +39,8 @@ class TiesController < ApplicationController
     @ties.each do |tie|
       if current_user.id == tie.user1_id
         @user_id = tie.user2_id
-        @tie = tie.id
       elsif current_user.id == tie.user2_id
         @user_id = tie.user1_id
-        @tie = tie.id
       end
       @users.push(User.find(@user_id))
       # Making sure that we display each user only once
