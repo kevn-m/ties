@@ -1,14 +1,25 @@
 .ties-page {
-  margin-bottom: 60px;
+  // margin-bottom: 60px;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+  display: flex;
+  flex-flow: column;
+
   font-rendering: geometricPrecision;
 }
 
 .ref-groups {
-  margin-bottom: 60px;
+
+  // height: 100vh;
+  // max-height: -webkit-fill-available;
+  // display: flex;
+  // flex-flow: column;
 }
 
 .tie-group {
-  // This margin has been added to avoid content getting hidden by footer, don't remove!
+  flex: 1 1 auto;
+  overflow: scroll;
+  padding-bottom: 50px;
 }
 
 .to-group {
@@ -180,7 +191,9 @@ a:hover {
 }
 
 .search-bar {
-  margin: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  background-color: rgba(0,0,0,0.05);
 }
 
 
