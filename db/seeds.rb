@@ -98,10 +98,10 @@ file = URI.open('https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?ix
 user12.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user12.save!
 
-user13 = User.new(username: "@Trent", email: "trent@user.com", first_name: "Trent", last_name: "Jones", password: "123456",
-  bio: "I'm Trent. I work in mining industry (FIFO anyone?) and it gets a bit lonely sometimes out on the site. Keen to make professional contacts.",
-  summary: "I love spending time in nature, running and coding.", status: "Any other wannabe coders online?")
-file = URI.open('https://images.unsplash.com/photo-1598362471594-d1f1c97a155d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTEzfHxjb29sJTIwZ3V5c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+user13 = User.new(username: "@Talina", email: "Talina@user.com", first_name: "Talina", last_name: "Bayeleva", password: "123456",
+  bio: "Hi all, I'm Talina. I work in science and it get's boring sometimes. I would love to learn new skills during this lockdown and find new ties 😉.",
+  summary: "I love spending time in nature 🌳, cooking 👩‍🍳, pole dance 💃 and coding 👩‍💻", status: "I'm looking to invest in crypto. Need some help 🙈")
+file = URI.open('')
 user13.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user13.save!
 
@@ -385,9 +385,9 @@ user_interest33 = UserInterest.create!(user_id: user12.id, interest_id: interest
 user_interest34 = UserInterest.create!(user_id: user12.id, interest_id: interest3.id)
 user_interest35 = UserInterest.create!(user_id: user12.id, interest_id: interest18.id)
 
-user_interest36 = UserInterest.create!(user_id: user13.id, interest_id: interest10.id)
-user_interest37 = UserInterest.create!(user_id: user13.id, interest_id: interest19.id)
-user_interest38 = UserInterest.create!(user_id: user13.id, interest_id: interest29.id)
+user_interest36 = UserInterest.create!(user_id: user13.id, interest_id: interest2.id)
+user_interest37 = UserInterest.create!(user_id: user13.id, interest_id: interest5.id)
+user_interest38 = UserInterest.create!(user_id: user13.id, interest_id: interest26.id)
 
 user_interest39 = UserInterest.create!(user_id: user14.id, interest_id: interest5.id)
 user_interest40 = UserInterest.create!(user_id: user14.id, interest_id: interest8.id)
