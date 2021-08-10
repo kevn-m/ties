@@ -38,7 +38,8 @@
             <div class="tie-photo-link">
               <div class="tie-image-box"> <%= cl_image_tag user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %></div>
               <div class="tie-chatlink">
-                <%= link_to tie_path(user, anchor: "message-#{@last_message_id}") do %>
+                <% @tie = Tie.where('user1_id= :user AND user2_id= :curr_user OR user1_id= :curr_user AND user2_id= :user', { user: user, curr_user: current_user }).first %>
+                <%= link_to tie_path(@tie, anchor: "message-#{@last_message_id}") do %>
                   <i class="fas fa-comment"></i>
                 <% end %>
               </div>
