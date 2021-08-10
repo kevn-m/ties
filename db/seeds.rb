@@ -130,7 +130,7 @@ user12.save!
 user13 = User.new(username: "@Talina", email: "Talina@user.com", first_name: "Talina", last_name: "Bayeleva", password: "123456",
   bio: "Hi all, I'm Talina. I work in science and it get's boring sometimes. I would love to learn new skills during this lockdown and find new ties 😉.",
   summary: "I love spending time in nature 🌳, cooking 👩‍🍳, pole dance 💃 and coding 👩‍💻", status: "I'm looking to invest in crypto. Need some help 🙈")
-File.open(Rails.root.join('app', 'assets', 'images', 'Talina.jpg'))
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Talina.jpg'))
 user13.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user13.save!
 
