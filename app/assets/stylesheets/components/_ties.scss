@@ -10,11 +10,17 @@
 
 .ref-groups {
 
-  height: 100vh;
+  //height: 100vh;
   max-height: -webkit-fill-available;
   display: flex;
   flex-flow: column;
 }
+
+.ref-sticky {
+  position: sticky;
+  top:0;
+}
+
 
 .tie-group {
   flex: 1 1 auto;
@@ -23,7 +29,9 @@
 }
 
 .to-group {
-  margin-top: 20px;
+  padding-top: 20px;
+  background-color: white;
+
 }
 
 .tie-card {
@@ -145,7 +153,7 @@
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  padding-bottom: 8px;
   padding-left: 4px;
   padding-right: 4px;
   text-decoration: none;
@@ -193,7 +201,7 @@ a:hover {
 .search-bar {
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgb(240,240,240);
 }
 
 
