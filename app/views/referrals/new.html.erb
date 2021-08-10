@@ -70,7 +70,7 @@
                 <% if params[:selected_recommended_user] && params[:selected_recommended_user].to_i == user.id %>
                   <%= link_to "Unselect", new_referral_path(selected_user: @to_user.id), class: "ghost-button mb-0"%>
                 <% else %>
-                  <%= link_to "Select", new_referral_path(selected_user: @to_user.id, selected_recommended_user: user.id),
+                  <%= link_to "Select", new_referral_path(selected_user: @to_user.id, selected_recommended_user: user.id, query: params[:query]),
                   class: "ghost-button mb-0", 'data-turbolinks-scroll': false %>
                 <% end %>
               </div>
