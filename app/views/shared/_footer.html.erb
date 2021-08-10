@@ -13,13 +13,14 @@
   <div id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <!-- Here is the dropdown next to profile pic -->
-        <li class="nav-item dropdown d-flex flex-row-reverse ">
+        <li class="nav-item dropdown d-flex flex-row-reverse">
 
-          <% if current_user.photos.attached? %>
-            <%= cl_image_tag current_user.photos.first.key, class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% else %>
-            <%= image_tag asset_url("generic-user.png"), class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% end %>
+          <%# if current_user.photos.attached? %>
+            <%#= cl_image_tag current_user.photos.first.key, class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%# else %>
+            <%= image_tag asset_url("profile-white.png"), class: "my-0 dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%# end %>
+          <%#= image_tag("profile-white.png") %>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", user_path(id: current_user.id), method: :get, class: "dropdown-item" %>

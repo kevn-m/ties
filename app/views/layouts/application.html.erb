@@ -22,13 +22,14 @@
     <% if current_user %>
       <%= render 'shared/footer' %>
     <% else %>
-      <div class="footer">
-        <div class="footer-links">
+      <div class="footer-transparent">
+
+            <%= image_tag("home-white.png")%>
             <!-- <a href="#"><i class="fas fa-home"></i></a> -->
-          <div class="footer-copyright">
-            Ties <i class="fas fa-heart"></i>
-          </div>
-        </div>
+          <!-- <div class="footer-copyright"> -->
+            <!-- Ties <i class="fas fa-heart"></i> -->
+          <!-- </div> -->
+
       </div>
     <% end %>
   </body>
