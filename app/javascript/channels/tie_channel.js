@@ -7,10 +7,13 @@ import consumer from "./consumer";
     consumer.subscriptions.create({ channel: "TieChannel", id: id }, {
       received(data) {
         if (data.current_user_id !== Number(current_user_id) ) {
-          console.log(messagesContainer);
+          // console.log(messagesContainer);
         // DO NOT change "updatedmessagesContainer" name
         const updatedmessagesContainer = document.getElementById('messages');
         updatedmessagesContainer.insertAdjacentHTML('beforeend', data.partial);
+        const messages = document.querySelectorAll(".message-container");
+        const lastMessage = messages[messages.length - 1];
+        lastMessage.scrollIntoView();
       }
     }
   });
