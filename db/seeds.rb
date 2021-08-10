@@ -23,12 +23,14 @@ user1.save!
 user2 = User.new(username: "@adam", email: "adam@user.com", first_name: "Adam", last_name: "Harrison", password: "123456",
   bio: "Adam's the name. Fund management is my game. Never get tired of talking about it.",
   summary: "Currently I'm into fitness, crypto and cooking.", status: "Let's talk about crypto.")
-file = URI.open('https://images.unsplash.com/photo-1562093772-c36f2d77edc3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fGNvb2wlMjBndXlzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user2.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
-file2 = URI.open('https://images.unsplash.com/photo-1621504450177-2170a39db3cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fGNyeXB0b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user2.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
-file3 = URI.open('https://images.unsplash.com/photo-1556711905-4bd1b6603275?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdGl2YXRpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user2.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
+files2= []
+files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_1.jpg'))
+files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_2.jpeg'))
+files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_3.jepg'))
+files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_4.jepg'))
+files2.each do |file, i|
+  user2.photos.attach(io: file, filename: "kevin_photo#{i}.jpg", content_type: 'image/jpg')
+end
 user2.save!
 
 user3 = User.new(username: "@joe", email: "joe@user.com", first_name: "Joe", last_name: "Collins", password: "123456",
