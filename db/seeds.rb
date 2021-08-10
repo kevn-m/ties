@@ -26,8 +26,8 @@ user2 = User.new(username: "@big_kev", email: "kevin@user.com", first_name: "Kev
 files2= []
 files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_1.jpg'))
 files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_2.jpeg'))
-files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_3.jepg'))
-files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_4.jepg'))
+files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_3.jpeg'))
+files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_4.jpeg'))
 files2.each do |file, i|
   user2.photos.attach(io: file, filename: "kevin_photo#{i}.jpg", content_type: 'image/jpg')
 end
