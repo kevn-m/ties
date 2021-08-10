@@ -1,4 +1,3 @@
-
 textarea:focus,
 textarea.form-control:focus,
 input.form-control:focus,
@@ -12,4 +11,5 @@ input[type=number]:focus,
 [type=tel].form-control:focus,
 [contenteditable].form-control:focus {
   box-shadow: inset 0 -1px 0 #ddd;
+  outline: none;
 }
