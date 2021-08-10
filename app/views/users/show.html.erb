@@ -6,13 +6,13 @@
     <!-- if previous url is nil OR the same as the current,  we will skip it back three time to get back to the original previous url -->
     <!-- <p><%#= session[:previous_url] + ":::" + request.path %></p> -->
     <a class="carousel-float" style="right: 10px; top: 4px; font-size: 24px;"
-      onclick=
+      onclick= "window.history.back();"
         <%# if session[:previous_url] == request.path then %>
-        <% if session[:previous_url].nil? then %>
-          "window.history.go(-3);"
-        <% else %>
-          "window.history.back();"
-        <% end %>
+        <%# if session[:previous_url].nil? then "window.history.go(-3);"
+          %>
+        <%# else "window.history.back();"%>
+
+        <%# end %>
       ><i class="fas fa-times"></i>
     </a>
 

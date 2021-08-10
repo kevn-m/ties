@@ -45,7 +45,7 @@
   </div>
 <% end %>
 </div>
-  <div class="tie-group">
+  <div class="tie-group" id="tie-list">
     <% if (@users.blank? && @existing_referral_users.blank? && @existing_ties_users.blank?) %>
       <div class="tie-card">
           <div class="no-tie-texts">
@@ -55,7 +55,7 @@
     <% else %>
       <% @users.each do |user| %>
         <%= link_to user_path(user) do %>
-          <div class="tie-card">
+          <div class="tie-card" id="card-<%= user.id %>">
             <% if user.photos.attached? %>
               <div class="tie-image-box"> <%= cl_image_tag user.photos.first.key, width: 100, height: 100, gravity: :face, crop: :thumb %> </div>
             <% else %>
@@ -67,12 +67,13 @@
                   <h5 class="mb-0"> <%= truncate(user.first_name, length:10) %> <%= truncate(user.last_name, length:15) %> </h5>
                 </div>
                 <!-- 1. If to_user has already been referred to the same person by current_user earlier, do not display -->
-                <% if params[:selected_recommended_user] && params[:selected_recommended_user].to_i == user.id %>
-                  <%= link_to "Unselect", new_referral_path(selected_user: @to_user.id), class: "ghost-button mb-0"%>
-                <% else %>
-                  <%= link_to "Select", new_referral_path(selected_user: @to_user.id, selected_recommended_user: user.id, query: params[:query]),
+                <a class="btn ghost-button mb-0" id="select-<%= user.id %>">Pick Me</a>
+                <%# if params[:selected_recommended_user] && params[:selected_recommended_user].to_i == user.id %>
+                  <%#= link_to "Unselect", new_referral_path(selected_user: @to_user.id), class: "ghost-button mb-0"%>
+                <%# else %>
+                  <%#= link_to "Select", new_referral_path(selected_user: @to_user.id, selected_recommended_user: user.id),
                   class: "ghost-button mb-0", 'data-turbolinks-scroll': false %>
-                <% end %>
+                <%# end %>
               </div>
               <div class="tie-interests">
                 <% if user.interests.present? %>
@@ -87,8 +88,8 @@
         <% end %>
         <!-- If param.selected then show form -->
         <!-- 2 params, selected and id of the selected -->
-        <% if params[:selected_recommended_user].to_i == user.id %>
-        <div class="referral-form">
+        <%# if params[:selected_recommended_user].to_i == user.id %>
+        <div class="referral-form" style="overflow: hidden; height: 0;" id="form-<%= user.id %>">
           <%= simple_form_for [ @referral] do |f| %>
             <%= f.input :reason, label: 'Enter some details about your referral' %>
             <%= f.hidden_field :to_user, value: @to_user.id %>
@@ -96,7 +97,7 @@
             <%= f.button :submit, 'Submit referral', class: "primary-button" %>
           <% end %>
         </div>
-        <% end %>
+        <%# end %>
       <% end %>
     <% end %>
     <% @existing_referral_users.each do |user| %>
@@ -150,3 +151,34 @@
         <% end %>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    // Should create a JS script in Javascript/pack directory, and kick off using Applicaiotn.js
+
+    const select_btns = document.querySelectorAll('[id^="select-"]');
+
+    const scroll_div = document.getElementById('tie-list')
+
+    select_btns.forEach( btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.id.split("-").pop()
+        const form_id = `form-${id}`
+        const form = document.getElementById(form_id);
+        const card = document.getElementById(`card-${id}`);
+        const scroll_div = document.getElementById('tie-list')
+        const topPos = form.offsetTop;
+
+       // scroll_div.scrollTop = topPos - scroll_div.offsetTop - card.offsetHeight;
+
+        //form.classList.toggle('invisible');
+        if (form.offsetHeight > 0) {
+          form.setAttribute("style", "overflow: hidden; transition: 0.4s; height: 0; ");
+        }else{
+          form.setAttribute("style", "overflow: hidden; transition:  0.4s; height: 134px;")
+        }
+      })
+    })
+  });
+</script>
+
