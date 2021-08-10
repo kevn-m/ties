@@ -20,9 +20,9 @@ file3 = URI.open('https://images.unsplash.com/photo-1603077492137-fdb1a98f0d14?i
 user1.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 user1.save!
 
-user2 = User.new(username: "@adam", email: "adam@user.com", first_name: "Adam", last_name: "Harrison", password: "123456",
-  bio: "Adam's the name. Fund management is my game. Never get tired of talking about it.",
-  summary: "Currently I'm into fitness, crypto and cooking.", status: "Let's talk about crypto.")
+user2 = User.new(username: "@big_kev", email: "kevin@user.com", first_name: "Kevin", last_name: "Mok", password: "123456",
+  bio: "I'm a software developer and a Wok connoisseur",
+  summary: "The wok is my weapon of choice.", status: "Looking for some cooking hacks")
 files2= []
 files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_1.jpg'))
 files2 << File.open(Rails.root.join('app', 'assets', 'images', 'Kevin_2.jpeg'))
