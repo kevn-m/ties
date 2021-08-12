@@ -10,13 +10,13 @@ User.destroy_all
 puts "Deleted all db...creating users"
 
 user1 = User.new(username: "@mary", email: "mary@user.com", first_name: "Mary", last_name: "Smith", password: "123456",
-  bio: "Hi peeps, I am Mary! I'm loving the big city life and always keen to meet new like minded people.",
-  summary: "I love crossfit, fashion and crypto", status: "Wanna join me for a crossfit sesh?")
+  bio: "Hi peeps, I am Mary! I am a professional chef. I'm loving the big city life and always keen to meet new like minded people.",
+  summary: "I love cooking, crossfit, fashion and crypto", status: "Wanna join me for a crossfit sesh?")
 file = URI.open('https://images.unsplash.com/photo-1520024146169-3240400354ae?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29vbCUyMGdpcmxzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user1.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 file2 = URI.open('https://images.unsplash.com/photo-1534196511436-921a4e99f297?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNyb3NzZml0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user1.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
-file3 = URI.open('https://images.unsplash.com/photo-1603077492137-fdb1a98f0d14?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjc3fHxjcm9zc2ZpdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
+file3 = URI.open('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fGNvb2tpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user1.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 user1.save!
 
@@ -197,6 +197,7 @@ tie9 = Tie.create!(user1_id: user1.id, user2_id: user10.id)
 
 tie10 = Tie.create!(user1_id: user2.id, user2_id: user11.id)
 tie11 = Tie.create!(user1_id: user2.id, user2_id: user12.id)
+tie12 = Tie.create!(user1_id: user2.id, user2_id: user13.id)
 tie13 = Tie.create!(user1_id: user2.id, user2_id: user14.id)
 tie14 = Tie.create!(user1_id: user2.id, user2_id: user15.id)
 tie15 = Tie.create!(user1_id: user2.id, user2_id: user16.id)
@@ -371,9 +372,9 @@ user_interest1 = UserInterest.create!(user_id: user1.id, interest_id: interest9.
 user_interest2 = UserInterest.create!(user_id: user1.id, interest_id: interest2.id)
 user_interest3 = UserInterest.create!(user_id: user1.id, interest_id: interest12.id)
 
-user_interest4 = UserInterest.create!(user_id: user2.id, interest_id: interest8.id)
-user_interest5 = UserInterest.create!(user_id: user2.id, interest_id: interest2.id)
-user_interest6 = UserInterest.create!(user_id: user2.id, interest_id: interest5.id)
+user_interest4 = UserInterest.create!(user_id: user2.id, interest_id: interest2.id)
+user_interest5 = UserInterest.create!(user_id: user2.id, interest_id: interest17.id)
+user_interest6 = UserInterest.create!(user_id: user2.id, interest_id: interest29.id)
 
 user_interest7 = UserInterest.create!(user_id: user3.id, interest_id: interest4.id)
 user_interest8 = UserInterest.create!(user_id: user3.id, interest_id: interest10.id)
@@ -451,4 +452,8 @@ user_interest56 = UserInterest.create!(user_id: user20.id, interest_id: interest
 user_interest57 = UserInterest.create!(user_id: user20.id, interest_id: interest7.id)
 user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest24.id)
 
-ref1 = Referral.create!(referrer_user_id: user1.id, recommended_user_id: user2.id, to_user_id: user13.id, requested: true)
+ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id, requested: true)
+ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id, requested: true)
+ref3 = Referral.create!(referrer_user_id: user17.id, recommended_user_id: user3.id, to_user_id: user2.id)
+ref4 = Referral.create!(referrer_user_id: user16.id, recommended_user_id: user7.id, to_user_id: user2.id)
+ref4 = Referral.create!(referrer_user_id: user20.id, recommended_user_id: user9.id, to_user_id: user2.id)
