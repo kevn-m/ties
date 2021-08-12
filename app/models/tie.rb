@@ -17,4 +17,7 @@ class Tie < ApplicationRecord
     end
   end
 
+  def Tie.user_ties(user)
+    Tie.where(user1: user).or(Tie.where(user2: user))
+  end
 end

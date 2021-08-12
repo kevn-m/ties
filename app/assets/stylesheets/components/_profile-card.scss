@@ -203,25 +203,27 @@ h1 {
   .name {
     margin-top: 0;
     margin-bottom: 8px;
+    color: $gunmetal;
   }
 
   .bio {
-    color: #505050;
-    // font-family: 'Calibri', sans-serif;
-    font-size: 16px;
-  }
-
-  .summary {
-    color: #758cff;
+    color: $light-gunmetal;
     // font-family: 'Calibri', sans-serif;
     font-size: 16px;
   }
 
   .status {
     text-align: left;
-    color: #5b6dcd;
+    color: $white;
+    background-color: $teal;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .summary {
+    color: $light-gunmetal;
     // font-family: 'Calibri', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .interests {
