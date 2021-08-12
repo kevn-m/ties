@@ -452,8 +452,18 @@ user_interest56 = UserInterest.create!(user_id: user20.id, interest_id: interest
 user_interest57 = UserInterest.create!(user_id: user20.id, interest_id: interest7.id)
 user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest24.id)
 
+puts "Creating referrals..."
+
 ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id, requested: true)
 ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id, requested: true)
 ref3 = Referral.create!(referrer_user_id: user17.id, recommended_user_id: user3.id, to_user_id: user2.id)
 ref4 = Referral.create!(referrer_user_id: user16.id, recommended_user_id: user7.id, to_user_id: user2.id)
 ref4 = Referral.create!(referrer_user_id: user20.id, recommended_user_id: user9.id, to_user_id: user2.id)
+
+puts "Creating chat messages"
+
+
+msg1 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
+msg2 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "Hey Leeten, not bad, not bad", seen: false)
+msg3 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "What have you been up to during lockdown?", seen: false)
+msg4 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "I've doing quite a bit of baking ! Check out my prfoile pics...", seen: false)
