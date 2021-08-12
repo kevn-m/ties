@@ -128,7 +128,7 @@ user12.photos.attach(io: file6, filename: 'photo.jpg', content_type: 'image/jpg'
 user12.save!
 
 user13 = User.new(username: "@Talina", email: "Talina@user.com", first_name: "Talina", last_name: "Bayeleva", password: "123456",
-  bio: "Hi all, I'm Talina. I work in science and it get's boring sometimes. I would love to learn new skills during this lockdown and find new ties 😉.",
+  bio: "Hi all, I'm Talina. I work in science and it gets boring sometimes. I would love to learn new skills during this lockdown and find new ties 😉.",
   summary: "I love spending time in nature 🌳, cooking 👩‍🍳, pole dance 💃 and coding 👩‍💻", status: "I'm looking to invest in crypto. Need some help 🙈")
 file = File.open(Rails.root.join('app', 'assets', 'images', 'Talina.jpg'))
 user13.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
@@ -186,7 +186,6 @@ user20.photos.attach(io: file, filename: 'photo.jpg', content_type: 'image/jpg')
 user20.save!
 
 puts "Creating ties"
-tie1 = Tie.create!(user1_id: user1.id, user2_id: user2.id)
 tie2 = Tie.create!(user1_id: user1.id, user2_id: user3.id)
 tie3 = Tie.create!(user1_id: user1.id, user2_id: user4.id)
 tie4 = Tie.create!(user1_id: user1.id, user2_id: user5.id)
@@ -198,7 +197,6 @@ tie9 = Tie.create!(user1_id: user1.id, user2_id: user10.id)
 
 tie10 = Tie.create!(user1_id: user2.id, user2_id: user11.id)
 tie11 = Tie.create!(user1_id: user2.id, user2_id: user12.id)
-tie12 = Tie.create!(user1_id: user2.id, user2_id: user13.id)
 tie13 = Tie.create!(user1_id: user2.id, user2_id: user14.id)
 tie14 = Tie.create!(user1_id: user2.id, user2_id: user15.id)
 tie15 = Tie.create!(user1_id: user2.id, user2_id: user16.id)
@@ -452,3 +450,5 @@ user_interest55 = UserInterest.create!(user_id: user19.id, interest_id: interest
 user_interest56 = UserInterest.create!(user_id: user20.id, interest_id: interest5.id)
 user_interest57 = UserInterest.create!(user_id: user20.id, interest_id: interest7.id)
 user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest24.id)
+
+ref1 = Referral.create!(referrer_user_id: user1.id, recommended_user_id: user2.id, to_user_id: user13.id, requested: true)
