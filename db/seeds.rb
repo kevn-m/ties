@@ -451,4 +451,4 @@ user_interest56 = UserInterest.create!(user_id: user20.id, interest_id: interest
 user_interest57 = UserInterest.create!(user_id: user20.id, interest_id: interest7.id)
 user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest24.id)
 
-ref1 = Referral.create!(referrer_user_id: user1.id, recommended_user_id: user13.id, to_user_id: user2.id, requested: true)
+ref1 = Referral.create!(referrer_user_id: user1.id, recommended_user_id: user2.id, to_user_id: user13.id, requested: true)
