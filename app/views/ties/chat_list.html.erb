@@ -1,4 +1,4 @@
-<div class="tie-group mt-3">
+<div class="chat-group mt-3">
   <!-- Check that the user has ties to begin with -->
   <% if @users.blank? %>
     <div class="tie-card d-flex justify-content-around">
@@ -8,6 +8,7 @@
   <!-- If yes, then ... -->
     <% @users.each do |user| %>
       <!-- Check that user previously messaged a tie -->
+      <%= link_to tie_path(user[:tie_id], anchor: "message-#{user[:lastmessage].id}") do %>
         <% if user[:lastmessage] %>
           <div class="tie-card">
             <!-- tie's avatar -->
@@ -20,9 +21,6 @@
               <!-- tie's name & DM button -->
               <div class="tie-texts">
                 <h5 class="mb-0"> <%= truncate(user[:tie].first_name, length:10) %> <%= truncate(user[:tie].last_name, length:15) %> </h5>
-                <%= link_to tie_path(user[:tie_id], anchor: "message-#{user[:lastmessage].id}") do %>
-                  <i class="far fa-paper-plane"></i>
-                <% end %>
               </div>
               <!-- tie's last message -->
               <!-- Make unseen tie's messages bold -->
@@ -36,6 +34,7 @@
             </div>
           </div>
         <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
