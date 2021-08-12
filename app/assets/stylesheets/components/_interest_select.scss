@@ -40,8 +40,8 @@
 }
 
 .category-selector:checked + label {
-  background-color: pink;
-  color: darkred !important;
+  background-color: $teal;
+  color: $gunmetal !important;
   box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
 }
 
