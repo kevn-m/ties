@@ -204,6 +204,7 @@ tie16 = Tie.create!(user1_id: user2.id, user2_id: user17.id)
 tie17 = Tie.create!(user1_id: user2.id, user2_id: user18.id)
 tie18 = Tie.create!(user1_id: user2.id, user2_id: user19.id)
 tie19 = Tie.create!(user1_id: user2.id, user2_id: user20.id)
+tie20 = Tie.create!(user1_id: user1.id, user2_id: user11.id)
 
 puts "Creating interests"
 interest1 = Interest.new(name: "Yoga")
