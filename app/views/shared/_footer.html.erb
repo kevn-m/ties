@@ -18,12 +18,22 @@
       %>
     <% end %>
     <%= link_to chat_list_ties_path  do %>
-      <%= if current_page?(chat_list_ties_path) || @controller_action == 'ties:show'
-            image_tag("chat-select.png")
-          else
-            image_tag("chat-white.png")
-          end
-      %>
+      <div style="position: absolute;">
+        <%= if current_page?(chat_list_ties_path) || @controller_action == 'ties:show'
+              image_tag("chat-select.png")
+            else
+              image_tag("chat-white.png")
+            end
+        %>
+
+        <% @msg_count = ""
+           @msg_count = current_user.unseen_message_count.to_s if current_user
+           @msg_count = "" if @msg_count == "0"
+        %>
+        <div class="msg-counter">
+          <strong><%= @msg_count %></strong>
+        </div>
+    </div>
     <% end %>
   </div>
   <div id="navbarSupportedContent">

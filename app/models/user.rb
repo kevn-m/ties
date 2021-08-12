@@ -24,8 +24,17 @@ class User < ApplicationRecord
 
   has_many_attached :photos
 
+  # returns all ties for this user
   def ties
     (ties1 + ties2).uniq
+  end
+
+  # returns messages unseen for this user
+  def unseen_message_count
+    myties = Tie.user_ties(self)
+    myties.joins(:messages).where("messages.seen=false")
+                           .where("messages.user_id != :this_user", { this_user: self })
+                           .count
   end
 
   include PgSearch::Model

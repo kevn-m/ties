@@ -24,7 +24,7 @@
         </div>
       <% end %>
     </div>
-    <h6 class="pl-2 pr-2 my-0 py-1" style="background-color: white;">Who would you like to refer <strong><%= @to_user.first_name %></strong> to?</h6>
+    <h6 class="pl-2 pr-2 my-0 py-1" style="background-color: white;">Who would you recommend to <strong><%= @to_user.first_name %></strong>?</h6>
     <div class="search-bar">
       <%= simple_form_for :search_by_interest, url: new_referral_path(selected_user: @to_user.id), method: :get do |f| %>
         <div class="search-form-control form-group row g-3">

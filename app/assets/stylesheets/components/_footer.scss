@@ -24,6 +24,17 @@
   justify-content: space-between;
   height: 50px;
   width: 220px;
+
+  .msg-counter {
+    position: relative;
+    width: 24px;
+    text-align: center;
+    margin: 0;
+    bottom: 49px;
+    left:8px;
+    font-size: 16px;
+    color: $teal;
+  }
 }
 .footer-links a {
   color: white;
