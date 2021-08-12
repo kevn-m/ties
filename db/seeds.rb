@@ -466,5 +466,5 @@ puts "Creating chat messages"
 msg1 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
 msg2 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "Hey Leeten, not bad, not bad", seen: false)
 msg3 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "What have you been up to during lockdown?", seen: false)
-msg4 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "I've doing quite a bit of baking ! Check out my prfoile pics...", seen: false)
+msg4 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "I've been doing quite a bit of baking ! Check out my prfoile pics...", seen: false)
 
