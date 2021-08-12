@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [
@@ -15,7 +14,7 @@ class ApplicationController < ActionController::Base
     ])
   end
 
-   def store_url
+  def store_url
     # if(request.path != "/users/sign_in" &&
     #   request.path != "/users/sign_up" &&
     #   request.path != "/users/password/new" &&
@@ -25,7 +24,7 @@ class ApplicationController < ActionController::Base
     #   !request.xhr? && !current_user) # don't store ajax calls
     # then
 
-      session[:previous_url] = request.referrer
+    session[:previous_url] = request.referrer
 
     # end
   end
@@ -34,5 +33,10 @@ class ApplicationController < ActionController::Base
     previous_path = session[:previous_url]
     session[:previous_url] = nil
     previous_path || root_path
+  end
+
+  # Used for check whether the current controller that view is presented for is in the names list
+  def current_controller?(names)
+    names.include?(current_controller)
   end
 end

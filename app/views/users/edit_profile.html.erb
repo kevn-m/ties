@@ -108,9 +108,11 @@
     const submit_btn = document.getElementById('submitForm');
     const close_btn = document.getElementById('closeForm');
 
-    submit_btn.addEventListener('click', () => {
-      close_btn.click();  // <-- do this to close the form by "clicking" on the close button
-    });
+    if (submit_btn) {
+      submit_btn.addEventListener('click', () => {
+        close_btn.click();  // <-- do this to close the form by "clicking" on the close button
+      });
+    }
   });
 </script>
 

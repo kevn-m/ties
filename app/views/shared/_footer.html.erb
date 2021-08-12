@@ -1,13 +1,29 @@
 <div class="footer">
   <div class="footer-links">
+    <% @controller_action = "#{params[:controller]}:#{params[:action]}" %>
     <%= link_to root_path  do %>
-      <%= image_tag("home-white.png") %>
+      <%= if current_page?(root_path) || @controller_action == 'referrals:index'
+            image_tag("home-select.png")
+          else
+            image_tag("home-white.png")
+          end
+      %>
     <% end %>
     <%= link_to ties_path  do %>
-      <%= image_tag("tie-white.png") %>
+      <%= if current_page?(ties_path) || @controller_action == 'referrals:new'
+            image_tag("tie-select.png")
+          else
+            image_tag("tie-white.png")
+          end
+      %>
     <% end %>
     <%= link_to chat_list_ties_path  do %>
-      <%= image_tag("chat-white.png") %>
+      <%= if current_page?(chat_list_ties_path) || @controller_action == 'ties:show'
+            image_tag("chat-select.png")
+          else
+            image_tag("chat-white.png")
+          end
+      %>
     <% end %>
   </div>
   <div id="navbarSupportedContent">
@@ -18,7 +34,9 @@
           <%# if current_user.photos.attached? %>
             <%#= cl_image_tag current_user.photos.first.key, class: "avatar-bordered dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <%# else %>
-            <%= image_tag asset_url("profile-white.png"), class: "my-0 dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= image_tag asset_url("#{['users', 'devise/registrations'].include?(params[:controller]) ? 'profile-select.png' : 'profile-white.png'}"),
+              class: "my-0 dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false
+            %>
           <%# end %>
           <%#= image_tag("profile-white.png") %>
 

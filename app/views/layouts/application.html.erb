@@ -13,7 +13,6 @@
   </head>
 
   <body>
-    <%# if !current_page?(root_path) %>
 
     <%= render 'shared/flashes' %>
 
@@ -23,13 +22,7 @@
       <%= render 'shared/footer' %>
     <% else %>
       <div class="footer-transparent">
-
-            <%= image_tag("home-white.png")%>
-            <!-- <a href="#"><i class="fas fa-home"></i></a> -->
-          <!-- <div class="footer-copyright"> -->
-            <!-- Ties <i class="fas fa-heart"></i> -->
-          <!-- </div> -->
-
+        <%= image_tag("home-white.png")%>
       </div>
     <% end %>
   </body>

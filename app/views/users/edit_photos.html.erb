@@ -48,8 +48,9 @@
 
     //choose_btn.innerText = 'Select Photos';
     //choose_btn.classList.add('primary-button');
-
-    choose_wrap_btn.style.cssText += "max-width: 240px; padding-bottom: 10px;"
+    if (choose_wrap_btn) {
+      choose_wrap_btn.style.cssText += "max-width: 240px; padding-bottom: 10px;"
+    }
     // upload_btn.addEventListener('click', () => {
     //   close_btn.click();  // <-- do this to close the form by "clicking" on the close button
     // });
