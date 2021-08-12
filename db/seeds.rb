@@ -455,11 +455,8 @@ user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest
 
 puts "Creating referrals..."
 
-ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id, requested: true)
-ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id, requested: true)
-ref3 = Referral.create!(referrer_user_id: user17.id, recommended_user_id: user3.id, to_user_id: user2.id)
-ref4 = Referral.create!(referrer_user_id: user16.id, recommended_user_id: user7.id, to_user_id: user2.id)
-ref4 = Referral.create!(referrer_user_id: user20.id, recommended_user_id: user9.id, to_user_id: user2.id)
+ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id)
+ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id)
 
 puts "Creating chat messages"
 
