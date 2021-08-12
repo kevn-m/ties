@@ -117,14 +117,10 @@ user12 = User.new(username: "@hannak", email: "hk@user.com", first_name: "Hanna"
 user12.photos.attach(io: File.open("app/assets/images/hanna_profile.jpeg"), filename: 'hanna_profile.jpeg', content_type: 'image/jpg')
 file2 = URI.open('https://images.unsplash.com/photo-1621504450177-2170a39db3cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTN8fGNyeXB0b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user12.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
-file3 = URI.open('https://images.unsplash.com/photo-1528155124528-06c125d81e89?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmlubGFuZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user12.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 file4 = URI.open('https://images.unsplash.com/photo-1597278341748-f859d5f7d8e3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fHlhY2h0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user12.photos.attach(io: file4, filename: 'photo.jpg', content_type: 'image/jpg')
 file5 = URI.open('https://images.unsplash.com/photo-1616207133639-cd5e4db9859f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fHlhY2h0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user12.photos.attach(io: file5, filename: 'photo.jpg', content_type: 'image/jpg')
-file6 = URI.open('https://images.unsplash.com/photo-1560088939-ddaf4d3e0d0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHN3aW1taW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user12.photos.attach(io: file6, filename: 'photo.jpg', content_type: 'image/jpg')
 user12.save!
 
 user13 = User.new(username: "@Talina", email: "Talina@user.com", first_name: "Talina", last_name: "Bayeleva", password: "123456",
@@ -455,8 +451,8 @@ user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest
 
 puts "Creating referrals..."
 
-ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id)
-ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id)
+ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id, requested: true)
+ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id, requested: true)
 
 puts "Creating chat messages"
 
