@@ -452,3 +452,7 @@ user_interest55 = UserInterest.create!(user_id: user19.id, interest_id: interest
 user_interest56 = UserInterest.create!(user_id: user20.id, interest_id: interest5.id)
 user_interest57 = UserInterest.create!(user_id: user20.id, interest_id: interest7.id)
 user_interest58 = UserInterest.create!(user_id: user20.id, interest_id: interest24.id)
+
+puts "Creating chat messages"
+
+msg10 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
