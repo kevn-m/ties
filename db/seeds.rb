@@ -100,11 +100,10 @@ user11 = User.new(username: "@Leeten", email: "leeten@user.com", first_name: "Le
 files= []
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-portrait.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-flan.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-cook.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-france.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-italy.jpg'))
-files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-como.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-baum.jpg'))
-files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-sorrento.jpg'))
 files.each do |file, i|
   user11.photos.attach(io: file, filename: "pohoto#{i}.jpg", content_type: 'image/jpg')
 end
@@ -191,7 +190,7 @@ tie7 = Tie.create!(user1_id: user1.id, user2_id: user8.id)
 tie8 = Tie.create!(user1_id: user1.id, user2_id: user9.id)
 tie9 = Tie.create!(user1_id: user1.id, user2_id: user10.id)
 
-tie10 = Tie.create!(user1_id: user2.id, user2_id: user11.id)
+tie10 = Tie.create!(user1_id: user2.id, user2_id: user1.id)
 tie11 = Tie.create!(user1_id: user2.id, user2_id: user12.id)
 tie12 = Tie.create!(user1_id: user2.id, user2_id: user13.id)
 tie13 = Tie.create!(user1_id: user2.id, user2_id: user14.id)
@@ -456,8 +455,15 @@ ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.
 
 puts "Creating chat messages"
 
-msg1 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
-msg2 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "Hey Leeten, not bad, not bad", seen: false)
+msg1 = Message.create!(user_id: user1.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
+msg2 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "Hey Mary not bad, not bad", seen: false)
 msg3 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "What have you been up to during lockdown?", seen: false)
-msg4 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "I've been doing quite a bit of baking ! Check out my prfoile pics...", seen: false)
+msg4 = Message.create!(user_id: user1.id, tie_id: tie10.id, content: "I've been doing quite a bit of baking ! Check out my profile pics...", seen: false)
+
+msg5 = Message.create!(user_id: user12.id, tie_id: tie11.id, content: "Did you see the news about bitcoin?", seen: true)
+msg6 = Message.create!(user_id: user16.id, tie_id: tie15.id, content: "Hey, what's up?", seen: true)
+msg7 = Message.create!(user_id: user13.id, tie_id: tie12.id, content: "Hi Kev, cool wok! Where did you buy it? 😮", seen: true)
+msg9 = Message.create!(user_id: user2.id, tie_id: tie12.id, content: "Hi Talina, thanks! It's my favorite wok from ebay! 😃", seen: true)
+
+msg8 = Message.create!(user_id: user14.id, tie_id: tie13.id, content: "Hey Kev, I referred Amy to you.", seen: true)
 
