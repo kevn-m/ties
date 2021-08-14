@@ -100,11 +100,10 @@ user11 = User.new(username: "@Leeten", email: "leeten@user.com", first_name: "Le
 files= []
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-portrait.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-flan.jpg'))
+files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-cook.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-france.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-italy.jpg'))
-files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-como.jpg'))
 files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-baum.jpg'))
-files << File.open(Rails.root.join('app', 'assets', 'images', 'LC-sorrento.jpg'))
 files.each do |file, i|
   user11.photos.attach(io: file, filename: "pohoto#{i}.jpg", content_type: 'image/jpg')
 end
@@ -117,14 +116,10 @@ user12 = User.new(username: "@hannak", email: "hk@user.com", first_name: "Hanna"
 user12.photos.attach(io: File.open("app/assets/images/hanna_profile.jpeg"), filename: 'hanna_profile.jpeg', content_type: 'image/jpg')
 file2 = URI.open('https://images.unsplash.com/photo-1621504450177-2170a39db3cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTN8fGNyeXB0b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user12.photos.attach(io: file2, filename: 'photo.jpg', content_type: 'image/jpg')
-file3 = URI.open('https://images.unsplash.com/photo-1528155124528-06c125d81e89?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmlubGFuZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user12.photos.attach(io: file3, filename: 'photo.jpg', content_type: 'image/jpg')
 file4 = URI.open('https://images.unsplash.com/photo-1597278341748-f859d5f7d8e3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fHlhY2h0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user12.photos.attach(io: file4, filename: 'photo.jpg', content_type: 'image/jpg')
 file5 = URI.open('https://images.unsplash.com/photo-1616207133639-cd5e4db9859f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fHlhY2h0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
 user12.photos.attach(io: file5, filename: 'photo.jpg', content_type: 'image/jpg')
-file6 = URI.open('https://images.unsplash.com/photo-1560088939-ddaf4d3e0d0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHN3aW1taW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60')
-user12.photos.attach(io: file6, filename: 'photo.jpg', content_type: 'image/jpg')
 user12.save!
 
 user13 = User.new(username: "@Talina", email: "Talina@user.com", first_name: "Talina", last_name: "Bayeleva", password: "123456",
@@ -195,7 +190,7 @@ tie7 = Tie.create!(user1_id: user1.id, user2_id: user8.id)
 tie8 = Tie.create!(user1_id: user1.id, user2_id: user9.id)
 tie9 = Tie.create!(user1_id: user1.id, user2_id: user10.id)
 
-tie10 = Tie.create!(user1_id: user2.id, user2_id: user11.id)
+tie10 = Tie.create!(user1_id: user2.id, user2_id: user1.id)
 tie11 = Tie.create!(user1_id: user2.id, user2_id: user12.id)
 tie12 = Tie.create!(user1_id: user2.id, user2_id: user13.id)
 tie13 = Tie.create!(user1_id: user2.id, user2_id: user14.id)
@@ -457,14 +452,18 @@ puts "Creating referrals..."
 
 ref1 = Referral.create!(referrer_user_id: user14.id, recommended_user_id: user2.id, to_user_id: user5.id, requested: true)
 ref2 = Referral.create!(referrer_user_id: user18.id, recommended_user_id: user2.id, to_user_id: user4.id, requested: true)
-ref3 = Referral.create!(referrer_user_id: user17.id, recommended_user_id: user3.id, to_user_id: user2.id)
-ref4 = Referral.create!(referrer_user_id: user16.id, recommended_user_id: user7.id, to_user_id: user2.id)
-ref4 = Referral.create!(referrer_user_id: user20.id, recommended_user_id: user9.id, to_user_id: user2.id)
 
 puts "Creating chat messages"
 
-msg1 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
-msg2 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "Hey Leeten, not bad, not bad", seen: false)
+msg1 = Message.create!(user_id: user1.id, tie_id: tie10.id, content: "Hey Kev, how are you going?", seen: false)
+msg2 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "Hey Mary not bad, not bad", seen: false)
 msg3 = Message.create!(user_id: user2.id, tie_id: tie10.id, content: "What have you been up to during lockdown?", seen: false)
-msg4 = Message.create!(user_id: user11.id, tie_id: tie10.id, content: "I've been doing quite a bit of baking ! Check out my prfoile pics...", seen: false)
+msg4 = Message.create!(user_id: user1.id, tie_id: tie10.id, content: "I've been doing quite a bit of baking ! Check out my profile pics...", seen: false)
+
+msg5 = Message.create!(user_id: user12.id, tie_id: tie11.id, content: "Did you see the news about bitcoin?", seen: true)
+msg6 = Message.create!(user_id: user16.id, tie_id: tie15.id, content: "Hey, what's up?", seen: true)
+msg7 = Message.create!(user_id: user13.id, tie_id: tie12.id, content: "Hi Kev, cool wok! Where did you buy it? 😮", seen: true)
+msg9 = Message.create!(user_id: user2.id, tie_id: tie12.id, content: "Hi Talina, thanks! It's my favorite wok from ebay! 😃", seen: true)
+
+msg8 = Message.create!(user_id: user14.id, tie_id: tie13.id, content: "Hey Kev, I referred Amy to you.", seen: true)
 
