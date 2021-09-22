@@ -1,11 +1,13 @@
 # Ties - a referral-based social media web app
 
-### Disclaimer: This is a rails app built for a mobile. Please resize your browser to see the app as intended. 
+### Disclaimer: This is a rails app built for a mobile and may not function as intended on a desktop browser.
 
-Test account login details:
+## To explore features of Ties, please use the following demo account to log in: 
 
-Username: mary@user.com
+**Demo account login details:**
 
-Password: 123456
+**Username:** kevin@user.com
+
+**Password:** 123456
 
 
